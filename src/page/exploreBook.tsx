@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 
 import SideBar from "../component/SideBar/sideBar";
 import ResourceList from "../component/Resources/resourceList";
 import { Resource } from "../component/SideBar/FilterBy/filterBy";
 
 export default function ExplorePage() {
-  const resource: Resource[] =[];
+  const [selectFilter, setSelectFilter] = useState<string[]>([]);
+  const resource: Resource[] = [];
 
-  // ----------- Radio Filtering -----------
+  // ----------- Filter By -----------
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const setSelectedCategory = "123";
+    const value = event.target.value;
+    const indexOfCategory = selectFilter.indexOf(value);
+
+    if (indexOfCategory !== -1) {
+      // If the category is already in the filter list, remove it
+      setSelectFilter((prevFilter) =>
+        prevFilter.filter((item) => item !== value)
+      );
+    } else {
+      // If the category is not in the filter list, add it
+      setSelectFilter((prevFilter) => [...prevFilter, value]);
+    }
   };
+
+  // ----------- Filter Selected Resources -----------
+  function filteredResources() {
+    
+  }
 
   return (
     <>
-      <SideBar handleChange={handleChange}/>
-      <ResourceList resourceList={resource}/>
+      <SideBar handleChange={handleChange} />
+      <ResourceList resourceList={resource} />
     </>
   );
 }
