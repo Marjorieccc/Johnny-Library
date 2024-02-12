@@ -1,5 +1,5 @@
 import React from "react";
-import { Resource } from "../SideBar/FilterBy/filterBy";
+import { Resource } from "../SideBar/filterBy/filterBy";
 import ResourceCard from "./resourceCard";
 
 type ResourceList = {

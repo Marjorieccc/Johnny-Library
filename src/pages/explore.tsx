@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import SideBar from "../component/SideBar/sideBar";
-import ResourceList from "../component/Resources/resourceList";
-import { Resource } from "../component/SideBar/FilterBy/filterBy";
+import ResourceList from "../component/resources/resourceList";
+import { Resource } from "../component/SideBar/filterBy/filterBy";
 
 export default function ExplorePage() {
   const [selectFilter, setSelectFilter] = useState<string[]>([]);
@@ -25,9 +25,9 @@ export default function ExplorePage() {
   };
 
   // ----------- Filter Selected Resources -----------
-  function filteredResources() {
+  // function filteredResources() {
     
-  }
+  // }
 
   return (
     <>

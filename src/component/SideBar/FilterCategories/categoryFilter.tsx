@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "../../UI/Input";
+import Input from "../../ui/input";
 import { HandleChangeProps } from "../sideBar";
 
 export default function CategoryFilter({ handleChange }: HandleChangeProps) {

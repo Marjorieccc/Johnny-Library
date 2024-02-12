@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryFilter from "./FilterCategories/categoryFilter";
+import CategoryFilter from "./filterCategories/categoryFilter";
 
 export type HandleChangeProps = {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
