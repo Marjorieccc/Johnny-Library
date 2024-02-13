@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-type SearchFormProps = {
+type SearchProps = {
   onSearch: (term: string) => void;
 };
 
-export default function SearchBar({ onSearch }: SearchFormProps) {
+export default function SearchBar({ onSearch }: SearchProps) {
   const [term, setTerm] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
