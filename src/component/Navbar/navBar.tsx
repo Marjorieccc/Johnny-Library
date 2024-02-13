@@ -1,29 +1,17 @@
-import SearchBar from './SearchBar/searchBar';
-import Title from './Header/Title';
+
 import Dropdown from './Dropdown';
 import {useState } from 'react';
 
-type NavbarProps = {
-    onSearch: (term: string) => void;
-  };
-  
-export default function Navbar({ onSearch }: NavbarProps) {
+export default function Navbar() {
 
     const [isExploreDropdownVisible, setExploreDropdownVisible] = useState(false);
     const [isServiceDropdownVisible, setServiceDropdownVisible] = useState(false);
-
+    
     const handleExploreHover = () => {setExploreDropdownVisible(!isExploreDropdownVisible);};
     const handleServiceHover = () => {setServiceDropdownVisible(!isServiceDropdownVisible);};
 
-  return (
-    <nav className="fixed w-full z-10 top-0 bg-white border-b border-gray-400">
-        <div className="container mx-auto flex flex-wrap items-center justify-between py-4">
-            <div className="flex items-center flex-1">
-                <Title />
-            </div>
-            
-            <SearchBar onSearch={onSearch} />
-
+    return (
+        <div>
             <ul className="list-reset lg:flex justify-end items-center flex-1">
                 <li className="mr-3 py-2 lg:py-0">
                     <div onMouseEnter={handleExploreHover}
@@ -39,7 +27,6 @@ export default function Navbar({ onSearch }: NavbarProps) {
                 </li>
             </ul>
         </div>
-    </nav>
-  );
+    );
 };
 
