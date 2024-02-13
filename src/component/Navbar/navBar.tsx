@@ -12,10 +12,8 @@ export default function Navbar({ onSearch }: NavbarProps) {
     const [isExploreDropdownVisible, setExploreDropdownVisible] = useState(false);
     const [isServiceDropdownVisible, setServiceDropdownVisible] = useState(false);
 
-    const handleExploreMouseEnter = () => {setExploreDropdownVisible(true);};
-    const handleExploreMouseLeave = () => {setExploreDropdownVisible(false);};
-    const handleServiceMouseEnter = () => {setServiceDropdownVisible(true);};
-    const handleServiceMouseLeave = () => {setServiceDropdownVisible(false);};
+    const handleExploreHover = () => {setExploreDropdownVisible(!isExploreDropdownVisible);};
+    const handleServiceHover = () => {setServiceDropdownVisible(!isServiceDropdownVisible);};
 
   return (
     <nav className="fixed w-full z-10 top-0 bg-white border-b border-gray-400">
@@ -28,14 +26,14 @@ export default function Navbar({ onSearch }: NavbarProps) {
 
             <ul className="list-reset lg:flex justify-end items-center flex-1">
                 <li className="mr-3 py-2 lg:py-0">
-                    <div onMouseEnter={handleExploreMouseEnter}
-                         onMouseLeave={handleExploreMouseLeave} 
+                    <div onMouseEnter={handleExploreHover}
+                         onMouseLeave={handleExploreHover} 
                          tabIndex={0} role="button" className="dropdown btn m-1 inline-block text-gray-600  hover:text-gray-900 py-2 px-4">Explore!</div>
                          {isExploreDropdownVisible && <Dropdown navString="explore" />}
                 </li>
                 <li className="mr-3 py-2 lg:py-0">
-                    <div onMouseEnter={handleServiceMouseEnter}
-                         onMouseLeave={handleServiceMouseLeave} 
+                    <div onMouseEnter={handleServiceHover}
+                         onMouseLeave={handleServiceHover} 
                          tabIndex={0} role="button" className="dropdown btn m-1 inline-block text-gray-600  hover:text-gray-900 py-2 px-4">Service</div>
                          {isServiceDropdownVisible && <Dropdown navString="service" />}
                 </li>
