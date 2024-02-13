@@ -18,13 +18,13 @@ export default function CategoryFilter({
       <div className="collapse-title text-xl font-medium">{category}</div>
       <div className="collapse-content">
         {itemList.map((item) => (
-          <div className="pb-1 md:pb-0 text-base text-gray-900">
+          <div key={item} className="pb-1 md:pb-0 text-base text-gray-900">
             <Input
               handleChange={handleChange}
               type="checkbox"
-              name="item"
-              value="item"
-              title="item"
+              name={item}
+              value={item}
+              title={item}
             />
           </div>
         ))}

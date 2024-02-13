@@ -1,23 +1,34 @@
 import React, { SetStateAction } from "react";
 import CategoryFilter from "./categoryFilter";
 import { fetchCategories, fetchFormat, fetchLanguages } from "../../api/fetch";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export type setFilterState = {
-  selectFilter: string[],
+  selectFilter: string[];
   setSelectFilter: React.Dispatch<SetStateAction<string[]>>;
 };
 
-export default function SideBarFilter({ selectFilter, setSelectFilter }: setFilterState) {
+export default function SideBarFilter({
+  selectFilter,
+  setSelectFilter,
+}: setFilterState) {
   const queryClient = useQueryClient();
 
-  const {data: categoryList, isLoading} = useQuery({
-    queryKey:"category",
+  const { data: categoryList, isLoading: isLoadingCategory } = useQuery({
+    queryKey: ["category"],
     queryFn: () => fetchCategories(),
     staleTime: Infinity,
   });
-  const languageList = fetchLanguages();
-  const formatList = fetchFormat();
+  const { data: languageList, isLoading: isLoadingLanguages } = useQuery({
+    queryKey: ["language"],
+    queryFn: () => fetchLanguages(),
+    staleTime: Infinity,
+  });
+  const { data: formatList, isLoading: isLoadingFormat } = useQuery({
+    queryKey: ["format"],
+    queryFn: () => fetchFormat(),
+    staleTime: Infinity,
+  });
 
   // ----------- User Select Filters -----------
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +46,8 @@ export default function SideBarFilter({ selectFilter, setSelectFilter }: setFilt
     }
   };
 
-  if (isLoading) {
+  // ----------- Loading -----------
+  if (isLoadingCategory || isLoadingLanguages || isLoadingFormat) {
     return <div>Loading...</div>;
   }
 
@@ -72,10 +84,33 @@ export default function SideBarFilter({ selectFilter, setSelectFilter }: setFilt
             id="menu-content"
           >
             <ul className="list-reset">
-              {categoryList &&<li>
-                <CategoryFilter category="Category" itemList={categoryList} handleChange={handleChange} />
-              </li>}
-
+              {categoryList && (
+                <li>
+                  <CategoryFilter
+                    category="Category"
+                    itemList={categoryList}
+                    handleChange={handleChange}
+                  />
+                </li>
+              )}
+              {languageList && (
+                <li>
+                  <CategoryFilter
+                    category="Language"
+                    itemList={languageList}
+                    handleChange={handleChange}
+                  />
+                </li>
+              )}
+              {formatList && (
+                <li>
+                  <CategoryFilter
+                    category="Format"
+                    itemList={formatList}
+                    handleChange={handleChange}
+                  />
+                </li>
+              )}
             </ul>
           </div>
         </div>
