@@ -21,10 +21,10 @@ export default function Navbar({ onSearch }: NavbarProps) {
     <nav className="fixed w-full z-10 top-0 bg-white border-b border-gray-400">
         <div className="container mx-auto flex flex-wrap items-center justify-between py-4">
             <div className="flex items-center flex-1">
-                <MainHeader />
+                <Title />
             </div>
             
-            <SearchForm onSearch={onSearch} />
+            <SearchBar onSearch={onSearch} />
 
             <ul className="list-reset lg:flex justify-end items-center flex-1">
                 <li className="mr-3 py-2 lg:py-0">
