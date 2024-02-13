@@ -1,5 +1,5 @@
 import React from "react";
-import { Resource } from "../SideBar/filterBy/filterBy";
+import { Resource } from "../../api/fetch";
 import ResourceCard from "./resourceCard";
 
 type ResourceList = {
@@ -12,7 +12,7 @@ export default function ResourceList({resourceList}: ResourceList) {
       <header>Browse Our Selection</header>
       <ul>
         {resourceList.map((resource) => (
-          <li key={resource.key}>
+          <li key={resource.resource_id}>
             <ResourceCard {...resource} />
           </li>
         ))}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Resource } from "../SideBar/filterBy/filterBy";
+import { Resource } from "../../api/fetch";
 
 export default function ResourceCard(resource: Resource) {
   return (
