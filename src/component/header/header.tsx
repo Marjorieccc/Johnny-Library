@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from 'react';
-import Title from "../header/Title";
+import Title from "./title";
 import NavBar from "../navbar/navBar";
 import SearchBar from "../searchBar/searchBar"
 

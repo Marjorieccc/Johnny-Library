@@ -1,6 +1,7 @@
 import React, { SetStateAction } from "react";
 import CategoryFilter from "./categoryFilter";
 import { fetchCategories, fetchFormat, fetchLanguages } from "../../api/fetch";
+import { useQuery, useQueryClient } from "react-query";
 
 export type setFilterState = {
   selectFilter: string[],
@@ -8,7 +9,13 @@ export type setFilterState = {
 };
 
 export default function SideBarFilter({ selectFilter, setSelectFilter }: setFilterState) {
-  const categoryList = fetchCategories();
+  const queryClient = useQueryClient();
+
+  const {data: categoryList, isLoading} = useQuery({
+    queryKey:"category",
+    queryFn: () => fetchCategories(),
+    staleTime: Infinity,
+  });
   const languageList = fetchLanguages();
   const formatList = fetchFormat();
 
@@ -27,6 +34,10 @@ export default function SideBarFilter({ selectFilter, setSelectFilter }: setFilt
       setSelectFilter((prevFilter) => [...prevFilter, value]);
     }
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -61,9 +72,9 @@ export default function SideBarFilter({ selectFilter, setSelectFilter }: setFilt
             id="menu-content"
           >
             <ul className="list-reset">
-              <li>
+              {categoryList &&<li>
                 <CategoryFilter category="Category" itemList={categoryList} handleChange={handleChange} />
-              </li>
+              </li>}
 
             </ul>
           </div>
