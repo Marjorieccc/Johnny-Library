@@ -1,5 +1,5 @@
-import SearchForm from './SearchForm'; 
-import MainHeader from './MainHeader';
+import SearchBar from './SearchBar/searchBar';
+import Title from './Header/Title';
 import Dropdown from './Dropdown';
 import {useState } from 'react';
 
