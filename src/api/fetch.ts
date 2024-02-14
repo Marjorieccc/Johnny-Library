@@ -4,7 +4,7 @@ export type Resource = {
   resource_id: string;
   call_number: string;
   title: string;
-  author: string;
+  author: string[];
   category: {
     Fiction?: string[];
     Nonfiction?: string[];
@@ -142,4 +142,22 @@ export async function fetchByFilter(
   });
 
   return resourcesList;
+}
+
+// fetch matching resources with resource title or resource author as keyword
+export async function searchResource( searchTerm : string ) {
+  console.log("Fetching resource for:", searchTerm);
+  let filteredResource : Resource[]= []; 
+  try {
+      const response = await fetch('/resources.json');
+      const data = await response.json();
+      filteredResource = data.resources.filter((searchResult: Resource) => 
+          searchResult.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+          searchResult.author.some(author => author.toLowerCase().includes(searchTerm.toLowerCase()))
+      );  
+
+  } catch (error) {
+  console.error("Error fetching resource:", error);
+}
+  return filteredResource;
 }
