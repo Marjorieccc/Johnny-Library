@@ -22,7 +22,7 @@ export default function CategoryFilter({
             <Input
               handleChange={handleChange}
               type="checkbox"
-              name={item}
+              name={category}
               value={item}
               title={item}
             />

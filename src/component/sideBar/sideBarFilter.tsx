@@ -4,16 +4,15 @@ import { fetchCategories, fetchFormat, fetchLanguages } from "../../api/fetch";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export type setFilterState = {
-  selectFilter: string[];
-  setSelectFilter: React.Dispatch<SetStateAction<string[]>>;
+  selectFilter: string[][];
+  setSelectFilter: React.Dispatch<SetStateAction<string[][]>>;
 };
 
 export default function SideBarFilter({
   selectFilter,
   setSelectFilter,
 }: setFilterState) {
-  const queryClient = useQueryClient();
-
+  // ----------- Fetch Filter Options -----------
   const { data: categoryList, isLoading: isLoadingCategory } = useQuery({
     queryKey: ["category"],
     queryFn: () => fetchCategories(),
@@ -33,16 +32,33 @@ export default function SideBarFilter({
   // ----------- User Select Filters -----------
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    const indexOfCategory = selectFilter.indexOf(value);
+    let indexOfCategory = -1;
+    switch (event.target.name) {
+      case "Category":
+        indexOfCategory = 0;
+        break;
+      case "Language":
+        indexOfCategory = 1;
+        break;
+      case "Format":
+        indexOfCategory = 2;
+        break;
+    }
+    console.log(indexOfCategory);
+    const indexOfFilter = selectFilter[indexOfCategory].indexOf(value);
 
-    if (indexOfCategory !== -1) {
+    if (indexOfFilter !== -1) {
       // If the category is already in the filter list, remove it
-      setSelectFilter((prevFilter) =>
-        prevFilter.filter((item) => item !== value)
-      );
+      const filterCopy = [...selectFilter];
+      filterCopy[indexOfCategory].splice(indexOfFilter, 1);
+      setSelectFilter(filterCopy);
+      console.log(selectFilter);
     } else {
       // If the category is not in the filter list, add it
-      setSelectFilter((prevFilter) => [...prevFilter, value]);
+      const filterCopy = [...selectFilter];
+      filterCopy[indexOfCategory].push(value);
+      setSelectFilter(filterCopy);
+      console.log(selectFilter);
     }
   };
 
@@ -84,6 +100,7 @@ export default function SideBarFilter({
             id="menu-content"
           >
             <ul className="list-reset">
+              {/* Filter by Category */}
               {categoryList && (
                 <li>
                   <CategoryFilter
@@ -93,6 +110,7 @@ export default function SideBarFilter({
                   />
                 </li>
               )}
+              {/* Filter by Language */}
               {languageList && (
                 <li>
                   <CategoryFilter
@@ -102,6 +120,7 @@ export default function SideBarFilter({
                   />
                 </li>
               )}
+              {/* Filter by Format */}
               {formatList && (
                 <li>
                   <CategoryFilter
