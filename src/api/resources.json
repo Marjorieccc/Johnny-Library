@@ -4,7 +4,7 @@
       "resource_id": "001",
       "call_number": "FIC001",
       "title": "The Great Gatsby",
-      "author": "F. Scott Fitzgerald",
+      "author": ["F. Scott Fitzgerald"],
       "category": {
         "Fiction": ["Classics"]
       },
@@ -20,7 +20,7 @@
       "resource_id": "002",
       "call_number": "NF001",
       "title": "Educated",
-      "author": "Tara Westover",
+      "author": ["Tara Westover"],
       "category": {
         "Nonfiction": ["Biography and Autobiography", "Memoir"]
       },
@@ -36,7 +36,7 @@
       "resource_id": "003",
       "call_number": "FIC002",
       "title": "To Kill a Mockingbird",
-      "author": "Harper Lee",
+      "author": ["Harper Lee"],
       "category": {
         "Fiction": ["Classics"]
       },
@@ -52,7 +52,7 @@
       "resource_id": "004",
       "call_number": "NF002",
       "title": "Sapiens: A Brief History of Humankind",
-      "author": "Yuval Noah Harari",
+      "author": ["Yuval Noah Harari"],
       "category": {
         "Nonfiction": ["History and Geography", "Anthropology"]
       },
@@ -68,7 +68,7 @@
       "resource_id": "005",
       "call_number": "FIC003",
       "title": "1984",
-      "author": "George Orwell",
+      "author": ["George Orwell"],
       "category": {
         "Fiction": ["Dystopian", "Classics"]
       },
@@ -84,7 +84,7 @@
       "resource_id": "006",
       "call_number": "NF003",
       "title": "The Subtle Art of Not Giving a F*ck",
-      "author": "Mark Manson",
+      "author": ["Mark Manson"],
       "category": {
         "Nonfiction": ["Self-Help"]
       },
@@ -100,7 +100,7 @@
       "resource_id": "007",
       "call_number": "FIC004",
       "title": "Pride and Prejudice",
-      "author": "Jane Austen",
+      "author": ["Jane Austen"],
       "category": {
         "Fiction": ["Romance", "Classics"]
       },
@@ -116,7 +116,7 @@
       "resource_id": "008",
       "call_number": "NF004",
       "title": "The Power of Habit",
-      "author": "Charles Duhigg",
+      "author": ["Charles Duhigg"],
       "category": {
         "Nonfiction": ["Psychology", "Self-Help"]
       },
@@ -132,7 +132,7 @@
       "resource_id": "009",
       "call_number": "FIC005",
       "title": "The Catcher in the Rye",
-      "author": "J. D. Salinger",
+      "author": ["J. D. Salinger"],
       "category": {
         "Fiction": ["Coming-of-age", "Classics"]
       },
@@ -148,7 +148,7 @@
       "resource_id": "010",
       "call_number": "NF005",
       "title": "The Four Agreements",
-      "author": "Don Miguel Ruiz",
+      "author": ["Don Miguel Ruiz"],
       "category": {
         "Nonfiction": ["Philosophy", "Self-Help"]
       },
