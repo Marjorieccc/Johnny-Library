@@ -13,6 +13,11 @@ export default function SideBarFilter({
   setSelectFilter,
 }: setFilterState) {
   // ----------- Fetch Filter Options -----------
+  const { data: formatList, isLoading: isLoadingFormat } = useQuery({
+    queryKey: ["format"],
+    queryFn: () => fetchFormat(),
+    staleTime: Infinity,
+  });
   const { data: categoryList, isLoading: isLoadingCategory } = useQuery({
     queryKey: ["category"],
     queryFn: () => fetchCategories(),
@@ -23,28 +28,22 @@ export default function SideBarFilter({
     queryFn: () => fetchLanguages(),
     staleTime: Infinity,
   });
-  const { data: formatList, isLoading: isLoadingFormat } = useQuery({
-    queryKey: ["format"],
-    queryFn: () => fetchFormat(),
-    staleTime: Infinity,
-  });
 
   // ----------- User Select Filters -----------
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     let indexOfCategory = -1;
     switch (event.target.name) {
-      case "Category":
+      case "Format":
         indexOfCategory = 0;
         break;
-      case "Language":
+      case "Category":
         indexOfCategory = 1;
         break;
-      case "Format":
+      case "Language":
         indexOfCategory = 2;
         break;
     }
-    console.log(indexOfCategory);
     const indexOfFilter = selectFilter[indexOfCategory].indexOf(value);
 
     if (indexOfFilter !== -1) {
@@ -58,7 +57,6 @@ export default function SideBarFilter({
       const filterCopy = [...selectFilter];
       filterCopy[indexOfCategory].push(value);
       setSelectFilter(filterCopy);
-      console.log(selectFilter);
     }
   };
 
@@ -101,6 +99,15 @@ export default function SideBarFilter({
           >
             <ul className="list-reset">
               {/* Filter by Category */}
+              {formatList && (
+                <li>
+                  <CategoryFilter
+                    category="Format"
+                    itemList={formatList}
+                    handleChange={handleChange}
+                  />
+                </li>
+              )}
               {categoryList && (
                 <li>
                   <CategoryFilter
@@ -121,15 +128,6 @@ export default function SideBarFilter({
                 </li>
               )}
               {/* Filter by Format */}
-              {formatList && (
-                <li>
-                  <CategoryFilter
-                    category="Format"
-                    itemList={formatList}
-                    handleChange={handleChange}
-                  />
-                </li>
-              )}
             </ul>
           </div>
         </div>
