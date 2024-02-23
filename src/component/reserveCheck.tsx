@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import 'primeicons/primeicons.css';
 
 export default function ReserveCheck(){
@@ -8,6 +9,8 @@ export default function ReserveCheck(){
     }
 
     return(
-        <span className="pi pi-book" style={{ fontSize: '1.5rem'}} onClick={handleReserveCheck} ></span>
+        <Link to="/account" className="no-underline"> 
+            <span className="pi pi-book" style={{ fontSize: '1.5rem'}} onClick={handleReserveCheck} ></span>    
+        </Link>
     );
 }
