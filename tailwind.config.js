@@ -4,7 +4,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: { 
+      fontFamily: {
+      'fjalla': ['Fjalla One', 'sans-serif'], 
+      'roboto-condensed': ['Roboto Condensed', 'sans-serif']
+      },
+    },
   },
   plugins: [
     require("daisyui")
