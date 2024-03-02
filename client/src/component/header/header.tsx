@@ -3,8 +3,8 @@ import { useState } from 'react';
 import Title from "./title";
 import NavBar from "../navbar/navBar";
 import SearchBar from "../searchBar/searchBar"
-import AccountAccess from "../accountAccess";
-import ReserveCheck from "../reserveCheck";
+import AccountLoginButton from "../account/accountLoginButton";
+import ReserveCheckButton from "../account/reserveCheckButton";
 
 export default function Header() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,8 +17,8 @@ export default function Header() {
           <div className="flex-grow"></div>
           <div className="flex-grow flex items-center space-x-4">
           <SearchBar onSearch= {handleSearch}/>
-          <AccountAccess />
-          <ReserveCheck />
+          <AccountLoginButton/>
+          <ReserveCheckButton/>
           </div>
 
         </div>
