@@ -2,26 +2,23 @@ import mongoose, {Schema, Types} from 'mongoose';
 
 interface IMedium {
     _id: Types.ObjectId,
-    format: String,
-    publisher: String,
-    language: [String],
-    year_of_publication: Number,
+    format: string,
+    publisher: string,
+    language: string[],
+    year_of_publication: number,
     return_date: Date | null,
-    status: String
+    status: string
 }
 
 interface IResource {
     _id: Types.ObjectId, 
-    title: String,
-    thumbnail_url?: String,
-    cover_url?: String,
-    audience: String,
-    category: {
-        Fiction?: [String],
-        Nonfiction?: [String],
-    },
-    shortDescription?: String,
-    longDescription?: String,
+    title: string,
+    thumbnail_url?: string,
+    cover_url?: string,
+    audience: string,
+    category: string[],
+    shortDescription?: string,
+    longDescription?: string,
     medium: IMedium[];
 }
 
@@ -41,10 +38,7 @@ const resourceSchema = new Schema<IResource>({
     thumbnail_url: String,
     cover_url: String,
     audience: String,
-    category: {
-        Fiction: [String],
-        Nonfiction: [String],
-    },
+    category: [String],
     shortDescription: String,
     longDescription: String,
     medium: [mediumSchema]

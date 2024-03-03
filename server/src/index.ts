@@ -1,17 +1,20 @@
 import express, { Request, Response } from "express";
 import mongoose from 'mongoose';
 import cors from 'cors';
+
 import router from './routes/resourceRoute';
+import { config } from "./config/config";
+import Logging from "./logging/logging";
+
 const app = express();
-const port = 8080;
-const mongoDBURL = "mongodl link";
 
 (async () => {
   try {
-    await mongoose.connect(mongoDBURL);
-    console.log("MongoDB Connected!");
+    console.log(config.mongo.url);
+    await mongoose.connect(config.mongo.url, { retryWrites: true, w: 'majority' });
+    Logging.info('Mongo connected successfully.');
   } catch (error) {
-    console.error(`Error connecting to MongoDB: ${error}`);
+    Logging.error(`Error connecting to MongoDB: ${error}`);
     process.exit(1);
   }
 })();
@@ -25,6 +28,6 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use('/resources', router);
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(config.server.port, () => {
+  console.log(`Server is running on port ${config.server.port}`);
 });
