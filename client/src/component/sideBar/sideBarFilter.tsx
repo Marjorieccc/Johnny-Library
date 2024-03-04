@@ -1,17 +1,24 @@
 import React, { SetStateAction } from "react";
 import CategoryFilter from "./categoryFilter";
 import { fetchCategories, fetchFormat, fetchLanguages } from "../../api/fetch";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import { updateFilterList } from "../../api/filter";
 
-export type setFilterState = {
-  selectFilter: string[][];
-  setSelectFilter: React.Dispatch<SetStateAction<string[][]>>;
+export type Filter = {
+  format: string[];
+  category: string[];
+  language: string[];
+};
+
+export type SetFilterState = {
+  selectFilter: Filter;
+  setSelectFilter: React.Dispatch<Filter>;
 };
 
 export default function SideBarFilter({
   selectFilter,
   setSelectFilter,
-}: setFilterState) {
+}: SetFilterState) {
   // ----------- Fetch Filter Options -----------
   const { data: formatList, isLoading: isLoadingFormat } = useQuery({
     queryKey: ["format"],
@@ -29,34 +36,41 @@ export default function SideBarFilter({
     staleTime: Infinity,
   });
 
-  // ----------- User Select Filters -----------
+  // ----------- User Filter Options -----------
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    let indexOfCategory = -1;
+
+    // Update filter
     switch (event.target.name) {
       case "Format":
-        indexOfCategory = 0;
+        const newFormatFilter = updateFilterList(
+          [...selectFilter.format],
+          value
+        );
+        setSelectFilter({
+          format: newFormatFilter,
+          category: [...selectFilter.category],
+          language: [...selectFilter.language],
+        });
         break;
-      case "Category":
-        indexOfCategory = 1;
-        break;
-      case "Language":
-        indexOfCategory = 2;
-        break;
-    }
-    const indexOfFilter = selectFilter[indexOfCategory].indexOf(value);
 
-    if (indexOfFilter !== -1) {
-      // If the category is already in the filter list, remove it
-      const filterCopy = [...selectFilter];
-      filterCopy[indexOfCategory].splice(indexOfFilter, 1);
-      setSelectFilter(filterCopy);
-      console.log(selectFilter);
-    } else {
-      // If the category is not in the filter list, add it
-      const filterCopy = [...selectFilter];
-      filterCopy[indexOfCategory].push(value);
-      setSelectFilter(filterCopy);
+      case "Category":
+        const newCategoryFilter = updateFilterList([...selectFilter.category], value);
+        setSelectFilter({
+          format: [...selectFilter.format],
+          category: newCategoryFilter,
+          language: [...selectFilter.language],
+        });
+        break;
+
+      case "Language":
+        const newLanguageFilter = updateFilterList([...selectFilter.language], value);
+        setSelectFilter({
+          format: [...selectFilter.format],
+          category: [...selectFilter.category],
+          language: newLanguageFilter,
+        });
+        break;
     }
   };
 
