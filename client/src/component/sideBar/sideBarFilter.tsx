@@ -1,6 +1,6 @@
 import React, { SetStateAction } from "react";
 import CategoryFilter from "./categoryFilter";
-import { fetchCategories, fetchFormat, fetchLanguages } from "../../api/fetch";
+import { fetchCategories, fetchFormat, fetchLanguages } from "../../api/fetchResource/fetchResource";
 import { useQuery } from "@tanstack/react-query";
 import { updateFilterList } from "../../api/filter";
 

@@ -1,5 +1,6 @@
-import data from './resources.json';
-import { Filter } from "../component/sideBar/sideBarFilter";
+import data from "../resources.json";
+import { Filter } from "../../component/sideBar/sideBarFilter";
+import { RoomSize, RoomBookingInfo, Equipment, Room } from "../../types/room";
 
 export type Resource = {
   resource_id: string;
@@ -17,24 +18,24 @@ export type Resource = {
 };
 
 export interface IMedium {
-  _id: string,
-  format: string,
-  publisher: string,
-  language: string[],
-  year_of_publication: number,
-  return_date: Date | null,
-  status: string
+  _id: string;
+  format: string;
+  publisher: string;
+  language: string[];
+  year_of_publication: number;
+  return_date: Date | null;
+  status: string;
 }
 
 export interface IResource {
-  _id: string, 
-  title: string,
-  thumbnail_url?: string,
-  cover_url?: string,
-  audience: string,
-  category: string[],
-  shortDescription?: string,
-  longDescription?: string,
+  _id: string;
+  title: string;
+  thumbnail_url?: string;
+  cover_url?: string;
+  audience: string;
+  category: string[];
+  shortDescription?: string;
+  longDescription?: string;
   medium: IMedium[];
 }
 
@@ -100,13 +101,11 @@ export async function fetchLanguages(): Promise<string[]> {
 }
 
 // fetch resources
-export async function fetchResources():Promise<Resource[]> {
+export async function fetchResources(): Promise<Resource[]> {
   let resourceList: Resource[] = [];
-  
+
   try {
-    const response = await fetch(
-      `http://localhost:8080/resources`
-    );
+    const response = await fetch(`http://localhost:8080/resources`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -127,7 +126,7 @@ export async function fetchByFilter(
 ): Promise<Resource[]> {
   let filteredResource: Resource[] = [];
   const searchParams = new URLSearchParams();
-  
+
   for (const [key, value] of Object.entries(filterOptions)) {
     if (value && value.length) {
       if (Array.isArray(value)) {
@@ -156,17 +155,21 @@ export async function fetchByFilter(
 }
 
 // fetch matching resources with resource title or resource author as keyword
-export async function fetchBySearchTerm( searchTerm : string ):Promise<IResource[]>{
-  console.log('Fetching resource for:', searchTerm);
+export async function fetchBySearchTerm(
+  searchTerm: string
+): Promise<IResource[]> {
+  console.log("Fetching resource for:", searchTerm);
   let searchResult = [];
   try {
-      const response = await fetch(`http://localhost:8080/resources/search?title=${searchTerm}`);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+    const response = await fetch(
+      `http://localhost:8080/resources/search?title=${searchTerm}`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
     }
     searchResult = await response.json();
   } catch (error) {
-  console.error('Error fetching resource:', error);
-}
+    console.error("Error fetching resource:", error);
+  }
   return searchResult;
 }

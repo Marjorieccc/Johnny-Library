@@ -27,3 +27,6 @@ yarn-error.log*
 /Dan_server
 fetch_code_from_chat.js
 query_from_chat.ts
+
+# env
+.env

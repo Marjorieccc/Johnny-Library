@@ -1,5 +1,5 @@
 import React from "react";
-import { Resource } from "../../api/fetch";
+import { Resource } from "../../api/fetchResource/fetchResource";
 import ResourceCard from "./resourceCard";
 
 type ResourceList = {

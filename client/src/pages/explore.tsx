@@ -9,7 +9,7 @@ import {
   fetchByFilter,
   fetchResources,
   fetchBySearchTerm,
-} from "../api/fetch";
+} from "../api/fetchResource/fetchResource";
 
 export default function ExplorePage() {
   const [selectFilter, setSelectFilter] = useState<Filter>({
