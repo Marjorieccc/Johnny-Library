@@ -1,4 +1,4 @@
-import { Resource } from "./fetch";
+import { Resource } from "./fetchResource/fetchResource";
 
 export function updateFilterList(
   filterCategory: string[],

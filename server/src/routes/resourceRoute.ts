@@ -1,17 +1,16 @@
 import { Router } from "express";
 
-import Resource from "../models/resourceModel";
 import controller from '../controllers/Resource'
 
-const router = Router();
+const resourceRouter = Router();
 
 // get all the resources object from database
-router.get("/resources", controller.queryAllResources);
+resourceRouter.get("/", controller.queryAllResources);
 
 // get all the resources matches the filter queries
-router.get("/search", controller.queryResourceByFilter);
+resourceRouter.get("/search", controller.queryResourceByFilter);
 
 // get resources by _id
-router.get("/:id", controller.queryResourceById);
+resourceRouter.get("/:id", controller.queryResourceById);
 
-export default router;
+export default resourceRouter;
