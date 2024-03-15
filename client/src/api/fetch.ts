@@ -1,14 +1,12 @@
 import data from './resources.json';
+import { Filter } from "../component/sideBar/sideBarFilter";
 
 export type Resource = {
   resource_id: string;
   call_number: string;
   title: string;
   author: string[];
-  category: {
-    Fiction?: string[];
-    Nonfiction?: string[];
-  };
+  category: string[];
   format: string;
   audience: string;
   publisher: string;
@@ -44,9 +42,7 @@ export interface IResource {
 export async function fetchCategories(): Promise<string[]> {
   const categories: string[] = [
     "Fiction",
-    "Non-Fiction",
-  ];
-  const subcategories: string[] = [
+    "Nonfiction",
     "Adult Fiction",
     "Romance",
     "Fantasy",
@@ -66,8 +62,7 @@ export async function fetchCategories(): Promise<string[]> {
     "Philosophy",
     "True Crime",
   ];
-
-  return categories.concat(subcategories);
+  return categories;
 }
 
 // fetch format of resources
@@ -104,48 +99,60 @@ export async function fetchLanguages(): Promise<string[]> {
   return languages;
 }
 
-// fetch resources according to filter options
+// fetch resources
+export async function fetchResources():Promise<Resource[]> {
+  let resourceList: Resource[] = [];
+  
+  try {
+    const response = await fetch(
+      `http://localhost:8080/resources`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    resourceList = await response.json();
+  } catch (error) {
+    console.log("Error fetching resource:", error);
+  }
+
+  return resourceList;
+}
+
+// fetch resources by selected filters, if any
 export async function fetchByFilter(
-  queryCategories: string[] = [],
-  queryFormat: string[] = [],
-  queryLanguage: string[] = []
+  filterOptions: Filter,
+  options?: {
+    searchTerm?: string;
+  }
 ): Promise<Resource[]> {
-  const resourcesList: Resource[] = [];
-
-  data.resources.forEach((resource) => {
-    let isFilter = false;
-    // fetch by category
-    for (let i = 0; (isFilter == false && i < queryCategories.length); i++) {
-      if (
-        Object.keys(resource.category).includes(queryCategories[i]) ||
-        resource.category.Fiction?.includes(queryCategories[i]) ||
-        resource.category.Nonfiction?.includes(queryCategories[i])
-      ) {
-        resourcesList.push(resource);
-        isFilter = true;
-      }
-    }
-    // fetch by format
-    if (!isFilter) {
-      for (let i = 0; (isFilter == false && i < queryFormat.length); i++) {
-        if (resource.format.includes(queryFormat[i])) {
-          resourcesList.push(resource);
-          isFilter = true;
+  let filteredResource: Resource[] = [];
+  const searchParams = new URLSearchParams();
+  
+  for (const [key, value] of Object.entries(filterOptions)) {
+    if (value && value.length) {
+      if (Array.isArray(value)) {
+        for (const parsedValue of value) {
+          searchParams.append(key, parsedValue);
         }
+      } else {
+        searchParams.append(key, value);
       }
     }
-    // fetch by language
-    if (!isFilter) {
-      for (let i = 0; (isFilter == false && i < queryLanguage.length); i++) {
-        if (resource.language.includes(queryLanguage[i])) {
-          resourcesList.push(resource);
-          isFilter = true;
-        }
-      }
-    }
-  });
+  }
 
-  return resourcesList;
+  try {
+    const response = await fetch(
+      `http://localhost:8080/resources/search?${searchParams.toString()}`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    filteredResource = await response.json();
+  } catch (error) {
+    console.log("Error fetching resource:", error);
+  }
+
+  return filteredResource;
 }
 
 // fetch matching resources with resource title or resource author as keyword

@@ -26,8 +26,8 @@ app.get("/", (req: Request, res: Response) => {
   res.send("welcome to libralounge server");
 });
 
-app.use('/resources', router);
+app.use('/', router);
 
 app.listen(config.server.port, () => {
-  console.log(`Server is running on port ${config.server.port}`);
+  Logging.info(`Server is running on port ${config.server.port}`);
 });
