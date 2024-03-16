@@ -1,6 +1,4 @@
-import data from "../resources.json";
 import { Filter } from "../../component/sideBar/sideBarFilter";
-import { RoomSize, RoomBookingInfo, Equipment, Room } from "../../types/room";
 
 export type Resource = {
   resource_id: string;
