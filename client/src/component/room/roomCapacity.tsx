@@ -13,7 +13,7 @@ export default function RoomCapacity({
       sizeList.current.push(+event.target.value);
     } else {
       sizeList.current = sizeList.current.filter(
-        (item) => item !== +event.target.value
+        (item) => item !== +event.target.value,
       );
     }
     onSelect(sizeList.current);
@@ -21,8 +21,8 @@ export default function RoomCapacity({
 
   return (
     <form className="mb-4">
-      <hr className="h-px bg-gray-200 border-0 dark:bg-gray-700 mb-2" />
-      <legend className="text-gray-700 font-bold text-xl">Capcity</legend>
+      <hr className="mb-2 h-px border-0 bg-gray-200 dark:bg-gray-700" />
+      <legend className="text-xl font-bold text-gray-700">Capcity</legend>
       {roomSize.map((size) => {
         return (
           <div key={size._id} className="my-2">

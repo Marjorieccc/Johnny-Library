@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { formatTime, formatDate, combineDateAndTime } from "../../utils/timeTableUtils";
+import {
+  formatTime,
+  formatDate,
+  combineDateAndTime,
+} from "../../utils/timeTableUtils";
 import { TimeTableProps, DisplayDate } from "../../types/room";
 
 const NO_OF_DAYS_SHOWN = 7;
@@ -62,31 +66,33 @@ export default function TimeTable({
       (element) =>
         element.date.getFullYear() === startTime.getFullYear() &&
         element.date.getMonth() === startTime.getMonth() &&
-        element.date.getDate() === startTime.getDate()
+        element.date.getDate() === startTime.getDate(),
     );
     const session = date?.availability.find((session) => {
       return session.timeSlot.start.getTime() === startTime.getTime()
         ? true
         : false;
     });
-      return session?.availableRooms.filter((room) => {
+    return (
+      session?.availableRooms.filter((room) => {
         return (
           !filters.size.length ||
           (filters.size.some((size) => size === room.size) &&
             filters.equipment.every((equipment) =>
-              room.equipment?.includes(equipment)
+              room.equipment?.includes(equipment),
             ))
         );
-      }) || [];
-    }
+      }) || []
+    );
+  };
 
   const dateListForDisplay = dateList.slice(
     dateRange.startIdx,
-    dateRange.endIdx
+    dateRange.endIdx,
   );
 
   return (
-    <table className="w-full h-full">
+    <table className="h-full w-full">
       <thead>
         <tr>
           <th></th>
@@ -100,7 +106,7 @@ export default function TimeTable({
                   Prev
                 </button>
               </div>
-              <div className="text-gray-700 font-bold text-xl basis-10/12"></div>
+              <div className="basis-10/12 text-xl font-bold text-gray-700"></div>
               <div className="basis-1/12">
                 <button
                   className={
@@ -118,7 +124,7 @@ export default function TimeTable({
           <th></th>
           {dateListForDisplay.map((date, index) => {
             return (
-              <th className="font-normal px-2" key={index}>
+              <th className="px-2 font-normal" key={index}>
                 {formatDate(date)}
               </th>
             );
@@ -139,7 +145,7 @@ export default function TimeTable({
                 return (
                   <td
                     className={
-                      "border-dotted border-2 border-gray-500 " +
+                      "border-2 border-dotted border-gray-500 " +
                       (availableRooms.length ? "bg-lime-100" : "")
                     }
                     key={date.toISOString()}

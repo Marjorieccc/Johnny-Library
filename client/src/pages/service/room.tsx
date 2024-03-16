@@ -28,7 +28,7 @@ export default function RoomFilter() {
         return newFilter;
       });
     };
-  
+
     const equipmentHandler = (equipmentList: string[]) => {
       setFilters((prevFilter) => {
         const newFilter = { ...prevFilter };
@@ -36,10 +36,10 @@ export default function RoomFilter() {
         return newFilter;
       });
     };
-  
+
     return (
       <>
-        <div className="flex h-full pt-40 p-4 gap-4 overflow-x-auto">
+        <div className="flex h-full gap-4 overflow-x-auto p-4 pt-40">
           <div className="w-1/5 min-w-max">
             <RoomCapacity roomSize={data.roomSize} onSelect={roomSizeHandler} />
             <RoomEquipment
@@ -60,4 +60,3 @@ export default function RoomFilter() {
     );
   }
 }
-
