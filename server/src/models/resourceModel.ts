@@ -1,6 +1,6 @@
 import mongoose, {Schema, Types} from 'mongoose';
 
-interface IMedium {
+export interface IMedium {
     _id: Types.ObjectId,
     format: string,
     publisher: string,
@@ -10,7 +10,7 @@ interface IMedium {
     status: string
 }
 
-interface IResource {
+export interface IResource {
     _id: Types.ObjectId, 
     title: string,
     thumbnail_url?: string,

@@ -1,14 +1,11 @@
-import React from "react";
-import { useState } from 'react';
-import Title from "./title";
-import NavBar from "../navbar/navBar";
-import SearchBar from "../searchBar/searchBar"
-import AccountLoginButton from "../account/accountLoginButton";
-import ReserveCheckButton from "../account/reserveCheckButton";
+import React,  { useState } from 'react';
+import Title from './title';
+import NavBar from '../navbar/navBar';
+import SearchBar from '../searchBar/searchBar'
+import AccountLoginButton from '../account/accountLoginButton';
+import ReserveCheckButton from '../account/reserveCheckButton';
 
 export default function Header() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const handleSearch = (term: string) => {setSearchTerm(term);};
 
   return (
     <div className="fixed w-full z-10 top-0 bg-white border-b border-gray-400">
@@ -16,7 +13,7 @@ export default function Header() {
           <Title />
           <div className="flex-grow"></div>
           <div className="flex-grow flex items-center space-x-4">
-          <SearchBar onSearch= {handleSearch}/>
+          <SearchBar/>
           <AccountLoginButton/>
           <ReserveCheckButton/>
           </div>

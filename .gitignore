@@ -21,3 +21,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# reference
+/"New folder"
+/Dan_server
+fetch_code_from_chat.js
+query_from_chat.ts
+
+# env
+.env

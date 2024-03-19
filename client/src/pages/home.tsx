@@ -14,10 +14,10 @@ const queryClient = new QueryClient({
 export default function HomePage() {
   return (
     <QueryClientProvider client={queryClient}>
-      <main className="bg-gray-100 tracking-wider tracking-normal">
+      <main className="bg-gray-100 tracking-wider">
         <Header />
         <Outlet />
-      </main>
+      </main>F
     </QueryClientProvider>
   );
 }

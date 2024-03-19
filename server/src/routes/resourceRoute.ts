@@ -1,48 +1,16 @@
-import { Router, Request, Response } from 'express';
-const router = Router();
-import Resource from '../models/resourceModel';
+import { Router } from "express";
+
+import controller from '../controllers/Resource'
+
+const resourceRouter = Router();
 
 // get all the resources object from database
-router.get('/all', async (req: Request, res: Response) => {
-    try {
-        const resourceAll = await Resource.find();
-        if (!resourceAll) {
-            return res.status(404).json({ error: 'Resource not found' });
-        }
-        res.json(resourceAll);
-    } catch (error) {
-        res.status(500).json({ error: 'Internal server error2' });
-    }
-});
+resourceRouter.get("/", controller.queryAllResources);
 
-// get all the resources title matches part of the user input
-router.get('/search', async (req: Request, res: Response) => {
-    try {
-      const { title } = req.query as { title?: string };
-      if (!title) {
-        return res.status(400).json({ message: 'Title query parameter is required.' });
-      }
-      const resourceSearchResult = await Resource.find({ title: { $regex: title, $options: 'i'  } });
-
-      res.json(resourceSearchResult);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  });
+// get all the resources matches the filter queries
+resourceRouter.get("/search", controller.queryResourceByFilter);
 
 // get resources by _id
-router.get('/:id', async (req, res) => {
-    try {
-        const resourceByID = await Resource.findOne({ _id: req.params.id });
-        if (!resourceByID) {
-            return res.status(404).json({ error: 'Resource not found' });
-        }
-        res.json(resourceByID);
-    } catch (error) {
-        res.status(500).json({ error: 'Internal server error1' });
-    }
-});
+resourceRouter.get("/:id", controller.queryResourceById);
 
-
-export default router;
+export default resourceRouter;
