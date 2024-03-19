@@ -39,6 +39,11 @@ async function queryResourceByFilter(
   console.log(category, format, language, title);
   console.log("type of category = " + typeof category);
 
+  // Retrieve 'page' query param
+  // Default to 1 if it's not provided or cannot be converted to a number
+  const page = parseInt(req.query.page as string) || 1;
+  console.log(page);
+
   // Check if any query parameter is provided
   if (!category?.length && !format?.length && !language?.length && !title) {
     return res.status(400).json({ message: "Query parameter is required." });
@@ -75,18 +80,18 @@ async function queryResourceByFilter(
     }
   } catch (error) {
     Logging.error(error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error - params not match database" });
   }
 
   // get data from database
   try {
     console.log(queries);
     // query DB
-    const resourceSearchResult = await filterQuery(queries);
+    const resourceSearchResult = await filterQuery(queries, page);
     res.json(resourceSearchResult);
   } catch (error) {
     Logging.error(error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error- no return from searching" });
   }
 }
 
@@ -103,7 +108,7 @@ async function queryResourceById(
     }
     res.json(resourceByID);
   } catch (error) {
-    res.status(500).json({ error: "Internal server error1" });
+    res.status(500).json({ error: "Internal server error - query by id" });
   }
 }
 
