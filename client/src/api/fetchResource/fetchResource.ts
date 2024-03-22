@@ -120,7 +120,7 @@ export async function fetchByFilter(
   filterOptions: Filter,
   options?: {
     searchTerm?: string;
-  }
+  },
 ): Promise<Resource[]> {
   let filteredResource: Resource[] = [];
   const searchParams = new URLSearchParams();
@@ -139,7 +139,7 @@ export async function fetchByFilter(
 
   try {
     const response = await fetch(
-      `http://localhost:8080/resources/search?${searchParams.toString()}`
+      `http://localhost:8080/resources/search?${searchParams.toString()}`,
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -154,13 +154,13 @@ export async function fetchByFilter(
 
 // fetch matching resources with resource title or resource author as keyword
 export async function fetchBySearchTerm(
-  searchTerm: string
+  searchTerm: string,
 ): Promise<IResource[]> {
   console.log("Fetching resource for:", searchTerm);
   let searchResult = [];
   try {
     const response = await fetch(
-      `http://localhost:8080/resources/search?title=${searchTerm}`
+      `http://localhost:8080/resources/search?title=${searchTerm}`,
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -170,4 +170,28 @@ export async function fetchBySearchTerm(
     console.error("Error fetching resource:", error);
   }
   return searchResult;
+}
+
+export async function makeReservationAPI(
+  userID: string,
+  resourceID: string,
+  mediumDetailID: string,
+) {
+  try {
+    console.log("making reservation");
+    const response = await fetch(`/api/reservation`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userID, resourceID, mediumDetailID }),
+    });
+    if (!response.ok) {
+      throw new Error("Failed to make reservation");
+    }
+    return response.json();
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }
