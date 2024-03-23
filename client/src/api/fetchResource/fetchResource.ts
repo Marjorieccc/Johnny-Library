@@ -1,5 +1,5 @@
 import { Filter } from "../../component/sideBar/sideBarFilter";
-import { ResourceProps } from "../../types/resource";
+import { Resource } from "../../types/resource"
 export type Resource = {
   resource_id: string;
   call_number: string;
@@ -38,115 +38,106 @@ export interface IResource {
 }
 
 // fetch categories of resources
-export async function fetchCategories(): Promise<string[]> {
-  const categories: string[] = [
-    "Fiction",
-    "Nonfiction",
-    "Adult Fiction",
-    "Romance",
-    "Fantasy",
-    "Mystery",
-    "Thrillers",
-    "Sci-Fi",
-    "Historical",
-    "Contemporary",
-    "Classics",
-    "Biography and Autobiography",
-    "Religion and Spirituality",
-    "History and Geography",
-    "Cooking, Food and Wine",
-    "Self-Help",
-    "Health and Fitness",
-    "Business and Economics",
-    "Philosophy",
-    "True Crime",
-  ];
+export async function fetchCategories(): Promise<ResourceFilter[]> {
+  let categories:ResourceFilter[]=[];
+  try {
+    const response = await fetch(
+      `http://localhost:8080/resources/categories`
+    );
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    categories = await response.json();
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+  }
+  console.log('categories: ' + categories);
   return categories;
 }
 
-// fetch format of resources
-export async function fetchFormat(): Promise<string[]> {
-  const formats: string[] = [
-    "Book",
-    "eBook",
-    "DVD",
-    "Magazine",
-    "Music CD",
-    "Graphic Novel",
-    "Comic Book",
-    "Video Game",
-    "Blu-ray Disc",
-    "Audiobook CD",
-  ];
+// fetch formats of resources
+export async function fetchFormat(): Promise<ResourceFilter[]> {
+  let formats: ResourceFilter[] = [];
 
+  try {
+    const response = await fetch(
+      `http://localhost:8080/resources/formats`
+    );
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    formats = await response.json();
+  } catch (error) {
+    console.error('Error fetching formats:', error);
+  }
+  console.log(formats)
   return formats;
 }
 
-// fetch language of resources
-export async function fetchLanguages(): Promise<string[]> {
-  const languages: string[] = [
-    "English",
-    "French",
-    "Traditional Chinese",
-    "Spanish",
-    "Italian",
-    "German",
-    "Japanese",
-    "Korean",
-  ];
+// fetch languages of resources
+export async function fetchLanguages(): Promise<ResourceFilter[]> {
+  let languages: ResourceFilter[] = [];
+
+  try {
+    const response = await fetch(
+      `http://localhost:8080/resources/languages`
+    );
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    languages = await response.json();
+  } catch (error) {
+    console.error('Error fetching languages:', error);
+  }
 
   return languages;
 }
 
-// fetch resources
-export async function fetchResources(): Promise<Resource[]> {
-  let resourceList: Resource[] = [];
-
-  try {
-    const response = await fetch(`http://localhost:8080/resources`);
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    resourceList = await response.json();
-  } catch (error) {
-    console.log("Error fetching resource:", error);
+// fetch resources by selected filters, if any
+export async function fetchResources(
+  pageNum:number,
+  filterOptions?: Filter,
+  searchTerm?: string,
+): Promise<SearchResult> {
+  const searchQueries = new URLSearchParams();
+  
+  searchTerm && console.log(searchTerm); 
+  if (searchTerm) {
+    searchQueries.append('title',searchTerm)
   }
 
-  return resourceList;
-}
-
-// fetch resources by selected filters, if any
-export async function fetchByFilter(
-  filterOptions: Filter,
-  options?: {
-    searchTerm?: string;
-  },
-): Promise<Resource[]> {
-  let filteredResource: Resource[] = [];
-  const searchParams = new URLSearchParams();
-
-  for (const [key, value] of Object.entries(filterOptions)) {
+  if (filterOptions)  {
+    for (const [key, value] of Object.entries(filterOptions)) {
     if (value && value.length) {
       if (Array.isArray(value)) {
         for (const parsedValue of value) {
-          searchParams.append(key, parsedValue);
+          searchQueries.append(key, parsedValue);
         }
       } else {
-        searchParams.append(key, value);
+        searchQueries.append(key, value);
       }
     }
   }
+}
+
+  let filteredResource: SearchResult = {
+    data: [],
+    totalItems: 0,
+    startIndex: 0,
+    endIndex: 0,
+  };
 
   try {
-    const response = await fetch(
-      `http://localhost:8080/resources/search?${searchParams.toString()}`,
-    );
+    const searchlink = `http://localhost:8080/resources/search?${searchQueries.toString()}&page=${pageNum}`;
+    console.log(searchlink);
+    const response = await fetch(searchlink);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
     filteredResource = await response.json();
   } catch (error) {
     console.log("Error fetching resource:", error);
+    throw error;
   }
 
   return filteredResource;
