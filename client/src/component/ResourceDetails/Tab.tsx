@@ -16,7 +16,7 @@ const TabContent = function ({
   mediumDetails: MediumProps;
 }) {
   const [availability, setAvailability] = useState(
-    mediumDetails.status ? true : false
+    mediumDetails.status ? true : false,
   );
 
   const handleReservation = async function () {
@@ -24,7 +24,7 @@ const TabContent = function ({
       const response = await makeReservationAPI(
         "00000",
         resourceID,
-        mediumDetails._id
+        mediumDetails._id,
       );
       if (response) {
         setAvailability(true);
@@ -37,7 +37,7 @@ const TabContent = function ({
   return (
     <>
       <div>
-        <p className="text-gray-500 mb-2">{description}</p>
+        <p className="mb-2 text-gray-500">{description}</p>
         <p className="text-gray-500">Publisher: {mediumDetails.publisher}</p>
         <p className="text-gray-500">
           Language: {mediumDetails.language.join(", ")}
@@ -60,29 +60,27 @@ const TabContent = function ({
 
 const tabStyle = `text-gray-500 py-2 px-4 rounded-t-md font-bold border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300`;
 
-const Tab = function ({ resource }: { resource: ResourceProps }) {
+export default function Tab({ resource }: { resource: ResourceProps }) {
   const [mediumList, setMediumList] = useState<string[]>([]);
 
   useEffect(() => {
     const updatedMediumList = resource.medium.map(
-      (mediumDetails) => mediumDetails.format
+      (mediumDetails) => mediumDetails.format,
     );
     setMediumList(updatedMediumList);
   }, [resource]);
 
   const [selectedTab, setSelectedTab] = useState(
-    resource.medium.length > 0 ? resource.medium[0].format : ""
+    resource.medium.length > 0 ? resource.medium[0].format : "",
   );
 
   const handleTabChange = (newTab: string) => {
     setSelectedTab(newTab);
   };
 
-  const emptyMedium = {} as MediumProps;
-
   return (
     <>
-      <nav className="flex mb-4">
+      <nav className="mb-4 flex">
         {resource.medium.map((mediumDetails) => {
           return (
             <button
@@ -90,8 +88,8 @@ const Tab = function ({ resource }: { resource: ResourceProps }) {
               type="button"
               className={`${tabStyle} ${
                 selectedTab === mediumDetails.format
-                  ? "text-blue-500 border-blue-500 bg-gray-200"
-                  : "text-gray-500 border-gray-300 bg-gray-100 hover:bg-gray-200"
+                  ? "border-blue-500 bg-gray-200 text-blue-500"
+                  : "border-gray-300 bg-gray-100 text-gray-500 hover:bg-gray-200"
               }`}
               onClick={() => handleTabChange(mediumDetails.format)}
             >
@@ -108,12 +106,10 @@ const Tab = function ({ resource }: { resource: ResourceProps }) {
         }
         mediumDetails={
           resource.medium.find(
-            (props: MediumProps) => props.format === selectedTab
-          ) || emptyMedium
+            (medium: MediumProps) => medium.format === selectedTab,
+          ) || ({} as MediumProps)
         }
       />
     </>
   );
-};
-
-export default Tab;
+}

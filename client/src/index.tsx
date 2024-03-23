@@ -4,10 +4,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/home";
 import ExplorePage from "./pages/explore";
+import ResourceDetailPage from "./pages/ResourceDetailPage";
 import "./index.css";
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById("root") as HTMLElement,
 );
 root.render(
   <BrowserRouter>
@@ -17,5 +18,5 @@ root.render(
         <Route path="resource/:resource_id" element={<ResourceDetailPage />} />
       </Route>
     </Routes>
-  </BrowserRouter>
+  </BrowserRouter>,
 );

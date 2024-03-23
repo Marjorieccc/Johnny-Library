@@ -1,5 +1,5 @@
 import { Filter } from "../../component/sideBar/sideBarFilter";
-
+import { ResourceProps } from "../../types/resource";
 export type Resource = {
   resource_id: string;
   call_number: string;
@@ -177,6 +177,7 @@ export async function makeReservationAPI(
   resourceID: string,
   mediumDetailID: string,
 ) {
+  let reserveredSuccess = true;
   try {
     console.log("making reservation");
     const response = await fetch(`/api/reservation`, {
@@ -189,16 +190,17 @@ export async function makeReservationAPI(
     if (!response.ok) {
       throw new Error("Failed to make reservation");
     }
-    const res = await response.json();
-    return res;
+    reserveredSuccess = await response.json();
   } catch (error) {
     console.log(error);
     throw error;
   }
+  return reserveredSuccess;
 }
 
-export async function fetchByID(resource_id: string) {
+export async function fetchByID(resource_id: string): Promise<ResourceProps> {
   console.log("Fetching resource with ID:", resource_id);
+  let resource = {} as ResourceProps;
   try {
     const response = await fetch(
       `http://localhost:8080/resources/${resource_id}`,
@@ -206,10 +208,10 @@ export async function fetchByID(resource_id: string) {
     if (!response.ok) {
       throw new Error("Fail");
     }
-    const res = await response.json();
-    return res;
+    resource = await response.json();
   } catch (error) {
     console.error(error);
     throw error;
   }
+  return resource;
 }
