@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import TimeTable from '../controllers/TimeTable'
+import TimeTable from "../controllers/timeTableController";
 
 const roomRouter = Router();
 
