@@ -14,6 +14,7 @@ root.render(
     <Routes>
       <Route path="/" element={<HomePage />}>
         <Route path="explore" element={<ExplorePage />} />
+        <Route path="resource/:resource_id" element={<ResourceDetailPage />} />
       </Route>
     </Routes>
   </BrowserRouter>

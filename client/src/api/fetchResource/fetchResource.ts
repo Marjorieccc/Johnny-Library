@@ -189,9 +189,27 @@ export async function makeReservationAPI(
     if (!response.ok) {
       throw new Error("Failed to make reservation");
     }
-    return response.json();
+    const res = await response.json();
+    return res;
   } catch (error) {
     console.log(error);
+    throw error;
+  }
+}
+
+export async function fetchByID(resource_id: string) {
+  console.log("Fetching resource with ID:", resource_id);
+  try {
+    const response = await fetch(
+      `http://localhost:8080/resources/${resource_id}`,
+    );
+    if (!response.ok) {
+      throw new Error("Fail");
+    }
+    const res = await response.json();
+    return res;
+  } catch (error) {
+    console.error(error);
     throw error;
   }
 }
