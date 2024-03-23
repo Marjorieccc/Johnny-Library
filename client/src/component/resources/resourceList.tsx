@@ -1,22 +1,13 @@
 import React from "react";
-import { Resource } from "../../api/fetchResource/fetchResource";
 import ResourceCard from "./resourceCard";
+import { Resource } from "../../types/resource";
 
-type ResourceList = {
-  resourceList: Resource[]
-}
-
-export default function ResourceList({resourceList}: ResourceList) {
+export default function ResourceList({resourceList}: {resourceList: Resource[]}) {
   return (
-    <div>
-      <header>Browse Our Selection</header>
       <ul>
         {resourceList.map((resource) => (
-          <li key={resource.resource_id}>
-            <ResourceCard {...resource} />
-          </li>
+          <ResourceCard key={resource._id} resource={resource}/>
         ))}
       </ul>
-    </div>
   );
 }
