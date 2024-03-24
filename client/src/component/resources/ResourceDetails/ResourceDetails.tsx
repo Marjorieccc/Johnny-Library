@@ -1,12 +1,9 @@
-import { ResourceProps } from "../../types/resource";
+import React from "react";
+import { Resource } from "../../../types/resource";
 import Tab from "./Tab";
 
-export default function ResourceDetails({
-  resource,
-}: {
-  resource: ResourceProps;
-}) {
-  //console.log(resource.medium[0].format)
+export default function ResourceDetails({ resource }: { resource: Resource }) {
+  //console.log("in resource detail: ", resource);
   const mediumList = resource.medium.map((medium) => medium.format);
 
   return (
@@ -30,7 +27,7 @@ export default function ResourceDetails({
           <img
             src={resource.thumbnail_url}
             alt={resource.title}
-            className="mx-auto h-auto w-full max-w-md rounded-md object-cover"
+            className="w-40 mx-auto h-auto max-w-md rounded-md object-cover"
           />
         </div>
       </div>

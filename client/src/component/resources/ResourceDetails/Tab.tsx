@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { ResourceProps, MediumProps } from "../../types/resource";
+import { Resource, Medium } from "../../../types/resource";
 
-import { makeReservationAPI } from "../../api/fetchResource/fetchResource";
+import { makeReservationAPI } from "../../../api/fetchResource/fetchResource";
 
 const reserveBtnStyle =
   "disabled:opacity-50 bg-blue-500 text-white font-bold py-2 px-4 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 active:bg-blue-800";
@@ -13,7 +13,7 @@ const TabContent = function ({
 }: {
   resourceID: string;
   description: string;
-  mediumDetails: MediumProps;
+  mediumDetails: Medium;
 }) {
   const [availability, setAvailability] = useState(
     mediumDetails.status ? true : false,
@@ -60,7 +60,7 @@ const TabContent = function ({
 
 const tabStyle = `text-gray-500 py-2 px-4 rounded-t-md font-bold border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300`;
 
-export default function Tab({ resource }: { resource: ResourceProps }) {
+export default function Tab({ resource }: { resource: Resource }) {
   const [mediumList, setMediumList] = useState<string[]>([]);
 
   useEffect(() => {
@@ -106,8 +106,8 @@ export default function Tab({ resource }: { resource: ResourceProps }) {
         }
         mediumDetails={
           resource.medium.find(
-            (medium: MediumProps) => medium.format === selectedTab,
-          ) || ({} as MediumProps)
+            (medium: Medium) => medium.format === selectedTab,
+          ) || ({} as Medium)
         }
       />
     </>
