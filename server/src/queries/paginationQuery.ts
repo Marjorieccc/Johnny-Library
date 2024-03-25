@@ -9,7 +9,7 @@ export async function resourcePagination(
   pageNumber: number,
   resourceMongoQueries?: resourceMongoQueries
 ): Promise<ResourcePaginationReturn> {
-  const limit = 10; // only fetch 10 document
+  const limit = 9; // only fetch 9 document
   const skipIndex = (pageNumber - 1) * limit; // start from certain element according to page number
   const pipeline = [];
 
