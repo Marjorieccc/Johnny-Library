@@ -9,6 +9,7 @@ export default function SearchBar() {
     e.preventDefault();
     if (inputRef.current) {
       navigate('/explore', { state: { searchTerm: inputRef.current.value } });
+      inputRef.current.value ="";
     }
   };
 
