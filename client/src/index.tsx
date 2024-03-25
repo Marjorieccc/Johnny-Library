@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/home";
 import HomeContent from "./pages/homeContent";
 import ExplorePage from "./pages/explore";
-import ResourceDetailPage from "./pages/ResourceDetailPage";
+import ResourceDetailPage from "./pages/resourceDetailPage";
 import "./index.css";
 
 const root = ReactDOM.createRoot(

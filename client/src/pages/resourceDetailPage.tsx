@@ -21,7 +21,7 @@ export default function ResourceDetailPage() {
 
   return (
     <>
-      <h1>Details</h1>
+      {/* <h1>Details</h1> */}
       <>{resource ? <ResourceDetails resource={resource} /> : <p>loading</p>}</>
     </>
   );
