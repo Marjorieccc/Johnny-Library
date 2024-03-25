@@ -16,7 +16,9 @@ export default function HomePage() {
     <QueryClientProvider client={queryClient}>
       <main className="tracking-wider">
         <Header />
-        <Outlet />
+        <div className="mt-40 items-center justify-center px-10 py-10">
+          <Outlet />
+        </div>
       </main>
     </QueryClientProvider>
   );
