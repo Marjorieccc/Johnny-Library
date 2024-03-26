@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ResourceDetails from "../component/resources/ResourceDetails/ResourceDetails";
+import ResourceDetails from "../component/resources/resourceDetails/resourceDetails";
 import { Resource } from "../types/resource";
 import { fetchByID } from "../api/fetchResource/fetchResource";
 
