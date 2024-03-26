@@ -1,6 +1,6 @@
 import React from "react";
 import { Resource } from "../../../types/resource";
-import Tab from "./Tab";
+import Tab from "./tab";
 
 export default function ResourceDetails({ resource }: { resource: Resource }) {
   //console.log("in resource detail: ", resource);
