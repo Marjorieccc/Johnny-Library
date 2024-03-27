@@ -12,7 +12,7 @@ export default function ResourceCard({resource}: {resource: Resource}) {
            className="mx-12 my-4 w-32 h-48 object-cover"/>
       </div>
       <div>
-        <p className="text-sm break-words max-w-48">{resource.title}</p>
+        <p className="pt-2 text-sm break-words max-w-48">{resource.title}</p>
         <div className="flex flex-wrap gap-4 ">
           {resource.medium.map((mediumItem, index) => (
             <p key={index} className="text-slate-500 text-xs py-1 mb-1">

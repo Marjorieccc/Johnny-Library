@@ -6,7 +6,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import HomePage from "./pages/home";
 import HomeContent from "./pages/homeContent";
 import ExplorePage from "./pages/explore";
-import ResourceDetailPage from "./pages/resourceDetailPage";
+import ResourceDetailPage from "./pages/resourceDetail";
 import "./index.css";
 
 import auth0ConfigJson from "./auth_config.json";
