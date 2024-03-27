@@ -4,6 +4,7 @@ import NavBar from "../navbar/navBar";
 import SearchBar from "../searchBar/searchBar";
 import AccountLoginButton from "../account/accountLoginButton";
 import ReserveCheckButton from "../account/reserveCheckButton";
+import LogoutBtn from "../account/LogoutBtn";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -18,7 +19,8 @@ export default function Header() {
           <SearchBar />
           <span>{isAuthenticated ? user && user.name : "Guest "} </span>
           <AccountLoginButton />
-          <ReserveCheckButton />
+          {/* <ReserveCheckButton /> */}
+          {isAuthenticated && <LogoutBtn />}
         </div>
       </div>
       <div className="container mx-auto flex items-center justify-between space-x-4 py-1">
