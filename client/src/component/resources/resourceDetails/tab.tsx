@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Resource, Medium } from "../../../types/resource";
 
 import { makeReservationAPI } from "../../../api/fetchResource/fetchResource";
@@ -16,9 +16,7 @@ const TabContent = function ({
   description: string;
   mediumDetails: Medium;
 }) {
-  const [availability, setAvailability] = useState(
-    mediumDetails.status ? true : false,
-  );
+  const [reserved, setReserved] = useState(false);
   const { user, isAuthenticated, getAccessTokenSilently, loginWithRedirect } =
     useAuth0();
 
@@ -27,13 +25,14 @@ const TabContent = function ({
       const accessToken = await getAccessTokenSilently();
       try {
         const response = await makeReservationAPI(
+          // user.sub = id from auth0
           user.sub ? user.sub : "test",
           resourceID,
           mediumDetails._id,
           accessToken,
         );
         if (response) {
-          setAvailability(true);
+          setReserved(true);
         }
       } catch (err) {
         console.log(err);
@@ -57,11 +56,13 @@ const TabContent = function ({
         </p>
       </div>
       <br></br>
-      {isAuthenticated ? (
+      {isAuthenticated && !reserved && (
         <button onClick={handleReservation} className={reserveBtnStyle}>
           Reserve {mediumDetails.format}
         </button>
-      ) : (
+      )}
+      {isAuthenticated && reserved && <p>Reservation successfull</p>}
+      {!isAuthenticated && (
         <button className={reserveBtnStyle} onClick={() => loginWithRedirect()}>
           Please Log In
         </button>
@@ -73,15 +74,6 @@ const TabContent = function ({
 const tabStyle = `text-gray-500 py-2 px-4 rounded-t-md font-bold border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300`;
 
 export default function Tab({ resource }: { resource: Resource }) {
-  const [mediumList, setMediumList] = useState<string[]>([]);
-
-  useEffect(() => {
-    const updatedMediumList = resource.medium.map(
-      (mediumDetails) => mediumDetails.format,
-    );
-    setMediumList(updatedMediumList);
-  }, [resource]);
-
   const [selectedTab, setSelectedTab] = useState(
     resource.medium.length > 0 ? resource.medium[0].format : "",
   );

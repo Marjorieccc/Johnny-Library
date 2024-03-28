@@ -106,20 +106,19 @@ export async function fetchResources(
 export async function makeReservationAPI(
   userID: string,
   resourceID: string,
-  mediumDetailID: string,
+  mediumID: string,
   auth0Token: string,
 ) {
   let reserveredSuccess = true;
   try {
-    console.log("making reservation");
-
+    console.log(`Making reservation: ${userID}`);
     const response = await fetch(`${baseURL}/reservation`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${auth0Token}`,
       },
-      body: JSON.stringify({ userID, resourceID, mediumDetailID }),
+      body: JSON.stringify({ userID, resourceID, mediumID }),
     });
     if (!response.ok) {
       throw new Error("Failed to make reservation");

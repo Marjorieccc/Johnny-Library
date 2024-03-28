@@ -16,6 +16,8 @@ const auth0Config = {
   clientId: auth0ConfigJson.clientId,
   authorizationParams: {
     redirect_uri: window.location.origin,
+    audience: auth0ConfigJson.audience,
+    scope: auth0ConfigJson.scope
   },
 };
 
