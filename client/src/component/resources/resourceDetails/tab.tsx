@@ -43,6 +43,11 @@ const TabContent = function ({
     }
   };
 
+  function handleLogin() {
+    const currentUrl = window.location.href;
+    loginWithRedirect({ appState: { returnTo: currentUrl } });
+  }
+
   return (
     <>
       <div>
@@ -63,7 +68,7 @@ const TabContent = function ({
       )}
       {isAuthenticated && reserved && <p>Reservation successfull</p>}
       {!isAuthenticated && (
-        <button className={reserveBtnStyle} onClick={() => loginWithRedirect()}>
+        <button className={reserveBtnStyle} onClick={handleLogin}>
           Please Log In
         </button>
       )}
