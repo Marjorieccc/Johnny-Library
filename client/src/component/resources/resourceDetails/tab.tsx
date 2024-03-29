@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Resource, Medium } from "../../../types/resource";
-
-import { makeReservationAPI } from "../../../api/fetchResource/fetchResource";
 import { useAuth0 } from "@auth0/auth0-react";
+
+import { Resource, Medium } from "../../../types/resource";
+import { makeReservationAPI } from "../../../api/fetchResource/fetchResource";
+import Auth0LoginRedirectBtn from "../../auth0/Auth0LoginRedirectBtn";
 
 const reserveBtnStyle =
   "disabled:opacity-50 bg-blue-500 text-white font-bold py-2 px-4 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 active:bg-blue-800";
@@ -17,9 +18,7 @@ const TabContent = function ({
   mediumDetails: Medium;
 }) {
   const [reserved, setReserved] = useState(false);
-  const { user, isAuthenticated, getAccessTokenSilently, loginWithRedirect } =
-    useAuth0();
-
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const handleReservation = async function () {
     if (isAuthenticated && user) {
       const accessToken = await getAccessTokenSilently();
@@ -43,11 +42,6 @@ const TabContent = function ({
     }
   };
 
-  function handleLogin() {
-    const currentUrl = window.location.href;
-    loginWithRedirect({ appState: { returnTo: currentUrl } });
-  }
-
   return (
     <>
       <div>
@@ -67,11 +61,7 @@ const TabContent = function ({
         </button>
       )}
       {isAuthenticated && reserved && <p>Reservation successfull</p>}
-      {!isAuthenticated && (
-        <button className={reserveBtnStyle} onClick={handleLogin}>
-          Please Log In
-        </button>
-      )}
+      {!isAuthenticated && <Auth0LoginRedirectBtn />}
     </>
   );
 };
