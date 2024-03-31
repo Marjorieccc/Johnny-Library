@@ -8,7 +8,6 @@ import ExplorePage from "./pages/explore";
 import ResourceDetailPage from "./pages/resourceDetail";
 import Auth0ProviderWithHistory from "./component/auth0/Auth0Provider";
 import "./index.css";
-
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );

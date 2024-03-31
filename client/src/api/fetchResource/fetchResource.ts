@@ -112,7 +112,7 @@ export async function makeReservationAPI(
   let reserveredSuccess = true;
   try {
     console.log(`Making reservation: ${userID}`);
-    const response = await fetch(`${baseURL}/reservation`, {
+    const response = await fetch(`${baseURL}/resources/reservation`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

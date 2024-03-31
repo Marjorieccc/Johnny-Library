@@ -9,6 +9,7 @@ import {
   ResourceLanguage,
 } from "../models/resourceFilterModel";
 import { ResourcePaginationReturn } from "../types/pagination";
+import Reservation from "../models/reservationModel";
 
 type SearchQuery = {
   category?: string[];
@@ -153,10 +154,33 @@ async function queryResourceLanguages(
   }
 }
 
+
+
+async function postReservation(req: Request, res: Response) {
+  try {
+    const { userID, resourceID, mediumID } = req.body;
+    console.log(`Making reservation:  ${userID}`);
+    const revTime = new Date();
+    const reservation = new Reservation({
+      userID,
+      resourceID,
+      mediumID,
+      time: revTime,
+    });
+
+    await reservation.save();
+    res.json({ success: true });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Reservation Failed" });
+  }
+}
+
 export default {
   queryResources,
   queryResourceById,
   queryResourceCategories,
   queryResourceFormats,
   queryResourceLanguages,
+  postReservation
 };

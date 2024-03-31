@@ -7,8 +7,6 @@ import roomRouter from './routes/roomRoute'
 import { config } from "./config/config";
 import Logging from "./logging/logging";
 
-import {verifyToken} from "./middleware/middleware";
-import { postReservation } from "./controllers/reservationController";
 
 const app = express();
 
@@ -33,9 +31,6 @@ app.get("/", (req: Request, res: Response) => {
 app.use('/resources', resourceRouter);
 app.use('/rooms', roomRouter);
 
-
-// making resource reservation
-app.post('/reservation', verifyToken, postReservation)
 
 app.listen(config.server.port, () => {
   Logging.info(`Server is running on port ${config.server.port}`);
