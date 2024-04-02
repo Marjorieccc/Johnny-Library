@@ -30,7 +30,7 @@ export default function Dropdown({navString}: DropdownProps){
             <div className="flex">
                 <div className="mr-4 px-10">
                     <ul className="list-none">
-                        <li><Link to='/services' className="block px-4 py-2 hover:bg-gray-200">Book Study Room</Link></li>
+                        <li><Link to='/services/rooms' className="block px-4 py-2 hover:bg-gray-200">Book Study Room</Link></li>
                         <li><Link to='/services' className="block px-4 py-2 hover:bg-gray-200">Book a Computer</Link></li>
                     </ul>
                 </div> 

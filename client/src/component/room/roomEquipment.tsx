@@ -19,9 +19,11 @@ export default function RoomEquipment({
   };
 
   return (
-    <form className="mb-4">
+    <form className="mb-4 rounded-xl border-2 border-gray-500 p-2 lg:w-full">
+      <legend className="text:base font-bold text-gray-700 lg:text-xl">
+        Equipment:
+      </legend>
       <hr className="mb-2 h-px border-0 bg-gray-200 dark:bg-gray-700" />
-      <legend className="text-xl font-bold text-gray-700">Equipment: </legend>
       {equipmentCategory.map((category, index) => {
         return (
           <div key={index} className="my-2">
@@ -31,7 +33,7 @@ export default function RoomEquipment({
               value={category}
               onChange={(event) => handler(event)}
             />
-            <label className="pl-2" htmlFor={category}>
+            <label className="pl-2 text-xs lg:text-base" htmlFor={category}>
               {category}
             </label>
           </div>

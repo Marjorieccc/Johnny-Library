@@ -17,7 +17,7 @@ export default function HomePage() {
       <main className="bg-gray-100 tracking-wider">
         <Header />
         <Outlet />
-      </main>F
+      </main>
     </QueryClientProvider>
   );
 }

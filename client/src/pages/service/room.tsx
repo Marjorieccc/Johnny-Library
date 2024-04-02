@@ -18,10 +18,12 @@ export default function RoomFilter() {
     return <h1>Loading</h1>;
   }
   if (isError) {
-    return <div>{error.message}</div>;
+    return <h1>{error.message}</h1>;
   }
-  if (data) {
-    const roomSizeHandler = (size: number[]) => {
+  if (!data) {
+    return <>Error</>;
+  } else {
+    const roomSizeHandler = (size: string[]) => {
       setFilters((prevFilter) => {
         const newFilter = { ...prevFilter };
         newFilter.size = size;
@@ -39,15 +41,15 @@ export default function RoomFilter() {
 
     return (
       <>
-        <div className="flex h-full gap-4 overflow-x-auto p-4 pt-40">
-          <div className="w-1/5 min-w-max">
+        <div className="flex h-full flex-col gap-4 p-4 pt-40 lg:flex-row">
+          <div className="mx-auto flex w-full min-w-max flex-col gap-2 lg:w-[15%]">
             <RoomCapacity roomSize={data.roomSize} onSelect={roomSizeHandler} />
             <RoomEquipment
               equipmentCategory={data.equipmentCategory}
               onSelect={equipmentHandler}
             />
           </div>
-          <div className="w-4/5 min-w-max">
+          <div className="lg:w-[85%} w-full">
             <TimeTable
               filters={filters}
               dateList={data.dateList}

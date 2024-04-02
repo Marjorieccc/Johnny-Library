@@ -42,7 +42,7 @@ export default function SideBarFilter({
 
     // Update filter
     switch (event.target.name) {
-      case "Format":
+      case "Format":{
         const newFormatFilter = updateFilterList(
           [...selectFilter.format],
           value
@@ -53,8 +53,8 @@ export default function SideBarFilter({
           language: [...selectFilter.language],
         });
         break;
-
-      case "Category":
+      }
+      case "Category": {
         const newCategoryFilter = updateFilterList([...selectFilter.category], value);
         setSelectFilter({
           format: [...selectFilter.format],
@@ -62,8 +62,8 @@ export default function SideBarFilter({
           language: [...selectFilter.language],
         });
         break;
-
-      case "Language":
+      }
+      case "Language": {
         const newLanguageFilter = updateFilterList([...selectFilter.language], value);
         setSelectFilter({
           format: [...selectFilter.format],
@@ -71,6 +71,7 @@ export default function SideBarFilter({
           language: newLanguageFilter,
         });
         break;
+      }
     }
   };
 
