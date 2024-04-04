@@ -1,13 +1,30 @@
 import React from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { fetchRoomById } from "../../api/fetchRoom/fetchRoomById";
 import { createBooking } from "../../api/fetchRoom/createBooking";
+import { SubmitBookingDetails } from "../../types/room";
 
 export default function RoomDetails() {
   const { id } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
+  const { user, isAuthenticated, getAccessTokenSilently, loginWithPopup } = useAuth0();
+
+  async function createBookingWithAuth0(data: SubmitBookingDetails) {
+    if (isAuthenticated && user) {
+      const accessToken = await getAccessTokenSilently();
+      try {
+        const res = await createBooking(data, accessToken)
+        return res
+      } catch (error) {
+        console.log(error);
+        throw error
+      }
+    }
+  }
+
 
   if (id) {
     const {
@@ -28,14 +45,14 @@ export default function RoomDetails() {
       error: mutationError,
       mutate,
     } = useMutation({
-      mutationFn: createBooking,
+      mutationFn: createBookingWithAuth0,
     });
 
     const onSubmit = () => {
-      mutate({
+      user && mutate({
         room: id,
         timeSlot: state.timeSlot,
-        // user: userId
+        userId: user.sub ? user.sub : "test",
       });
     };
 
@@ -210,12 +227,19 @@ export default function RoomDetails() {
             </ul>
           </div>
           <div className="my-10 flex justify-center">
-            <button
-              className="rounded-full border-2 border-[#E32B31] px-6  py-4 font-bold text-[#E32B31]"
-              onClick={onSubmit}
-            >
-              Confirm Booking
-            </button>
+            {isAuthenticated ? (
+              <button
+                className="rounded-full border-2 border-[#E32B31] px-6  py-4 font-bold text-[#E32B31]"
+                onClick={onSubmit}
+              >
+                Confirm Booking
+              </button>
+            ) : (
+              <button className="rounded-full border-2 border-[#E32B31] px-6  py-4 font-bold text-[#E32B31]"
+              onClick={() => loginWithPopup()}>
+                Please Log in
+              </button>
+            )}
           </div>
 
           {mutationIsPending && (
@@ -230,7 +254,7 @@ export default function RoomDetails() {
                 </p>
                 <div>
                   <p className="pi pi-hashtag mb-2 text-base text-gray-500"></p>{" "}
-                  <span className="text-gray-500">{mutationData._id}</span>
+                  <span className="text-gray-500">{mutationData && mutationData._id}</span>
                 </div>
                 <button
                   className="mx-1 border p-1 text-sm text-gray-700 hover:scale-125"

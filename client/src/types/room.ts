@@ -79,15 +79,15 @@ export type RoomModalProps = {
   timeSlot: TimeSlot;
   roomList: Room[];
   closeHandler: null | (() => void);
-}
+};
 
 export type RoomDetails = {
   room: Room;
   size: RoomSize;
-}
+};
 
 export type SubmitBookingDetails = {
   room: string;
   timeSlot: TimeSlot;
-  // user: string;
+  userId: string;
 };
