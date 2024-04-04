@@ -1,6 +1,6 @@
 {
-  "domain": "dev-fgn67tyj1m63t283.us.auth0.com",
-  "clientId": "pmfXdmHL9Cj7YjL9cBoe7Q9lsjwHTpjd",
-  "audience": "Library-Lounge-API",
+  "domain": "dev-rfjl8nugxemlp4df.us.auth0.com",
+  "clientId": "l3kZsKFh5E4acSaZPJujdxFOhDhsu2D2",
+  "audience": "LibraryLoungeUserAPI",
   "scope": "openid profile email"
 }
