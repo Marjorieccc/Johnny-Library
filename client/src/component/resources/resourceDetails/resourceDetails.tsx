@@ -1,7 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Resource } from "../../../types/resource";
 import Tab from "./tab";
-import { useNavigate } from "react-router-dom";
 
 export default function ResourceDetails({ resource }: { resource: Resource }) {
   //console.log("in resource detail: ", resource);
@@ -37,7 +37,12 @@ export default function ResourceDetails({ resource }: { resource: Resource }) {
         <Tab resource={resource} />
       </div>
       <br />
-      <button className="disabled:opacity-50 bg-gray-200 text-black py-2 px-4 rounded-md shadow-md hover:bg-gray-100"onClick={() => navigate(-1)}>Back</button>
+      <button
+        className="rounded-md bg-gray-200 px-4 py-2 text-black shadow-md hover:bg-gray-100 disabled:opacity-50"
+        onClick={() => navigate(-1)}
+      >
+        Back
+      </button>
     </div>
   );
 }

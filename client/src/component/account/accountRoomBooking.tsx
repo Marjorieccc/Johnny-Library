@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { useAccountDetails } from "../../context/AccountDetailsProvider";
-import { useAuth0 } from "@auth0/auth0-react";
 
 export default function AccountRoomBooking() {
   const { reservations } = useAccountDetails();
