@@ -19,7 +19,7 @@ const userSchema = new Schema<User>(
 const roomBookingRecordSchema = new Schema<RoomBookingRecord>(
   {
     room: { type: Schema.Types.ObjectId, required: true },
-    user: { type: Schema.Types.ObjectId, required: true },
+    user: { type: String, required: true },
     timeSlot: {
       type: {
         start: { type: Date, required: true },

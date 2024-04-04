@@ -7,7 +7,7 @@ export type TimeSlot = {
 
 export type RoomBookingRecord = {
   room: Types.ObjectId;
-  user: Types.ObjectId;
+  user: string;
   timeSlot: TimeSlot;
 };
 

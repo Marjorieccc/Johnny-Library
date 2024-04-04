@@ -200,11 +200,8 @@ export const createBooking = async function (req: Request, res: Response) {
     try {
       const roomId = new Types.ObjectId(req.body.room as Types.ObjectId);
 
-      // USER VALIDATION LOGIC GOES HERE
-      // ....
-
-      // THIS SHALL BE REMOVED
-      const user = "65e268700386fdba9e5c9ca0";
+     
+      const user = req.body.userId;
 
       const room = await RoomModel.exists({
         _id: roomId,
