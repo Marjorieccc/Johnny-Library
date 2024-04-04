@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
-const { expressjwt: expressJwt } = require("express-jwt");
+import { expressjwt } from "express-jwt";
 const jwks = require("jwks-rsa");
 
 import auth0ConfigJson from "./auth_config.json";
 
-const verifyJwt = expressJwt({
+const verifyJwt = expressjwt({
   secret: jwks.expressJwtSecret({
     cache: true,
     rateLimit: true,

@@ -154,17 +154,28 @@ async function queryResourceLanguages(
   }
 }
 
-
-
 async function postReservation(req: Request, res: Response) {
   try {
-    const { userID, resourceID, mediumID } = req.body;
+    const { userID, resourceID, resourceTitle, mediumID, format } = req.body;
+    const resourceByID = await Resource.findOne({ _id: resourceID });
+    if (!resourceByID) {
+      return res.status(404).json({ error: "Resource not found" });
+    }
+
+    const mediumByID = resourceByID.medium.find(
+      (medium) => medium._id == mediumID
+    );
+    if (!mediumByID) {
+      return res.status(404).json({ error: "Medium not found" });
+    }
     console.log(`Making reservation:  ${userID}`);
     const revTime = new Date();
     const reservation = new Reservation({
       userID,
       resourceID,
+      resourceTitle,
       mediumID,
+      format,
       time: revTime,
     });
 
@@ -176,11 +187,30 @@ async function postReservation(req: Request, res: Response) {
   }
 }
 
+async function queryReservation(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const ReservationByUserID = await Reservation.find({
+      userID: req.params.id,
+    });
+    if (!ReservationByUserID) {
+      return res.status(404).json({ error: "Reservation not found" });
+    }
+    res.json(ReservationByUserID);
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
 export default {
   queryResources,
   queryResourceById,
   queryResourceCategories,
   queryResourceFormats,
   queryResourceLanguages,
-  postReservation
+  postReservation,
+  queryReservation,
 };

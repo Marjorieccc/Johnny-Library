@@ -47,6 +47,8 @@ export type ResourceRevModel = {
   _id: Types.ObjectId;
   userID: string;
   resourceID: string;
+  resourceTitle: string;
   mediumID: string;
+  format: string;
   time: Date;
 };

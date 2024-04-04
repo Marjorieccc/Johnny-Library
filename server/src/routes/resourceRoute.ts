@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {verifyToken} from "../middleware/middleware";
+import { verifyToken } from "../middleware/middleware";
 import controller from "../controllers/resourceController";
 
 const resourceRouter = Router();
@@ -19,6 +19,12 @@ resourceRouter.get("/languages", controller.queryResourceLanguages);
 // get resources by _id
 resourceRouter.get("/:id", controller.queryResourceById);
 
-resourceRouter.post('/reservation', verifyToken, controller.postReservation)
+resourceRouter.post("/reservation", verifyToken, controller.postReservation);
+
+resourceRouter.get(
+  "/reservation/user/:id",
+  verifyToken,
+  controller.queryReservation
+);
 
 export default resourceRouter;

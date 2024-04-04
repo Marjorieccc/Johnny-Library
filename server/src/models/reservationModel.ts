@@ -5,7 +5,9 @@ const reservationSchema = new Schema<ResourceRevModel>(
   {
     userID: String,
     resourceID: String,
+    resourceTitle: String,
     mediumID: String,
+    format: String,
     time: Date,
   },
   { collection: "Reservation" }
