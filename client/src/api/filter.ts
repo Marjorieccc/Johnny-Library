@@ -1,5 +1,3 @@
-import { Resource } from "./fetchResource/fetchResource";
-
 export function updateFilterList(
   filterCategory: string[],
   selectedFilter: string
@@ -16,15 +14,3 @@ export function updateFilterList(
   
   return filterCategory;
 }
-
-// export function filter(
-//   queryCategory: string,
-//   queryList: string[],
-//   resource: Resource,
-//   resourceList: Resource[]
-// ) {
-//   const isMatch = queryList.some((query) => query === resource[queryCategory]);
-//   if (!isMatch) {
-//     resourceList.splice(resourceList.indexOf(resource), 1);
-//   }
-// }

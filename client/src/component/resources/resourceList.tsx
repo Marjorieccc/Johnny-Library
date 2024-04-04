@@ -1,22 +1,15 @@
 import React from "react";
-import { Resource } from "../../api/fetchResource/fetchResource";
 import ResourceCard from "./resourceCard";
+import { Resource } from "../../types/resource";
 
-type ResourceList = {
-  resourceList: Resource[]
-}
-
-export default function ResourceList({resourceList}: ResourceList) {
+export default function ResourceList({resourceList}: {resourceList: Resource[]}) {
   return (
-    <div>
-      <header>Browse Our Selection</header>
-      <ul>
-        {resourceList.map((resource) => (
-          <li key={resource.resource_id}>
-            <ResourceCard {...resource} />
-          </li>
-        ))}
-      </ul>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-x-px gap-y-6 lg:pr-80">
+      {resourceList.map((resource) => (
+        <ResourceCard key={resource._id} resource={resource}/>
+      ))}
     </div>
+
   );
 }

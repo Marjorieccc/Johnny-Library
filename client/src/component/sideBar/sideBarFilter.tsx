@@ -1,7 +1,12 @@
-import React, { SetStateAction } from "react";
-import CategoryFilter from "./categoryFilter";
-import { fetchCategories, fetchFormat, fetchLanguages } from "../../api/fetchResource/fetchResource";
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
+
+import CategoryFilter from "./categoryFilter";
+import {
+  fetchCategories,
+  fetchFormat,
+  fetchLanguages,
+} from "../../api/fetchResource/fetchResource";
 import { updateFilterList } from "../../api/filter";
 
 export type Filter = {
@@ -22,17 +27,17 @@ export default function SideBarFilter({
   // ----------- Fetch Filter Options -----------
   const { data: formatList, isLoading: isLoadingFormat } = useQuery({
     queryKey: ["format"],
-    queryFn: () => fetchFormat(),
+    queryFn: fetchFormat,
     staleTime: Infinity,
   });
   const { data: categoryList, isLoading: isLoadingCategory } = useQuery({
     queryKey: ["category"],
-    queryFn: () => fetchCategories(),
+    queryFn: fetchCategories,
     staleTime: Infinity,
   });
   const { data: languageList, isLoading: isLoadingLanguages } = useQuery({
     queryKey: ["language"],
-    queryFn: () => fetchLanguages(),
+    queryFn: fetchLanguages,
     staleTime: Infinity,
   });
 
@@ -42,10 +47,10 @@ export default function SideBarFilter({
 
     // Update filter
     switch (event.target.name) {
-      case "Format":{
+      case "Format": {
         const newFormatFilter = updateFilterList(
           [...selectFilter.format],
-          value
+          value,
         );
         setSelectFilter({
           format: newFormatFilter,
@@ -55,7 +60,10 @@ export default function SideBarFilter({
         break;
       }
       case "Category": {
-        const newCategoryFilter = updateFilterList([...selectFilter.category], value);
+        const newCategoryFilter = updateFilterList(
+          [...selectFilter.category],
+          value,
+        );
         setSelectFilter({
           format: [...selectFilter.format],
           category: newCategoryFilter,
@@ -64,7 +72,10 @@ export default function SideBarFilter({
         break;
       }
       case "Language": {
-        const newLanguageFilter = updateFilterList([...selectFilter.language], value);
+        const newLanguageFilter = updateFilterList(
+          [...selectFilter.language],
+          value,
+        );
         setSelectFilter({
           format: [...selectFilter.format],
           category: [...selectFilter.category],
@@ -82,22 +93,17 @@ export default function SideBarFilter({
 
   return (
     <div>
-      <div className="container w-full flex flex-wrap mx-auto px-2 pt-8 lg:pt-16 mt-16">
-        <div className="w-full lg:w-1/5 lg:px-6 text-xl text-gray-800 leading-normal">
-          {/* Header */}
-          <p className="text-xl font-medium font-bold py-2 lg:pb-6 text-gray-700">
-            Filter By:
-          </p>
-
+      <div className="container ml-auto mr-0 mt-16 flex w-full max-w-60 flex-wrap px-2 pt-8 lg:pt-16">
+        <div className="w-full text-base leading-normal text-gray-800 lg:px-5">
           {/* hidden side bar for small browser*/}
-          <div className="block lg:hidden sticky inset-0">
+          <div className="inset-0 block lg:hidden">
             <button
               id="menu-toggle"
-              className="flex w-full justify-end px-3 py-3 bg-white lg:bg-transparent border rounded
-             border-gray-600 hover:border-purple-500 appearance-none focus:outline-none"
+              className="flex w-full appearance-none justify-end rounded border border-gray-600 bg-white px-3
+              py-3 hover:border-purple-500 focus:outline-none lg:bg-transparent"
             >
               <svg
-                className="fill-current h-3 float-right"
+                className="float-right h-3 fill-current"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -108,41 +114,36 @@ export default function SideBarFilter({
 
           {/* Filter Input Section */}
           <div
-            className="w-full sticky inset-0 hidden h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden 
-          lg:block mt-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20 top:5em;"
             id="menu-content"
+            className="top:5em; inset-0 z-20 mt-0 hidden h-64 w-60 shrink-0 overflow-y-auto 
+            overflow-x-hidden shadow lg:block lg:h-auto lg:overflow-y-hidden lg:border-transparent lg:bg-transparent lg:shadow-none"
           >
-            <ul className="list-reset">
-              {/* Filter by Category */}
+            <h1 className="pb-4 text-2xl font-medium">Filter</h1>
+            {/* Filter by Format */}
+            <ul className="divide-y border-y">
               {formatList && (
-                <li>
-                  <CategoryFilter
-                    category="Format"
-                    itemList={formatList}
-                    handleChange={handleChange}
-                  />
-                </li>
+                <CategoryFilter
+                  category="Format"
+                  itemList={formatList}
+                  handleChange={handleChange}
+                />
               )}
+              {/* Filter by Category */}
               {categoryList && (
-                <li>
-                  <CategoryFilter
-                    category="Category"
-                    itemList={categoryList}
-                    handleChange={handleChange}
-                  />
-                </li>
+                <CategoryFilter
+                  category="Category"
+                  itemList={categoryList}
+                  handleChange={handleChange}
+                />
               )}
               {/* Filter by Language */}
               {languageList && (
-                <li>
-                  <CategoryFilter
-                    category="Language"
-                    itemList={languageList}
-                    handleChange={handleChange}
-                  />
-                </li>
+                <CategoryFilter
+                  category="Language"
+                  itemList={languageList}
+                  handleChange={handleChange}
+                />
               )}
-              {/* Filter by Format */}
             </ul>
           </div>
         </div>

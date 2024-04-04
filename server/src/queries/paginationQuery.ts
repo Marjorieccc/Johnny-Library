@@ -1,41 +1,64 @@
-import { mongo } from "mongoose";
-import { resourceMongoQuery } from "./resourceQuery";
-import Resource, {IResource} from "../models/resourceModel";
+import { ResourcePaginationReturn } from "../types/pagination";
+import { ResourceMongoQuery } from "../types/resource";
+import Resource from "../models/resourceModel";
 
-export type resourcePaginationReturn ={
-    data: IResource[];
-    totalItems: number ;
-    startIndex: number;
-    endIndex: number;
-}
-
-type resourceMongoQueries = resourceMongoQuery | { $and: resourceMongoQuery[] };
-
-// function signature, prepare for pagination for different argument and returns 
-export async function resourcePagination(resourceMongoQueries: resourceMongoQueries, page:number):Promise<resourcePaginationReturn>;
+type resourceMongoQueries = ResourceMongoQuery | { $and: ResourceMongoQuery[] };
 
 // pagination for filter and search from user input
-export async function resourcePagination(resourceMongoQueries: resourceMongoQueries, page:number):Promise<resourcePaginationReturn>{
-    const limit = 10;
-    const skipIndex = (page - 1) * limit;
-    
-    console.log("pagination received" + JSON.stringify(resourceMongoQueries));
-    const resultByPage = await Resource.aggregate([
-        {
-            $match: resourceMongoQueries
-        },
-        {
-            $facet:{ 
-                data:[{$skip:skipIndex},{$limit:limit}],
-                totalCount: [{$count: 'count'}]
-            }
-        }
-    ]);
+export async function resourcePagination(
+  pageNumber: number,
+  resourceMongoQueries?: resourceMongoQueries
+): Promise<ResourcePaginationReturn> {
+  const limit = 9; // only fetch 9 document
+  const skipIndex = (pageNumber - 1) * limit; // start from certain element according to page number
+  const pipeline = [];
 
-    const data = resultByPage[0].data;
-    const totalItems = resultByPage[0].totalCount[0] ? resultByPage[0].totalCount[0].count : 0;
-    const startIndex = skipIndex + 1;
-    const endIndex = Math.min(startIndex + limit - 1, totalItems);
+  // Add to Mongo query if user select filter or add search keyword
+  if (resourceMongoQueries) {
+    console.log("pagination received: " + JSON.stringify(resourceMongoQueries));
+    pipeline.push({ $match: resourceMongoQueries });
+  }
 
-    return {data, totalItems, startIndex, endIndex};
+  // Only retrieve ${limit} result from MongoDB starting from specific page number
+  pipeline.push({
+    $facet: {
+      data: [{ $skip: skipIndex }, { $limit: limit }],
+      totalCount: [{ $count: "count" }],
+    },
+  });
+  const resultByPage = await Resource.aggregate(pipeline);
+
+  const data = resultByPage[0].data;
+  const totalItems = resultByPage[0].totalCount[0]
+    ? resultByPage[0].totalCount[0].count
+    : 0;
+  const startIndex = skipIndex + 1;
+  const endIndex = Math.min(startIndex + limit - 1, totalItems);
+
+  return { data, totalItems, startIndex, endIndex };
+}
+
+export async function allResourcePagination(
+  pageNumber: number
+): Promise<ResourcePaginationReturn> {
+  const limit = 10;
+  const skipIndex = (pageNumber - 1) * limit;
+
+  const resultByPage = await Resource.aggregate([
+    {
+      $facet: {
+        data: [{ $skip: skipIndex }, { $limit: limit }],
+        totalCount: [{ $count: "count" }],
+      },
+    },
+  ]);
+
+  const data = resultByPage[0].data;
+  const totalItems = resultByPage[0].totalCount[0]
+    ? resultByPage[0].totalCount[0].count
+    : 0;
+  const startIndex = skipIndex + 1;
+  const endIndex = Math.min(startIndex + limit - 1, totalItems);
+
+  return { data, totalItems, startIndex, endIndex };
 }

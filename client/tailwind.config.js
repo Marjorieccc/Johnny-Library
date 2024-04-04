@@ -1,22 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}"
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: { 
+    extend: {
       fontFamily: {
-      'fjalla': ['Fjalla One', 'sans-serif'], 
-      'roboto-condensed': ['Roboto Condensed', 'sans-serif']
+        fjalla: ["Fjalla One", "sans-serif"],
+        "roboto-condensed": ["Roboto Condensed", "sans-serif"],
       },
     },
   },
-  plugins: [
-    require("daisyui")
-  ],
-  daisyui: {
-    darkTheme: "light",
-    base:false
-  }
-}
-
+};

@@ -7,6 +7,7 @@ import roomRouter from './routes/roomRoute'
 import { config } from "./config/config";
 import Logging from "./logging/logging";
 
+
 const app = express();
 
 (async () => {
@@ -29,6 +30,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use('/resources', resourceRouter);
 app.use('/rooms', roomRouter);
+
 
 app.listen(config.server.port, () => {
   Logging.info(`Server is running on port ${config.server.port}`);
