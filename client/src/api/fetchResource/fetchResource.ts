@@ -1,5 +1,10 @@
 import { Filter } from "../../component/sideBar/sideBarFilter";
-import { Resource, ResourceFilter, SearchResult } from "../../types/resource";
+import {
+  Resource,
+  ResourceFilter,
+  SearchResult,
+  ResourceRev,
+} from "../../types/resource";
 
 const baseURL = "http://localhost:8080";
 
@@ -106,7 +111,9 @@ export async function fetchResources(
 export async function makeReservationAPI(
   userID: string,
   resourceID: string,
+  resourceTitle: string,
   mediumID: string,
+  format: string,
   auth0Token: string,
 ) {
   let reserveredSuccess = true;
@@ -118,7 +125,13 @@ export async function makeReservationAPI(
         "Content-Type": "application/json",
         Authorization: `Bearer ${auth0Token}`,
       },
-      body: JSON.stringify({ userID, resourceID, mediumID }),
+      body: JSON.stringify({
+        userID,
+        resourceID,
+        resourceTitle,
+        mediumID,
+        format,
+      }),
     });
     if (!response.ok) {
       throw new Error("Failed to make reservation");
@@ -145,4 +158,31 @@ export async function fetchByID(resource_id: string): Promise<Resource> {
     throw error;
   }
   return resource;
+}
+
+export async function fetchReservationByUserID(
+  user_id: string,
+  accessToken: string,
+): Promise<ResourceRev[]> {
+  console.log("Fetching resource with User ID:", user_id);
+  let reservation = [] as ResourceRev[];
+  try {
+    const response = await fetch(
+      `${baseURL}/resources/reservation/user/${user_id}`,{
+        method: "Get",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Fail");
+    }
+    reservation = await response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+  return reservation;
 }
