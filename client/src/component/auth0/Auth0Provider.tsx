@@ -20,12 +20,12 @@ const Auth0ProviderWithHistory = ({
 }) => {
   const navigate = useNavigate();
 
-  const onRedirectCallback = (appState: any) => {
+  function onRedirectCallback(appState: any) {
     const returnTo = appState?.returnTo || window.location.origin;
     const baseUrl = "http://localhost:3000";
     const relativePath = returnTo.replace(baseUrl, "");
     navigate(relativePath);
-  };
+  }
 
   return (
     <Auth0Provider
