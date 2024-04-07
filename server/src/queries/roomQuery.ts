@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import {
   EquipmentModel,
   RoomBookingRecordModel,
@@ -10,12 +10,12 @@ import { Equipment, Room, RoomBookingRecord, TimeSlot } from "../types/room";
 import { Types } from "mongoose";
 
 // 24-hours
-const OPENING_TIME = "09:00";
-const CLOSING_TIME = "17:00";
+export const OPENING_TIME = "09:00";
+export const CLOSING_TIME = "17:00";
 
 // For Booking
-const NO_OF_DAYS = 10;
-const SECTION_INTERVAL = 60; // Unit: minutes
+export const NO_OF_DAYS = 10;
+export const SECTION_INTERVAL = 60; // Unit: minutes
 
 const getEquipmentCategory = function (equipmentList: Equipment[]) {
   return [...new Set(equipmentList.map((equipment) => equipment.category))];
@@ -186,66 +186,20 @@ export const getRoomById = async function (req: Request, res: Response) {
   }
 };
 
-export const createBooking = async function (req: Request, res: Response) {
-  if (
-    // req.body.user &&
-    req.body.room &&
-    req.body.timeSlot &&
-    req.body.timeSlot.start &&
-    req.body.timeSlot.end &&
-    new Date(req.body.timeSlot.end).getTime() -
-      new Date(req.body.timeSlot.start).getTime() ===
-      SECTION_INTERVAL * 60 * 1000
-  ) {
-    try {
-      const roomId = new Types.ObjectId(req.body.room as Types.ObjectId);
-
-     
-      const user = req.body.userId;
-
-      const room = await RoomModel.exists({
-        _id: roomId,
-      }).exec();
-
-      if (!room) {
-        res.status(404).json({ error: "Room Id does not exist" });
-      } else {
-        const notAvailable = await RoomBookingRecordModel.exists({
-          room: roomId,
-          $and: [
-            { "timeSlot.start": { $lt: new Date(req.body.timeSlot.end) } },
-            { "timeSlot.end": { $gt: new Date(req.body.timeSlot.start) } },
-          ],
-        }).exec();
-
-        if (notAvailable) {
-          res.status(500).json({
-            error: "The room is not available for the selected time slot",
-          });
-        } else {
-          const newBooking = {
-            room: roomId,
-            user: user,
-            timeSlot: {
-              start: new Date(req.body.timeSlot.start),
-              end: new Date(req.body.timeSlot.end),
-            },
-          };
-          await RoomBookingRecordModel.create(newBooking);
-
-          const bookingDetails = await RoomBookingRecordModel.findOne(
-            newBooking,
-            "_id room user timeSlot"
-          );
-          res.status(200).json(bookingDetails);
-        }
-      }
-    } catch (error) {
-      Logging.error(error);
-      res.status(500).json({ error: "Failed to process booking" });
+export async function getRoomByUserId(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const RoomBookingsByUserID = await RoomBookingRecordModel.find({
+      user: req.params.id,
+    });
+    if (!RoomBookingsByUserID) {
+      return res.status(404).json({ error: "Reservation not found" });
     }
-  } else {
-    Logging.error("Invalid Booking Request");
-    res.status(400).json({ error: "Invalid booking info" });
+    res.json(RoomBookingsByUserID);
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
   }
-};
+}
