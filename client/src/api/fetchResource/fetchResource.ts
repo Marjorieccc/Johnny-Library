@@ -1,21 +1,26 @@
-import { Filter } from '../../component/sideBar/sideBarFilter';
-import { Resource, ResourceFilter, SearchResult} from '../../types/resource';
+import { Filter } from "../../component/sideBar/sideBarFilter";
+import {
+  Resource,
+  ResourceFilter,
+  SearchResult,
+  ResourceRev,
+} from "../../types/resource";
+
+const baseURL = "http://localhost:8080";
 
 // fetch categories of resources
 export async function fetchCategories(): Promise<ResourceFilter[]> {
-  let categories:ResourceFilter[]=[];
+  let categories: ResourceFilter[] = [];
   try {
-    const response = await fetch(
-      `http://localhost:8080/resources/categories`
-    );
+    const response = await fetch(`${baseURL}/resources/categories`);
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
     categories = await response.json();
   } catch (error) {
-    console.error('Error fetching categories:', error);
+    console.error("Error fetching categories:", error);
   }
-  console.log('categories: ' + categories);
+  console.log("categories: " + categories);
   return categories;
 }
 
@@ -24,17 +29,15 @@ export async function fetchFormat(): Promise<ResourceFilter[]> {
   let formats: ResourceFilter[] = [];
 
   try {
-    const response = await fetch(
-      `http://localhost:8080/resources/formats`
-    );
+    const response = await fetch(`${baseURL}/resources/formats`);
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
     formats = await response.json();
   } catch (error) {
-    console.error('Error fetching formats:', error);
+    console.error("Error fetching formats:", error);
   }
-  console.log(formats)
+  console.log(formats);
   return formats;
 }
 
@@ -43,15 +46,13 @@ export async function fetchLanguages(): Promise<ResourceFilter[]> {
   let languages: ResourceFilter[] = [];
 
   try {
-    const response = await fetch(
-      `http://localhost:8080/resources/languages`
-    );
+    const response = await fetch(`${baseURL}/resources/languages`);
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
     languages = await response.json();
   } catch (error) {
-    console.error('Error fetching languages:', error);
+    console.error("Error fetching languages:", error);
   }
 
   return languages;
@@ -59,30 +60,30 @@ export async function fetchLanguages(): Promise<ResourceFilter[]> {
 
 // fetch resources by selected filters, if any
 export async function fetchResources(
-  pageNum:number,
+  pageNum: number,
   filterOptions?: Filter,
   searchTerm?: string,
 ): Promise<SearchResult> {
   const searchQueries = new URLSearchParams();
-  
-  searchTerm && console.log(searchTerm); 
+
+  searchTerm && console.log(searchTerm);
   if (searchTerm) {
-    searchQueries.append('title',searchTerm)
+    searchQueries.append("title", searchTerm);
   }
 
-  if (filterOptions)  {
+  if (filterOptions) {
     for (const [key, value] of Object.entries(filterOptions)) {
-    if (value && value.length) {
-      if (Array.isArray(value)) {
-        for (const parsedValue of value) {
-          searchQueries.append(key, parsedValue);
+      if (value && value.length) {
+        if (Array.isArray(value)) {
+          for (const parsedValue of value) {
+            searchQueries.append(key, parsedValue);
+          }
+        } else {
+          searchQueries.append(key, value);
         }
-      } else {
-        searchQueries.append(key, value);
       }
     }
   }
-}
 
   let filteredResource: SearchResult = {
     data: [],
@@ -92,7 +93,7 @@ export async function fetchResources(
   };
 
   try {
-    const searchlink = `http://localhost:8080/resources/search?${searchQueries.toString()}&page=${pageNum}`;
+    const searchlink = `${baseURL}/resources/search?${searchQueries.toString()}&page=${pageNum}`;
     console.log(searchlink);
     const response = await fetch(searchlink);
     if (!response.ok) {
@@ -107,21 +108,30 @@ export async function fetchResources(
   return filteredResource;
 }
 
-
 export async function makeReservationAPI(
   userID: string,
   resourceID: string,
-  mediumDetailID: string,
+  resourceTitle: string,
+  mediumID: string,
+  format: string,
+  auth0Token: string,
 ) {
   let reserveredSuccess = true;
   try {
-    console.log("making reservation");
-    const response = await fetch(`/api/reservation`, {
+    console.log(`Making reservation: ${userID}`);
+    const response = await fetch(`${baseURL}/resources/reservation`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${auth0Token}`,
       },
-      body: JSON.stringify({ userID, resourceID, mediumDetailID }),
+      body: JSON.stringify({
+        userID,
+        resourceID,
+        resourceTitle,
+        mediumID,
+        format,
+      }),
     });
     if (!response.ok) {
       throw new Error("Failed to make reservation");
@@ -138,9 +148,7 @@ export async function fetchByID(resource_id: string): Promise<Resource> {
   console.log("Fetching resource with ID:", resource_id);
   let resource = {} as Resource;
   try {
-    const response = await fetch(
-      `http://localhost:8080/resources/${resource_id}`,
-    );
+    const response = await fetch(`${baseURL}/resources/${resource_id}`);
     if (!response.ok) {
       throw new Error("Fail");
     }
@@ -150,4 +158,31 @@ export async function fetchByID(resource_id: string): Promise<Resource> {
     throw error;
   }
   return resource;
+}
+
+export async function fetchReservationByUserID(
+  user_id: string,
+  accessToken: string,
+): Promise<ResourceRev[]> {
+  console.log("Fetching resource with User ID:", user_id);
+  let reservation = [] as ResourceRev[];
+  try {
+    const response = await fetch(
+      `${baseURL}/resources/reservation/user/${user_id}`,{
+        method: "Get",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Fail");
+    }
+    reservation = await response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+  return reservation;
 }

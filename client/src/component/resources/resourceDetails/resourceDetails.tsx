@@ -1,11 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Resource } from "../../../types/resource";
 import Tab from "./tab";
 
 export default function ResourceDetails({ resource }: { resource: Resource }) {
   //console.log("in resource detail: ", resource);
   const mediumList = resource.medium.map((medium) => medium.format);
-
+  const navigate = useNavigate();
   return (
     <div className="container mx-auto p-4 text-center sm:text-left">
       <h1 className="mb-4 text-3xl font-bold">{resource.title}</h1>
@@ -27,7 +28,7 @@ export default function ResourceDetails({ resource }: { resource: Resource }) {
           <img
             src={resource.thumbnail_url}
             alt={resource.title}
-            className="w-40 mx-auto h-auto max-w-md rounded-md object-cover"
+            className="mx-auto h-auto w-40 max-w-md rounded-md object-cover"
           />
         </div>
       </div>
@@ -35,6 +36,13 @@ export default function ResourceDetails({ resource }: { resource: Resource }) {
         {/* Tabs */}
         <Tab resource={resource} />
       </div>
+      <br />
+      <button
+        className="rounded-md bg-gray-200 px-4 py-2 text-black shadow-md hover:bg-gray-100 disabled:opacity-50"
+        onClick={() => navigate(-1)}
+      >
+        Back
+      </button>
     </div>
   );
 }

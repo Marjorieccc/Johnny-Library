@@ -1,10 +1,12 @@
 import { Router } from "express";
-
-import TimeTable from "../controllers/timeTableController";
+import {verifyToken} from "../middleware/middleware";
+import {getRoomById, getTimeTableInfo, createBooking } from "../queries/roomQuery";
 
 const roomRouter = Router();
 
 // get all the resources object from database
-roomRouter.get("/", TimeTable.getTimeTableInfo);
+roomRouter.get("/", getTimeTableInfo);
+roomRouter.post("/roombooking", verifyToken, createBooking)
+roomRouter.get("/:id", getRoomById);
 
 export default roomRouter;

@@ -1,0 +1,5 @@
+{
+  "issuer": "https://dev-rfjl8nugxemlp4df.us.auth0.com/",
+  "jwksUri": "https://dev-rfjl8nugxemlp4df.us.auth0.com/.well-known/jwks.json",
+  "audience": "LibraryLoungeUserAPI"
+}

@@ -1,22 +1,31 @@
 import { TimeTableInfo } from "../../types/room";
+import {
+  convertAvailabilityList,
+  convertDateList,
+  convertTimeSlotList,
+} from "../../utils/timeTableUtils";
 
 export async function fetchRoomInfo() {
-  let timeTableInfo: TimeTableInfo = {
-    roomSize: [],
-    dateList: [],
-    timeSlotList: [],
-    equipmentCategory: [],
-    availabilityList: [],
-  };
+  const response = await fetch(`http://localhost:8080/rooms`);
 
-  try {
-    const response = await fetch(`http://localhost:8080/rooms`);
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    timeTableInfo = await response.json();
-  } catch (error) {
-    console.error("Error fetching resource:", error);
+  if (!response.ok) {
+    const err = await response.json()
+    throw new Error(err.error);
   }
+
+  const rawData = await response.json();
+  if (rawData.dateList) {
+    rawData.dateList = convertDateList(rawData.dateList);
+  }
+  if (rawData.timeSlotList) {
+    rawData.timeSlotList = convertTimeSlotList(rawData.timeSlotList);
+  }
+  if (rawData.availabilityList) {
+    rawData.availabilityList = convertAvailabilityList(
+      rawData.availabilityList,
+    );
+  }
+
+  const timeTableInfo: TimeTableInfo = rawData;
   return timeTableInfo;
 }

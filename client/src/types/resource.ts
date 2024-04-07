@@ -6,7 +6,7 @@ export type Medium = {
   year_of_publication: number;
   return_date: Date | null;
   status: string;
-}
+};
 
 export type Resource = {
   _id: string;
@@ -18,7 +18,7 @@ export type Resource = {
   shortDescription?: string;
   longDescription?: string;
   medium: Medium[];
-}
+};
 
 export type ResourceFilter = {
   _id: string;
@@ -30,4 +30,14 @@ export type SearchResult = {
   totalItems: number;
   startIndex: number;
   endIndex: number;
-}
+};
+
+export type ResourceRev = {
+  _id: string;
+  userID: string;
+  resourceID: string;
+  resourceTitle: string;
+  mediumID: string;
+  format: string;
+  time: Date;
+};

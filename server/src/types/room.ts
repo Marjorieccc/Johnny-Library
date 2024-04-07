@@ -1,31 +1,36 @@
+import { Types } from "mongoose";
+
 export type TimeSlot = {
   start: Date;
   end: Date;
-}
+};
 
-export type RoomBookingInfo = {
-  _id: number;
-  roomId: number;
-  userId: number;
+export type RoomBookingRecord = {
+  room: Types.ObjectId;
+  user: string;
   timeSlot: TimeSlot;
-}
+};
 
 export type Equipment = {
-  _id: number;
   category: string;
   desc: string;
-  roomId: number;
+  room: Types.ObjectId;
   status: boolean;
-}
+};
 
 export type RoomSize = {
-  _id: number;
   capacity: string;
-}
+};
 
 export type Room = {
-  _id: number;
   name: string;
   desc: string;
-  size: number;
-}
+  size: Types.ObjectId;
+  image: string;
+};
+
+export type User = {
+  username: string;
+  email: string;
+  phone: string;
+};
