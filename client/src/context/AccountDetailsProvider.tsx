@@ -84,12 +84,9 @@ export default function AccountDetailsProvider({
     }
   }
 
-  useEffect(
-    function () {
-      getAccountDetails();
-    },
-    [isAuthenticated, user],
-  );
+  useEffect(() => {
+    getAccountDetails();
+  }, [isAuthenticated, user]);
   return (
     <AccountDetailContext.Provider
       value={{
@@ -110,4 +107,4 @@ function useAccountDetails() {
   return context;
 }
 
-export { AccountDetailsProvider, useAccountDetails };
+export { useAccountDetails };
