@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { ResourceRev } from "../types/resource";
 import { RoomBookingInfo } from "../types/room";
 import { fetchReservationByUserID } from "../api/fetchResource/fetchResource";
+import { fetchRoomBookingByUserId } from "../api/fetchRoom/fetchRoomBookingByUserId";
 
 interface ContextType extends State {
   getAccountDetails: () => void;
@@ -13,7 +14,7 @@ const AccountDetailContext = createContext<ContextType | undefined>(undefined);
 
 interface State {
   reservations: ResourceRev[];
-  roomBookingRecord: RoomBookingInfo[];
+  roomBookingRecords: RoomBookingInfo[];
   error: string;
 }
 
@@ -24,7 +25,7 @@ type Action =
 
 const initialState = {
   reservations: [] as ResourceRev[],
-  roomBookingRecord: [] as RoomBookingInfo[],
+  roomBookingRecords: [] as RoomBookingInfo[],
   error: "",
 };
 
@@ -38,13 +39,13 @@ function reducer(state: State, action: Action) {
     case "roomBookingRecords/loaded":
       return {
         ...state,
-        roomBookingRecord: action.payload,
+        roomBookingRecords: action.payload,
       };
     case "rejected":
       return {
         ...state,
         reservations: [] as ResourceRev[],
-        roomBookingRecord: [] as RoomBookingInfo[],
+        roomBookingRecords: [] as RoomBookingInfo[],
         error: action.payload,
       };
     default:
@@ -69,8 +70,8 @@ export default function AccountDetailsProvider({
 
         // add fetching room booking record by userID here
 
-        //const room = await fetchRoomBookingByUserID(user.sub, accessToken);
-        //dispatch({ type: "reservations/loaded", payload: room });
+        const bookings = await fetchRoomBookingByUserId(user.sub, accessToken);
+        dispatch({ type: "roomBookingRecords/loaded", payload: bookings });
       } catch (error) {
         console.log(error);
         dispatch({
@@ -91,7 +92,7 @@ export default function AccountDetailsProvider({
     <AccountDetailContext.Provider
       value={{
         reservations: state.reservations,
-        roomBookingRecord: state.roomBookingRecord,
+        roomBookingRecords: state.roomBookingRecords,
         error: state.error,
         getAccountDetails: getAccountDetails,
       }}

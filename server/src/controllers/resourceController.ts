@@ -10,6 +10,8 @@ import {
 } from "../models/resourceFilterModel";
 import { ResourcePaginationReturn } from "../types/pagination";
 import Reservation from "../models/reservationModel";
+import { createReservation } from "../queries/createReservation";
+import { reservationQuery } from "../queries/reservationQuery";
 
 type SearchQuery = {
   category?: string[];
@@ -156,7 +158,7 @@ async function queryResourceLanguages(
 
 async function postReservation(req: Request, res: Response) {
   try {
-    const { userID, resourceID, resourceTitle, mediumID, format } = req.body;
+    const { userID, resourceID, mediumID } = req.body;
     const resourceByID = await Resource.findOne({ _id: resourceID });
     if (!resourceByID) {
       return res.status(404).json({ error: "Resource not found" });
@@ -169,17 +171,7 @@ async function postReservation(req: Request, res: Response) {
       return res.status(404).json({ error: "Medium not found" });
     }
     console.log(`Making reservation:  ${userID}`);
-    const revTime = new Date();
-    const reservation = new Reservation({
-      userID,
-      resourceID,
-      resourceTitle,
-      mediumID,
-      format,
-      time: revTime,
-    });
-
-    await reservation.save();
+    const response = await createReservation(req, res);
     res.json({ success: true });
   } catch (err) {
     console.log(err);
@@ -193,13 +185,11 @@ async function queryReservation(
   next: NextFunction
 ) {
   try {
-    const ReservationByUserID = await Reservation.find({
-      userID: req.params.id,
-    });
-    if (!ReservationByUserID) {
+    const ReservationsByUserID = await reservationQuery(req);
+    if (!ReservationsByUserID) {
       return res.status(404).json({ error: "Reservation not found" });
     }
-    res.json(ReservationByUserID);
+    res.json(ReservationsByUserID);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
