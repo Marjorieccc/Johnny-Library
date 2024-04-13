@@ -31,7 +31,7 @@
 
 TBC: screenshots
 
-This application features basic functionalities, including resource reservation for books and DVDs, and the ability to book study rooms based on date and available equipment. We've integrated user authentication using Auth0 and have opted for MongoDB to manage and store data efficiently. The application provides a seamless user experience for resource reservation and room booking in an educational setting.
+Welcome to our full-stack library management application. This project is designed to showcase our capabilities in handling both front-end and back-end development. It features basic functionalities including resource reservation for books and DVDs, and the ability to book study rooms based on date and available equipment. We've integrated user authentication using Auth0 and opted for MongoDB to manage and store data efficiently, ensuring a robust and scalable backend architecture.
 
 😊 We warmly welcome any feedback or suggestions as we aim to further develop our skills and improve this application. 😊
 
