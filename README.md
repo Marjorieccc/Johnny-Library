@@ -9,7 +9,7 @@
 
 <div align="center">
   <a href="https://github.com/Marjorieccc/LibraLounge">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://i.ibb.co/X2tr7hv/lib-logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Johnny Library</h3>
@@ -97,46 +97,45 @@ To get a local copy of this project up and running, follow these steps:
 
 3. **Set up MongoDB**
 
-   This project uses MongoDB for data storage. You can either use a local MongoDB instance or a cloud-based MongoDB service like MongoDB Atlas.
-
-   **Option 1: Local MongoDB Instance**
-   - Install MongoDB locally on your machine if you haven't already
-   - Start the MongoDB server
-
-   **Option 2: MongoDB Atlas (Cloud)**
-   - Sign up for a free MongoDB Atlas account at https://www.mongodb.com/cloud/atlas
-   - Create a new cluster and follow the instructions to connect to your cluster
-   - Update the `MONGODB_URI` environment variable in your `.env` file with the connection string from MongoDB Atlas
+   This project uses MongoDB for data storage. For a local setup, install and start MongoDB following the [official guidelines](https://docs.mongodb.com/manual/installation/). Alternatively, you can use [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) for a cloud-based solution, where you can create a cluster and follow   the setup instructions provided by Atlas.
 
 4. **Set up Environment Variables**
    
-   Create a `.env` file in the root directory and add the following environment variables:
+   Create a `.env` file in the root directory of the server folder and add the following environment variables:
    ```
-   MONGODB_URI=your-mongodb-uri
+   MONGO_USERNAME = your-mongodb-username
+   MONGO_PASSWORD = your-mongodb-password
+   MONGO_DATABASE = your-mongodb-database
+   MONGO_COLLECTION = your-mongodb-collection
+   SERVER_PORT = 8080
+
+   // TBC : auth0 config
    AUTH0_DOMAIN=your-auth0-domain
    AUTH0_CLIENT_ID=your-auth0-client-id
+   AUTH0_AUDIENCE=your-auth0-audience
+   AUTH0_SCOPE=your-auth0-scope
    ```
    
    Replace the placeholders with your actual MongoDB URI and Auth0 credentials.
 
 5. **Import Sample Data (Optional)**
 
-   This project includes sample data that you can import into your MongoDB database. Navigate to the `server/data` directory and run:
+   This project includes sample data that you can import into your MongoDB database to explore all features fully. You can access the sample data from [here](https://github.com/Marjorieccc/LibraLounge) (TBC: upload json)
 
    ```
-   mongoimport --db your-database-name --collection resources --file resources.json
-   mongoimport --db your-database-name --collection resources_audience --file resources_audience.json
-   mongoimport --db your-database-name --collection resources_categories --file resource_categories.json
-   mongoimport --db your-database-name --collection resources_formats --file resources_formats.json
-   mongoimport --db your-database-name --collection resources_languages --file resources_languages.json
-   mongoimport --db your-database-name --collection rooms --file rooms.json	
-   mongoimport --db your-database-name --collection rooms_sizes --file rooms_sizes.json	
-   mongoimport --db your-database-name --collection equipments --file equipments.json
-   mongoimport --db your-database-name --collection reservation --file reservation.json
+   mongoimport --db your-mongodb-username:your-mongodb-password@localhost:27017/your-database --collection resources --file resources.json
+   mongoimport --db your-mongodb-username:your-mongodb-password@localhost:27017/your-database  --collection resources_audience --file resources_audience.json
+   mongoimport --db your-mongodb-username:your-mongodb-password@localhost:27017/your-database  --collection resources_categories --file resource_categories.json
+   mongoimport --db your-mongodb-username:your-mongodb-password@localhost:27017/your-database  --collection resources_formats --file resources_formats.json
+   mongoimport --db your-mongodb-username:your-mongodb-password@localhost:27017/your-database  --collection resources_languages --file resources_languages.json
+   mongoimport --db your-mongodb-username:your-mongodb-password@localhost:27017/your-database  --collection rooms --file rooms.json	
+   mongoimport --db your-mongodb-username:your-mongodb-password@localhost:27017/your-database  --collection rooms_sizes --file rooms_sizes.json	
+   mongoimport --db your-mongodb-username:your-mongodb-password@localhost:27017/your-database  --collection equipments --file equipments.json
+   mongoimport --db your-mongodb-username:your-mongodb-password@localhost:27017/your-database  --collection reservation --file reservation.json
 
    ```
 
-   Replace `your-database-name` with the name of your database .
+   Replace your-mongodb-username, your-mongodb-password, localhost:27017, and your-database-name with the appropriate values based on your local or Atlas setup and import the Data into MongoDB.
 
 6. **Start the Application**
 
@@ -147,26 +146,26 @@ To get a local copy of this project up and running, follow these steps:
    
    Start the backend server:
    ```
-   npm run server
+   cd server
+   npm start
    ```
    
    Start the frontend development server in a new terminal:
    ```
-   npm run client
+   cd client
+   npm start
    ```
 
    The application should now be running locally at `http://localhost:3000`.
 
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Visit [insert the URL of your website here] to explore the online library. The website is designed to be intuitive, allowing users to browse resources, reserve books, and book study rooms with ease.
+Visit [Johnny Library](https://johnny-library.web.app/) to explore the online library. The website is designed to be intuitive, allowing users to browse resources, reserve books, and book study rooms with ease.
 
 **Features and Navigation**
 * Resource Browsing: Users can search for resources using the search bar or browse through categories.
@@ -225,8 +224,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* [Img Shields](https://shields.io)
+* [Dataset from Arthur Koch](https://github.com/dudeonthehorse/datasets)
 * [GitHub Pages](https://pages.github.com)
+* [Img Shields](https://shields.io)
+* [ImgBB](https://imgbb.com/)
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
