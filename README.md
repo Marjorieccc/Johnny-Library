@@ -1,10 +1,14 @@
 
 <a name="readme-top"></a>
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 
+<div align="center">
+  
+  [![Contributors][contributors-shield]][contributors-url]
+  [![Forks][forks-shield]][forks-url]
+  [![Issues][issues-shield]][issues-url]
+  [![MIT License][license-shield]][license-url]
+
+</div>
 
 
 <div align="center">
@@ -203,7 +207,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See [here][license-url] for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -234,13 +238,13 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 [contributors-shield]: https://img.shields.io/github/contributors/Marjorieccc/LibraLounge.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[contributors-url]: https://github.com/Marjorieccc/LibraLounge/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Marjorieccc/LibraLounge.svg?style=for-the-badge
 [forks-url]: https://github.com/Marjorieccc/LibraLounge/fork
 [issues-shield]: https://img.shields.io/github/issues/Marjorieccc/LibraLounge.svg?style=for-the-badge
 [issues-url]: https://github.com/Marjorieccc/LibraLounge/issues
-[license-shield]: https://img.shields.io/github/license/Marjorieccc/LibraLounge.svg?style=for-the-badge
-[license-url]: https://github.com/Marjorieccc/LibraLounge/LICENSE.txt
+[license-shield]: https://img.shields.io/github/license/Marjorieccc/LibraLounge?style=for-the-badge
+[license-url]: https://github.com/Marjorieccc/LibraLounge/blob/beta/LICENSE
 [Auth0]:https://img.shields.io/badge/auth0-EB5425?style=for-the-badge&logo=auth0&logoColor=white
 [Auth0-url]: https://auth0.com/
 [Docker]:https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white
