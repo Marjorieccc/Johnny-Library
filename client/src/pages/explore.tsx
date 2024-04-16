@@ -6,7 +6,7 @@ import { SearchResult } from "../types/resource";
 import SideBarFilter, { Filter } from "../component/sideBar/sideBarFilter";
 import ResourceList from "../component/resources/resourceList";
 import { fetchResources } from "../api/fetchResource/fetchResource";
-import ResourcePage from "../component/resources/resourcePage";
+import PageNavigate from "../component/resources/pageNavigator";
 
 export default function ExplorePage() {
   // filter options
@@ -22,7 +22,12 @@ export default function ExplorePage() {
   // User previous selection of page number 
   const [previousPageNumber, setPreviousPageNumber] = useState<number>(1);
 
+  // log display page
+  const [startPageNumber, setStartPageNumber] = useState(1);
+  const [endPageNumber, setEndPageNumber] = useState(5);
 
+
+  
   // search queries
   const location = useLocation();
   const searchTerm = location.state?.searchTerm || "";
@@ -71,7 +76,7 @@ export default function ExplorePage() {
   const totalPages = Math.ceil((filterData?.totalItems ?? 0) / numberPerPage);
 
   return (
-    <div className="flex h-full gap-4 overflow-x-auto p-4">
+    <div className="flex h-full gap-4 p-4 overflow-x-auto">
       <div className="w-2/5 min-w-max ">
         <SideBarFilter
           selectFilter={selectFilter}
@@ -90,7 +95,7 @@ export default function ExplorePage() {
           </div>
         )}
 
-        <div className="items-start px-16 ">
+        <div className="items-start ">
           {/* If there is no matching result */}
           {filterData?.data && filterData.data.length < 1 && (
             <p>No matching result!</p>
@@ -106,8 +111,12 @@ export default function ExplorePage() {
         {filterData?.data &&
           filterData.data.length > 0 && (
           <div>
-            <ResourcePage resources={{
+            <PageNavigate resources={{
               setPageNumber: setPageNumber,
+              setStartPageNumber: setStartPageNumber,
+              setEndPageNumber: setEndPageNumber,
+              startPageNumber:startPageNumber,
+              endPageNumber:endPageNumber,
               totalPages: totalPages,
               startIndex: filterData.startIndex,
               endIndex: filterData.endIndex, 
