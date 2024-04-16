@@ -25,6 +25,17 @@ export type ResourceFilter = {
   name: string;
 };
 
+export type FilterList = {
+  format: string[];
+  category: string[];
+  language: string[];
+};
+
+export type SetFilterStateProps = {
+  selectFilter: FilterList;
+  setSelectFilter: React.Dispatch<FilterList>;
+};
+
 export type SearchResult = {
   data: Resource[];
   totalItems: number;
