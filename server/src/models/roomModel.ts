@@ -5,7 +5,7 @@ import {
   RoomSize,
   User,
   Equipment,
-} from "../types/room";
+} from "../types/roomType";
 
 const userSchema = new Schema<User>(
   {

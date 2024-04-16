@@ -1,5 +1,5 @@
-import { ResourcePaginationReturn } from "../types/pagination";
-import { ResourceMongoQuery } from "../types/resource";
+import { ResourcePaginationReturn } from "../types/paginationType";
+import { ResourceMongoQuery } from "../types/resourceType";
 import Resource from "../models/resourceModel";
 
 type resourceMongoQueries = ResourceMongoQuery | { $and: ResourceMongoQuery[] };

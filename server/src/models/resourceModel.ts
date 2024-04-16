@@ -1,5 +1,5 @@
 import mongoose, { Schema, Types } from "mongoose";
-import { MediumModel, ResourceModel } from "../types/resource";
+import { MediumModel, ResourceModel } from "../types/resourceType";
 
 const mediumSchema = new Schema<MediumModel>({
   _id: Types.ObjectId,
