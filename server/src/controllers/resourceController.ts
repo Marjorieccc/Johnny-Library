@@ -8,7 +8,7 @@ import {
   ResourceFormat,
   ResourceLanguage,
 } from "../models/resourceFilterModel";
-import { ResourcePaginationReturn } from "../types/pagination";
+import { ResourcePaginationReturn } from "../types/paginationType";
 import Reservation from "../models/reservationModel";
 import { createReservation } from "../queries/createReservation";
 import { reservationQuery } from "../queries/reservationQuery";

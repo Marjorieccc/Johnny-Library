@@ -1,5 +1,5 @@
 import mongoose, { Schema, Types } from "mongoose";
-import { ResourceRevModel } from "../types/resource";
+import { ResourceRevModel } from "../types/resourceType";
 
 const reservationSchema = new Schema<ResourceRevModel>(
   {

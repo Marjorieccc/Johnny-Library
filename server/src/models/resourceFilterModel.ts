@@ -1,5 +1,5 @@
 import mongoose, { Schema, Types } from "mongoose";
-import { ResourceFilter } from "../types/resource";
+import { ResourceFilter } from "../types/resourceType";
 
 const categorySchema = new Schema<ResourceFilter>(
   {

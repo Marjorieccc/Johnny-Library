@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { Types } from "mongoose";
 import {
   EquipmentModel,
   RoomBookingRecordModel,
@@ -6,8 +7,12 @@ import {
   RoomSizeModel,
 } from "../models/roomModel";
 import Logging from "../logging/logging";
-import { Equipment, Room, RoomBookingRecord, TimeSlot } from "../types/room";
-import { Types } from "mongoose";
+import {
+  Equipment,
+  Room,
+  RoomBookingRecord,
+  TimeSlot,
+} from "../types/roomType";
 
 // 24-hours
 export const OPENING_TIME = "09:00";

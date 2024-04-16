@@ -1,4 +1,4 @@
-import { Resources } from "./resource";
+import { Resources } from "./resourceType";
 
 export type ResourcePaginationReturn = {
   data: Resources[];
