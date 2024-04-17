@@ -53,11 +53,13 @@ function reducer(state: State, action: Action) {
   }
 }
 
-export default function AccountDetailsProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function useAccountDetails() {
+  const context = useContext(AccountDetailContext);
+  if (!context) throw new Error("outside provider");
+  return context;
+}
+
+export default function AccountDetailsProvider({ children }: { children: React.ReactNode;}){
   const [state, dispatch] = useReducer(reducer, initialState);
   const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
 
@@ -102,10 +104,4 @@ export default function AccountDetailsProvider({
   );
 }
 
-function useAccountDetails() {
-  const context = useContext(AccountDetailContext);
-  if (!context) throw new Error("outside provider");
-  return context;
-}
 
-export { useAccountDetails };

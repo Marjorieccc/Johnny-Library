@@ -1,22 +1,21 @@
-import React, { useState } from "react";
-
+import React, { useState} from "react";
 import TabContent from "./tabContent";
-import { Resource, Medium } from "../../../types/resource";
+import { Resource, Medium } from "../../../types/resourceType";
 
-const tabStyle = `text-gray-500 py-2 px-4 rounded-t-md font-bold border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300`;
+const tabStyle = `py-2 px-4  hover:text-gray-700 `;
 
 export default function Tab({ resource }: { resource: Resource }) {
   const [selectedTab, setSelectedTab] = useState(
     resource.medium.length > 0 ? resource.medium[0].format : "",
   );
 
-  const handleTabChange = (newTab: string) => {
+  function handleTabChange(newTab: string) {
     setSelectedTab(newTab);
-  };
+  }
 
   return (
-    <>
-      <nav className="mb-4 flex">
+    <div className="w-fit">
+      <nav className="flex justify-center mb-4 lg:justify-start">
         {resource.medium.map((mediumDetails) => {
           return (
             <button
@@ -24,8 +23,8 @@ export default function Tab({ resource }: { resource: Resource }) {
               type="button"
               className={`${tabStyle} ${
                 selectedTab === mediumDetails.format
-                  ? "border-blue-500 bg-gray-200 text-blue-500"
-                  : "border-gray-300 bg-gray-100 text-gray-500 hover:bg-gray-200"
+                  ? "border-x-2 border-t-2 border-b-0 border border-[#E32B31] font-bold"
+                  : "border-[#E32B31] border-b-2 text-gray-700"
               }`}
               onClick={() => handleTabChange(mediumDetails.format)}
             >
@@ -38,15 +37,12 @@ export default function Tab({ resource }: { resource: Resource }) {
         key={selectedTab}
         resourceID={resource._id}
         resourceTitle={resource.title}
-        description={
-          resource.longDescription ? resource.longDescription : "no description"
-        }
         mediumDetails={
           resource.medium.find(
             (medium: Medium) => medium.format === selectedTab,
           ) || ({} as Medium)
         }
       />
-    </>
+    </div>
   );
 }

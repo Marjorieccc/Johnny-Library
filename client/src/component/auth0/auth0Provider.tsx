@@ -13,11 +13,7 @@ const auth0Config = {
   },
 };
 
-const Auth0ProviderWithHistory = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export default function Auth0ProviderWithHistory({ children }: { children: React.ReactNode;}){
   const navigate = useNavigate();
 
   function onRedirectCallback(appState: any) {
@@ -37,6 +33,5 @@ const Auth0ProviderWithHistory = ({
       {children}
     </Auth0Provider>
   );
-};
+}
 
-export default Auth0ProviderWithHistory;
