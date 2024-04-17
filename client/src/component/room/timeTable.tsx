@@ -5,7 +5,7 @@ import {
   DisplayDate,
   RoomModalProps,
   TimeSlot,
-} from "../../types/room";
+} from "../../types/roomType";
 import "primeicons/primeicons.css";
 import RoomModal from "./roomModal";
 
@@ -105,7 +105,7 @@ export default function TimeTable({
           closeHandler={modalProps.current.closeHandler}
         />
       )}
-      <table className="w-full min-w-max text-xs md:text-base">
+      <table className="w-full text-xs min-w-max md:text-base">
         <thead>
           <tr className="h-12">
             <th></th>
@@ -114,12 +114,12 @@ export default function TimeTable({
                 <div className="basis-1/12">
                   <button
                     className={dateRange.startIdx ? "" : "hidden"}
-                    onClick={(_) => prevPage()}
+                    onClick={() => prevPage()}
                   >
                     <i className="pi pi-angle-left" />
                   </button>
                 </div>
-                <div className="basis-10/12 text-sm font-normal text-gray-700 underline md:text-xl">
+                <div className="text-sm font-normal text-gray-700 underline basis-10/12 md:text-xl">
                   Select A Time Slot
                 </div>
                 <div className="basis-1/12">
@@ -127,7 +127,7 @@ export default function TimeTable({
                     className={
                       dateRange.endIdx === dateList.length ? "hidden" : ""
                     }
-                    onClick={(_) => nextPage()}
+                    onClick={() => nextPage()}
                   >
                     <i className="pi pi-angle-right" />
                   </button>
@@ -217,7 +217,7 @@ export default function TimeTable({
                       key={idx}
                       onClick={
                         availableRooms.length
-                          ? (_) => {
+                          ? () => {
                               modalProps.current = {
                                 timeSlot: bookingTimeSlot,
                                 roomList: availableRooms,

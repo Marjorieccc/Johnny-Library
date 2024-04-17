@@ -1,4 +1,4 @@
-import { RoomBookingInfo } from "../../types/room";
+import { RoomBookingInfo } from "../../types/roomType";
 
 export async function fetchRoomBookingByUserId(
   id: string,

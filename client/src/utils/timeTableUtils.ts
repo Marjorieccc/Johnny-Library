@@ -1,4 +1,4 @@
-import { AvailabilityList, TimeSlot } from "../types/room";
+import { AvailabilityList, TimeSlot } from "../types/roomType";
 
 export const combineDateAndTime = function (date: Date, time: Date) {
   const combinedDate = new Date(date.getTime());

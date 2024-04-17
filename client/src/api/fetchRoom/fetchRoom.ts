@@ -1,4 +1,4 @@
-import { TimeTableInfo } from "../../types/room";
+import { TimeTableInfo } from "../../types/roomType";
 import {
   convertAvailabilityList,
   convertDateList,

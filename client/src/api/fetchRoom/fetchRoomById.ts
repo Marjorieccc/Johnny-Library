@@ -1,4 +1,4 @@
-import { RoomDetails } from "../../types/room";
+import { RoomDetails } from "../../types/roomType";
 
 export async function fetchRoomById(id: string) {
   const response = await fetch(`http://localhost:8080/rooms/${id}`);
