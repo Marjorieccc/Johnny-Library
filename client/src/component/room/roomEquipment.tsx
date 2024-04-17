@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { RoomEquipmentProps } from "../../types/room";
+import { RoomEquipmentProps } from "../../types/roomType";
 
 export default function RoomEquipment({
   equipmentCategory,
@@ -19,11 +19,11 @@ export default function RoomEquipment({
   };
 
   return (
-    <form className="mb-4 rounded-xl border-2 border-gray-500 p-2 lg:w-full">
-      <legend className="text:base font-bold text-gray-700 lg:text-xl">
+    <form className="p-2 mb-4 border-2 border-gray-500 rounded-xl lg:w-full">
+      <legend className="font-bold text-gray-700 text:base lg:text-xl">
         Equipment:
       </legend>
-      <hr className="mb-2 h-px border-0 bg-gray-200 dark:bg-gray-700" />
+      <hr className="h-px mb-2 bg-gray-200 border-0 dark:bg-gray-700" />
       {equipmentCategory.map((category, index) => {
         return (
           <div key={index} className="my-2">

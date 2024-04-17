@@ -1,8 +1,8 @@
 import React, { useEffect, useContext, useReducer, createContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { ResourceRev } from "../types/resource";
-import { RoomBookingInfo } from "../types/room";
+import { ResourceRev } from "../types/resourceType";
+import { RoomBookingInfo } from "../types/roomType";
 import { fetchReservationByUserID } from "../api/fetchResource/fetchResource";
 import { fetchRoomBookingByUserId } from "../api/fetchRoom/fetchRoomBookingByUserId";
 

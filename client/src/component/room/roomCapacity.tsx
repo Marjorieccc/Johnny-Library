@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { RoomCapacityProps } from "../../types/room";
+import { RoomCapacityProps } from "../../types/roomType";
 
 export default function RoomCapacity({
   roomSize,
@@ -19,11 +19,11 @@ export default function RoomCapacity({
   };
 
   return (
-    <form className="mb-4 w-full rounded-xl border-2 border-gray-500 p-2">
+    <form className="w-full p-2 mb-4 border-2 border-gray-500 rounded-xl">
       <legend className="text-base font-bold text-gray-700 lg:text-xl">
         Capcity
       </legend>
-      <hr className="mb-2 h-px border-0 bg-gray-200 dark:bg-gray-700" />
+      <hr className="h-px mb-2 bg-gray-200 border-0 dark:bg-gray-700" />
       {roomSize.map((size) => {
         return (
           <div key={size._id} className="my-2">

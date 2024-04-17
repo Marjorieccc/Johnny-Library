@@ -1,4 +1,4 @@
-import { RoomBookingInfo, SubmitBookingDetails } from "../../types/room";
+import { RoomBookingInfo, SubmitBookingDetails } from "../../types/roomType";
 
 export async function createBooking(
   data: SubmitBookingDetails,
