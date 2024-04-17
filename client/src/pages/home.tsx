@@ -15,9 +15,9 @@ const queryClient = new QueryClient({
 export default function HomePage() {
   return (
     <QueryClientProvider client={queryClient}>
-      <main className="justify-centertracking-wider flex flex-col items-center">
+      <main className="tracking-wider">
         <Header />
-        <div className="mx-auto mt-20 max-w-screen-2xl lg:py-10">
+        <div className="mx-auto mt-20 max-w-screen-2xl lg:py-10"> 
           <Outlet />
         </div>
         <Footer />
