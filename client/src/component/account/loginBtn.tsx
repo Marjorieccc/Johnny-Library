@@ -8,7 +8,7 @@ export default function LoginBtn() {
 
   function handleAccountLogin(){
     loginWithRedirect();
-  };
+  }
 
   if (isAuthenticated) {
     return (
