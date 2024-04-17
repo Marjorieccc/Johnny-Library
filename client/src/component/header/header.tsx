@@ -2,8 +2,8 @@ import React from "react";
 import Title from "./title";
 import NavBar from "../navbar/navBar";
 import SearchBar from "../searchBar/searchBar";
-import AccountLoginButton from "../account/accountLoginButton";
-import LogoutBtn from "../account/LogoutBtn";
+import LogoutBtn from "../account/logoutBtn";
+import LoginBtn from "../account/loginBtn";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -21,7 +21,7 @@ export default function Header() {
             
         <div className="flex items-center flex-grow space-x-2">
             <span>{isAuthenticated ? user && user.name : "Guest "} </span>
-            <AccountLoginButton />
+            <LoginBtn />
             {/* <ReserveCheckButton /> */}
             {isAuthenticated && <LogoutBtn />}
         </div>

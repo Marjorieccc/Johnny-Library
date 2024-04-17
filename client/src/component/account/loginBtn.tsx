@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-
 import "primeicons/primeicons.css";
 
-export default function AccountLoginButton() {
+export default function LoginBtn() {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
-  const handleAccountLogin = () => {
+  function handleAccountLogin(){
     loginWithRedirect();
   };
 

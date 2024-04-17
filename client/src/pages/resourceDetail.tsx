@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ResourceDetails from "../component/resources/resourceDetails/resourceDetails";
-import { Resource } from "../types/resource";
+import { Resource } from "../types/resourceType";
 import { fetchByID } from "../api/fetchResource/fetchResource";
 
 export default function ResourceDetailPage() {
@@ -21,8 +21,7 @@ export default function ResourceDetailPage() {
 
   return (
     <>
-      <h1>Details</h1>
-      <>{resource ? <ResourceDetails resource={resource} /> : <p>loading</p>}</>
+      <>{resource ? <ResourceDetails resource={resource} /> : <p>Loading</p>}</>
     </>
   );
 }

@@ -1,31 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-
-import { Medium } from "../../../types/resource";
+import { Medium } from "../../../types/resourceType";
 import { makeReservationAPI } from "../../../api/fetchResource/fetchResource";
-import Auth0LoginRedirectBtn from "../../auth0/Auth0LoginRedirectBtn";
-import { useAccountDetails } from "../../../context/AccountDetailsProvider";
+import Auth0LoginRedirectBtn from "../../auth0/auth0LoginRedirectBtn";
+import { useAccountDetails } from "../../../context/accountDetailsProvider";
 
 const reserveBtnStyle =
-  "disabled:opacity-50 bg-blue-500 text-white font-bold py-2 px-4 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 active:bg-blue-800";
+  "disabled:opacity-50 border border-red-800 rounded-md text-red-800 text-base font-bold py-2 px-4  hover:bg-[#E32B31] hover:text-white focus:outline-none  active:bg-white";
 
 
 export default function TabContent({
   resourceID,
   resourceTitle,
-  description = "No description",
   mediumDetails,
 }: {
   resourceID: string;
   resourceTitle: string;
-  description: string;
   mediumDetails: Medium;
 }) {
   const [reserved, setReserved] = useState(false);
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const { reservations } = useAccountDetails();
 
-  useEffect(function () {
+  // Check if the current resource is reserved by the user upon component mount, updating the 'reserved' state accordingly.
+  useEffect(() => {
     const foundResource = reservations.find(
       (resource) => resource.resourceID === resourceID,
     );
@@ -36,8 +34,11 @@ export default function TabContent({
     }
   }, []);
 
+  // Attempts to reserve the current resource for the authenticated user.
   const handleReservation = async function () {
     if (isAuthenticated && user) {
+
+      // Retrieves an access token silently, then makes an API call to reserve the resource.
       const accessToken = await getAccessTokenSilently();
       try {
         const response = await makeReservationAPI(
@@ -50,36 +51,46 @@ export default function TabContent({
           accessToken,
         );
         if (response) {
-          setReserved(true);
+          setReserved(true); // Updates the 'reserved' state to true if the reservation is successful.
         }
       } catch (err) {
         console.log(err);
         throw err;
       }
     } else {
-      new Error("Not Log in");
+      new Error("Login fail, Please try again");
     }
   };
 
   return (
     <>
-      <div>
-        <p className="mb-2 text-gray-500">{description}</p>
-        <p className="text-gray-500">Publisher: {mediumDetails.publisher}</p>
-        <p className="text-gray-500">
-          Language: {mediumDetails.language.join(", ")}
-        </p>
-        <p className="text-gray-500">
-          Year: {String(mediumDetails.year_of_publication)}
-        </p>
+      {/* information of selected medium */}
+      <div className="text-nowrap">
+        <div className="lg:mb-4 lg:flex-col lg:mr-10">
+          <p className="my-6 text-gray-900 lg:text-sm lg:my-0">Publisher:  
+              <span className="pl-2 text-gray-500 ">{mediumDetails.publisher}</span>
+          </p>
+          <p className="my-6 text-gray-900 lg:text-sm lg:my-1">Language:  
+              <span className="pl-2 text-gray-500 ">{mediumDetails.language.join(", ")}</span>
+          </p>
+          <p className="my-6 lg:text-sm text-gray-900 lg:my-0.5">Year:  
+              <span className="pl-2 text-gray-500 ">{String(mediumDetails.year_of_publication)}</span>
+          </p>
+        </div>
       </div>
-      <br></br>
+      
+      {/* Display the "Reserve" button if the user is authenticated and the resource is not yet reserved. */}
       {isAuthenticated && !reserved && (
+        <div className="flex justify-center lg:justify-start lg:mt-4 ">
         <button onClick={handleReservation} className={reserveBtnStyle}>
           Reserve {mediumDetails.format}
         </button>
+        </div>
       )}
-      {isAuthenticated && reserved && <p>Reserved</p>}
+
+      {isAuthenticated && reserved && <p className="py-2 text-xl font-bold text-red-800 ">Reserved!</p>}
+
+      {/*If the user is not authenticated, display the login button for redirection to the Auth0 login.*/}
       {!isAuthenticated && <Auth0LoginRedirectBtn />}
     </>
   );
