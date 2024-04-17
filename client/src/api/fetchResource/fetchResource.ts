@@ -1,10 +1,10 @@
-import { Filter } from "../../component/sideBar/sideBarFilter";
 import {
+  FilterList,
   Resource,
   ResourceFilter,
   SearchResult,
   ResourceRev,
-} from "../../types/resource";
+} from "../../types/resourceType";
 
 const baseURL = "http://localhost:8080";
 
@@ -61,7 +61,7 @@ export async function fetchLanguages(): Promise<ResourceFilter[]> {
 // fetch resources by selected filters, if any
 export async function fetchResources(
   pageNum: number,
-  filterOptions?: Filter,
+  filterOptions?: FilterList,
   searchTerm?: string,
 ): Promise<SearchResult> {
   const searchQueries = new URLSearchParams();
@@ -168,13 +168,14 @@ export async function fetchReservationByUserID(
   let reservation = [] as ResourceRev[];
   try {
     const response = await fetch(
-      `${baseURL}/resources/reservation/user/${user_id}`,{
+      `${baseURL}/resources/reservation/user/${user_id}`,
+      {
         method: "Get",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
         },
-      }
+      },
     );
     if (!response.ok) {
       throw new Error("Fail");
