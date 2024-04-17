@@ -44,13 +44,12 @@ export default function Navbar() {
 
   return (
     <nav>
-      <ul className="list-reset lg:flex justify-end items-center flex-1">
-        <li className="mr-3  lg:py-0 ">
+      <ul className="items-center justify-end flex-1 lg:flex lg:ml-10">
+        <li className="mr-3 lg:py-0 ">
           <div
             onMouseEnter={handleExploreHover}
             onMouseLeave={handleExploreHover}>
-              <div tabIndex={0} role="button" className=" dropdown font-fjalla inline-block text-gray-600 text-sm px-0 m-2 
-                                                        hover:text-gray-900 relative group">
+              <div tabIndex={0} role="button" className="relative inline-block px-0 m-2 text-sm text-gray-600  dropdown font-fjalla hover:text-gray-900 group">
                 Explore!
                 <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gray-900 
                                  group-hover:w-full group-hover:transition-all transform -translate-x-1/2"></span> 
@@ -58,11 +57,11 @@ export default function Navbar() {
                 {isExploreDropdownVisible && <Dropdown navString='explore' />}
           </div>
         </li>
-        <li className="mr-3 py-2 lg:py-0">
+        <li className="py-2 mr-3 lg:py-0">
           <div
             onMouseEnter={handleServiceHover}
             onMouseLeave={handleServiceHover}>
-            <div tabIndex={0} role="button" className="dropdown font-fjalla inline-block text-gray-600 text-sm px-4 m-2 hover:text-gray-900 relative group">
+            <div tabIndex={0} role="button" className="relative inline-block px-4 m-2 text-sm text-gray-600 dropdown font-fjalla hover:text-gray-900 group">
               Service
               <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gray-900 group-hover:w-full group-hover:transition-all transform -translate-x-1/2"></span> {/* Adjusted width and centering */}
             </div>
