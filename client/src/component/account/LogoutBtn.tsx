@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import "primeicons/primeicons.css";
 
 export default function LogoutBtn() {
   const { logout } = useAuth0();
@@ -13,8 +14,7 @@ export default function LogoutBtn() {
   };
 
   return (
-    <button className="button__logout" onClick={handleLogout}>
-      Log Out
+    <button className="pi pi-sign-out" onClick={handleLogout}>
     </button>
   );
 }

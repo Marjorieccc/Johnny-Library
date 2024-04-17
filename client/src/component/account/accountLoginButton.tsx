@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "primeicons/primeicons.css";
 
 export default function AccountLoginButton() {
-  const { isAuthenticated, loginWithRedirect, user } = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   const handleAccountLogin = () => {
     loginWithRedirect();
@@ -15,7 +15,7 @@ export default function AccountLoginButton() {
     return (
       <div>        
         <Link to="/account" className="no-underline">
-          <span className="pi pi-user" style={{ fontSize: "1.5rem" }}></span>
+          <span className="pi pi-user"></span>
         </Link>
       </div>
     );
@@ -25,7 +25,6 @@ export default function AccountLoginButton() {
     <Link to="/account" className="no-underline">
       <span
         className="pi pi-user"
-        style={{ fontSize: "1.5rem" }}
         onClick={handleAccountLogin}
       ></span>
     </Link>
