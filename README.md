@@ -12,7 +12,7 @@
 
 
 <div align="center">
-  <a href="https://github.com/Marjorieccc/LibraLounge">
+  <a href="https://github.com/Marjorieccc/Johnny-Library">
     <img src="https://i.ibb.co/X2tr7hv/lib-logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -23,9 +23,9 @@
     <br />
     <a href="https://johnny-library.web.app/">View Demo</a>
     ·
-    <a href="https://github.com/Marjorieccc/LibraLounge/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/Marjorieccc/Johnny-Library/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/Marjorieccc/LibraLounge/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/Marjorieccc/Johnny-Library/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -35,7 +35,11 @@
 
 TBC: screenshots
 
-Welcome to our full-stack library management application. This project is designed to showcase our capabilities in handling both front-end and back-end development. It features basic functionalities including resource reservation for books and DVDs, and the ability to book study rooms based on date and available equipment. We've integrated user authentication using Auth0 and opted for MongoDB to manage and store data efficiently, ensuring a robust and scalable backend architecture.
+Welcome to our full-stack library management application. This project is designed to showcase our capabilities in handling both front-end and back-end development. It features basic functionalities including resource reservation for library resources, and the ability to book study rooms based on date and available equipment. 
+
+
+
+We've integrated user authentication using Auth0 and opted for MongoDB to manage and store data efficiently, ensuring a robust and scalable backend architecture. The front-end is built with a responsive design using Tailwind CSS, providing a seamless experience across devices and leveraging progressive web application capabilities.
 
 😊 We warmly welcome any feedback or suggestions as we aim to further develop our skills and improve this application. 😊
 
@@ -77,14 +81,14 @@ To get a local copy of this project up and running, follow these steps:
 
 1. **Clone the Repository**
    ```
-   git clone https://github.com/Marjorieccc/LibraLounge.git
+   git clone https://github.com/Marjorieccc/Johnny-Library.git
    ```
 
 2. **Install Dependencies**
 
    Navigate to the project directory:
    ```
-   cd LibraLounge
+   cd Johnny-Library
    ```
    
    Install backend dependencies:
@@ -124,7 +128,7 @@ To get a local copy of this project up and running, follow these steps:
 
 5. **Import Sample Data (Optional)**
 
-   This project includes sample data that you can import into your MongoDB database to explore all features fully. You can access the sample data from [here](https://github.com/Marjorieccc/LibraLounge) (TBC: upload json)
+   This project includes sample data that you can import into your MongoDB database to explore all features fully. You can access the sample data from [here](https://github.com/Marjorieccc/Johnny-Library) (TBC: upload json)
 
    ```
    mongoimport --db your-mongodb-username:your-mongodb-password@localhost:27017/your-database --collection resources --file resources.json
@@ -237,14 +241,14 @@ Distributed under the MIT License. See [here][license-url] for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-[contributors-shield]: https://img.shields.io/github/contributors/Marjorieccc/LibraLounge.svg?style=for-the-badge
-[contributors-url]: https://github.com/Marjorieccc/LibraLounge/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Marjorieccc/LibraLounge.svg?style=for-the-badge
-[forks-url]: https://github.com/Marjorieccc/LibraLounge/fork
-[issues-shield]: https://img.shields.io/github/issues/Marjorieccc/LibraLounge.svg?style=for-the-badge
-[issues-url]: https://github.com/Marjorieccc/LibraLounge/issues
-[license-shield]: https://img.shields.io/github/license/Marjorieccc/LibraLounge?style=for-the-badge
-[license-url]: https://github.com/Marjorieccc/LibraLounge/blob/beta/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/Marjorieccc/Johnny-Library.svg?style=for-the-badge
+[contributors-url]: https://github.com/Marjorieccc/Johnny-Library/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Marjorieccc/Johnny-Library.svg?style=for-the-badge
+[forks-url]: https://github.com/Marjorieccc/Johnny-Library/fork
+[issues-shield]: https://img.shields.io/github/issues/Marjorieccc/Johnny-Library.svg?style=for-the-badge
+[issues-url]: https://github.com/Marjorieccc/Johnny-Library/issues
+[license-shield]: https://img.shields.io/github/license/Marjorieccc/Johnny-Library?style=for-the-badge
+[license-url]: https://github.com/Marjorieccc/Johnny-Library/blob/beta/LICENSE
 [Auth0]:https://img.shields.io/badge/auth0-EB5425?style=for-the-badge&logo=auth0&logoColor=white
 [Auth0-url]: https://auth0.com/
 [Docker]:https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white
