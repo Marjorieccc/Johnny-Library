@@ -19,8 +19,8 @@ export default function Header() {
             <SearchBar/>
          </div>
             
-        <div className="flex items-center flex-grow space-x-2">
-            <span>{isAuthenticated ? user && user.name : "Guest "} </span>
+         <div className="flex items-center flex-grow space-x-4 font-fjalla">
+            <span className="text-red-800">{isAuthenticated ? user && user.name : "Guest "} </span>
             <LoginBtn />
             {/* <ReserveCheckButton /> */}
             {isAuthenticated && <LogoutBtn />}
