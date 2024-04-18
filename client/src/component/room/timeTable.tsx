@@ -211,7 +211,7 @@ export default function TimeTable({
                       className={
                         "border-2 border-dotted border-gray-500 " +
                         (availableRooms.length
-                          ? "bg-lime-100 hover:cursor-pointer hover:bg-lime-300"
+                          ? "bg-red-100 hover:cursor-pointer hover:bg-red-300"
                           : "")
                       }
                       key={idx}

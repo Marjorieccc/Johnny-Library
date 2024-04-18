@@ -3,7 +3,7 @@ import RoomCapacity from "../../component/room/roomCapacity";
 import RoomEquipment from "../../component/room/roomEquipment";
 import TimeTable from "../../component/room/timeTable";
 import { useQuery } from "@tanstack/react-query";
-import { Filter } from "../../types/room";
+import { Filter } from "../../types/roomType";
 import { fetchRoomInfo } from "../../api/fetchRoom/fetchRoom";
 
 export default function RoomFilter() {
@@ -41,7 +41,7 @@ export default function RoomFilter() {
 
     return (
       <>
-        <div className="flex h-full flex-col gap-4 p-4 pt-40 lg:flex-row">
+        <div className="flex flex-col h-full gap-4 p-4 pt-10 lg:pt-20 lg:flex-row font-roboto">
           <div className="mx-auto flex w-full min-w-max flex-col gap-2 lg:w-[15%]">
             <RoomCapacity roomSize={data.roomSize} onSelect={roomSizeHandler} />
             <RoomEquipment
