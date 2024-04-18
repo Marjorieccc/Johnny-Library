@@ -4,12 +4,6 @@ import { NavLink } from "react-router-dom";
 import { useAccountDetails } from "../../context/accountDetailsProvider";
 import Auth0LoginRedirectBtn from "../auth0/auth0LoginRedirectBtn";
 
-const listStyle = `
-  border 
-  border-gray-300 
-  rounded-md 
-  overflow-hidden`;
-
 export default function AccountReservation() {
   const { reservations } = useAccountDetails();
   const { isAuthenticated } = useAuth0();
@@ -17,12 +11,14 @@ export default function AccountReservation() {
   return (
     <div>
       {isAuthenticated && reservations && (
-        <ul className={listStyle}>
+        <ul className="grid grid-cols-1 overflow-hidden divide-y divide-dotted ">
           {reservations.map((reservation: any) => (
             <li key={reservation._id}>
               <NavLink to={`/resource/${reservation.resourceID}`}>
-                <span>Title: {reservation.resourceTitle} </span>
-                <span>Format: {reservation.format}</span>
+                <div className="my-2">
+                  <span className="text-sm lg:text-base lg:font-bold">{reservation.resourceTitle} </span>
+                  <button className="px-1 py-1 mx-4 my-2 text-sm border border-red-800 rounded-md">{reservation.format}</button>
+                </div>
               </NavLink>
             </li>
           ))}
