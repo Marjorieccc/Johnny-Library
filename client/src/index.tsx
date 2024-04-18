@@ -11,7 +11,7 @@ import AccountDetailsProvider from "./context/accountDetailsProvider";
 import "./index.css";
 import RoomFilter from "./pages/service/room";
 import RoomDetails from "./pages/service/roomDetails";
-import Account from "./component/account/account";
+import AccountPage from "./pages/account";
 import AccountReservation from "./component/account/accountReservation";
 import AccountRoomBooking from "./component/account/accountRoomBooking";
 
@@ -33,7 +33,7 @@ root.render(
               path="resource/:resource_id"
               element={<ResourceDetailPage />}
             />
-            <Route path="account" element={<Account />}>
+            <Route path="account" element={<AccountPage />}>
               <Route index element={<Navigate replace to="reservation" />} />
               <Route path="reservation" element={<AccountReservation />} />
               <Route path="roomBooking" element={<AccountRoomBooking />} />
