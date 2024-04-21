@@ -2,16 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
+import "./index.css";
 import HomePage from "./pages/home";
 import HomeContent from "./pages/homeContent";
 import ExplorePage from "./pages/explore";
 import ResourceDetailPage from "./pages/resourceDetail";
 import Auth0ProviderWithHistory from "./component/auth0/auth0Provider";
 import AccountDetailsProvider from "./context/accountDetailsProvider";
-import "./index.css";
+import AccountPage from "./pages/account";
+import NotFoundPage from "./pages/notFound";
 import RoomFilter from "./pages/service/room";
 import RoomDetails from "./pages/service/roomDetails";
-import AccountPage from "./pages/account";
 import AccountReservation from "./component/account/accountReservation";
 import AccountRoomBooking from "./component/account/accountRoomBooking";
 
@@ -38,6 +39,7 @@ root.render(
               <Route path="reservation" element={<AccountReservation />} />
               <Route path="roomBooking" element={<AccountRoomBooking />} />
             </Route>
+            <Route path ="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
       </AccountDetailsProvider>
