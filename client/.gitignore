@@ -22,5 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-client/src/auth0/authConfig.json
+src/auth0/authConfig.json
 Library.code-workspace
