@@ -1,17 +1,16 @@
 {
-    "compilerOptions": {
-      /* Language and Environment */
-      "target": "es2016", 
-      /* Modules */
-      "module": "commonjs" ,
-      "outDir": "./build",
-      "esModuleInterop": true,
-      "forceConsistentCasingInFileNames": true,
-      /* Type Checking */
-      "strict": true,
-      "skipLibCheck": true,
-      "resolveJsonModule": true,
-    },
-    "include": ["src/**/*"]
-  }
-  
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "es2016",
+    /* Modules */
+    "module": "commonjs",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    /* Type Checking */
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*"]
+}
