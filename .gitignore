@@ -30,6 +30,4 @@ query_from_chat.ts
 
 # env
 .env
-src/component/auth0/authConfig.json
 
-Library.code-workspace
