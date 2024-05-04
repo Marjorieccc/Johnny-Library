@@ -1,0 +1,6 @@
+{
+  "domain": "dev-rfjl8nugxemlp4df.us.auth0.com",
+  "clientId": "OXFbrRLuIqHHub6R0LOhFescSoBEm141",
+  "audience": "LibraryLoungeUserAPI",
+  "scope": "openid profile email"
+}

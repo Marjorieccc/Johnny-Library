@@ -21,9 +21,12 @@ export default function Auth0ProviderWithHistory({
   const navigate = useNavigate();
 
   function onRedirectCallback(appState: any) {
-    const returnTo = appState?.returnTo || window.location.origin;
-    const baseUrl = "http://localhost:5713";
-    const relativePath = returnTo.replace(baseUrl, "");
+    const defaultReturnTo = '/';  
+    const returnTo = appState?.returnTo || window.location.origin + defaultReturnTo;
+    const baseUrl = new URL(window.location.origin);
+    const returnToUrl = new URL(returnTo, baseUrl); 
+    const relativePath = returnToUrl.pathname + returnToUrl.search + returnToUrl.hash;
+
     navigate(relativePath);
   }
 
