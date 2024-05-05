@@ -116,12 +116,16 @@ To get a local copy of this project up and running, follow these steps:
    MONGO_DATABASE = your-mongodb-database
    MONGO_COLLECTION = your-mongodb-collection
    SERVER_PORT = 8080
+   ```
 
-   // TBC : auth0 config
-   AUTH0_DOMAIN=your-auth0-domain
-   AUTH0_CLIENT_ID=your-auth0-client-id
-   AUTH0_AUDIENCE=your-auth0-audience
-   AUTH0_SCOPE=your-auth0-scope
+   Create a `authConfig.json` file in src/component/auth0 directory of the client folder and add the following environment variables:
+   ```
+   {
+    "domain": <your Auth0 domain>,
+    "clientId": <your Auth0 client id>,
+    "audience": <your Auth0 api app unique identifier>,
+    "scope": "openid profile email"
+   }
    ```
    
    Replace the placeholders with your actual MongoDB URI and Auth0 credentials.
@@ -164,7 +168,7 @@ To get a local copy of this project up and running, follow these steps:
    npm start
    ```
 
-   The application should now be running locally at `http://localhost:3000`.
+   The application should now be running locally.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
