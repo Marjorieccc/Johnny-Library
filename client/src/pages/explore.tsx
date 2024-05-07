@@ -93,7 +93,7 @@ export default function ExplorePage() {
         </div>
       </div>
 
-      <div className="w-4/5 lg:w-3/5 lg:border-purple-100"> 
+      <div className="w-4/5 lg:w-4/6 lg:border-purple-100"> 
         {/* Filters Modal */}
         <div className="m-6">
           <Modal

@@ -1,16 +1,21 @@
 import React, { useState } from 'react'
 import 'primeicons/primeicons.css';
-import { carouselImage } from './carouselData';
-
 
 export default function Carousel(){
     const [curr, setCurr] = useState(0);
-    const [applyTransition, setApplyTransition] = useState(true);
+    const [applyTransition, setApplyTransition] = useState(true); 
+    const slides = [
+      "./carousel_1.webp",
+      "./carousel_2.webp",
+      "./carousel_3.webp",
+      "./carousel_4.webp",
+      "./carousel_1.webp",
+    ]
 
 
     function prev(){
-        const prevIndex = curr === 0 ? carouselImage.length - 1 : curr - 1;
-        if (carouselImage[curr].id !== carouselImage[prevIndex].id) {
+        const prevIndex = curr === 0 ? slides.length - 1 : curr - 1;
+        if (slides[curr] !== slides[prevIndex]) {
             setApplyTransition(true);
         } else {
             setApplyTransition(false);
@@ -19,8 +24,8 @@ export default function Carousel(){
     }
 
     function next (){
-        const nextIndex = curr === carouselImage.length - 1 ? 0 : curr + 1;
-        if (carouselImage[curr].id !== carouselImage[nextIndex].id) {
+        const nextIndex = curr === slides.length - 1 ? 0 : curr + 1;
+        if (slides[curr]!== slides[nextIndex]) {
           setApplyTransition(true);
         } else {
           setApplyTransition(false);
@@ -34,9 +39,9 @@ export default function Carousel(){
                 className={`flex ${applyTransition ? 'transition-transform ease-out duration-500' : ''}`}
                 style={{ transform: `translateX(-${curr * 100}%)` }}
             >
-          {carouselImage.map((image, index) => (
+          {slides.map((image, index) => (
             <div key={index} className="flex flex-shrink-0 w-full">
-            <img src={image.img} alt={`Slide ${index + 1}`} className="w-full h-auto" />
+            <img src={image} alt={`Slide ${index + 1}`} className="w-full h-auto" />
           </div>
           ))}
         </div>
@@ -49,6 +54,14 @@ export default function Carousel(){
             <span className="text-2xl text-white border-2 rounded-full pi pi-angle-right"></span>
           </button>
         </div>
+        <div className='absolute left-0 right-0 bottom-4'>
+          <div className='flex items-center justify-center gap-2'>
+            {slides.map((_, i) => (
+              <div key={i} className={`transition-all w-1.5 h-1.5 bg-white rounded-full ${curr === i ? "p-0.5" : "bg-opacity-50"}`} />
+            ))}
+          </div>
+        </div>
+   
       </div>
     );
 }

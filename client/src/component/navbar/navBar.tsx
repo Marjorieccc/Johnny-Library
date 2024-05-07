@@ -44,12 +44,12 @@ export default function Navbar() {
 
   return (
     <nav>
-      <ul className="items-center justify-end flex-1 lg:flex lg:ml-10">
+      <ul className="items-center justify-end flex-1 lg:flex lg:ml-5">
         <li className="mr-3 lg:py-0 ">
           <div
             onMouseEnter={handleExploreHover}
             onMouseLeave={handleExploreHover}>
-              <div tabIndex={0} role="button" className="relative inline-block px-0 m-2 text-sm text-gray-600  dropdown font-fjalla hover:text-gray-900 group">
+              <div tabIndex={0} role="button" className="relative inline-block px-0 m-2 text-sm text-gray-600 dropdown font-fjalla hover:text-gray-900 group">
                 Explore!
                 <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gray-900 
                                  group-hover:w-full group-hover:transition-all transform -translate-x-1/2"></span> 

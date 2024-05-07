@@ -25,22 +25,21 @@ export default function Slider(){
 
     
   return (
-    <div className='lg:relative lg:flex w-full overflow-hidden m-0 bg-[#B80F15]'>
-      <div className='flex-col items-end hidden w-1/5 p-5 mt-1 md:flex lg:flex justify-top'>
-        <div className='mt-3 mb-2 text-xl text-white font-roboto-condensed'>Staff pick</div>
-        <div className="flex items-center gap-2 mt-10"> 
-          <i className="text-3xl text-white pointer-events-auto pi pi-angle-left" onClick={slideLeft}></i>
-          <i className="text-3xl text-white pointer-events-auto pi pi-angle-right" onClick={slideRight}></i>
-        </div>
+    <div className='overflow-hidden mx-w-full lg:relative lg:flex '>
+      <div className='items-end hidden w-1/5 pr-2 mt-1 lg:flex lg:flex-col justify-top'>
+      <hr className="my-2 ml-4 h-0.5 w-4/5 bg-[#E32B31]" />
+      <p className='font-roboto-condensed text-xl text-[#E32B31] text-end pt-2 mt-1'>Staff pick</p>
       </div>
+      <div className='flex-col lg:hidden'>
+      <hr className="my-2 ml-4 h-0.5 w-full bg-[#E32B31]" />
+      <p className='font-roboto-condensed font-bold text-[#E32B31] text-2xl pl-6 mt-2 mb-6'>Staff pick</p>
+      </div>
+      <div className='relative flex items-center w-full pb-4 mt-2 mb-4 ml-6 mr-6 lg:w-4/5 lg:mt-8 lg:pb-2 lg:ml-1 lg:mr-8'>
+      <i className="hidden lg:inline-block border-2 rounded-md border-[#E32B31] text-3xl mx-2 text-[#E32B31] pointer-events-auto pi pi-angle-left" onClick={slideLeft}></i>
 
-      <p className='pt-4 pb-4 pl-6 text-2xl font-bold text-white lg:hidden font-roboto-condensed'>
-        Staff Pick
-      </p>
-      <div className='relative flex items-center w-full pb-4 mt-2 mb-4 ml-6 mr-6 lg:w-4/5 lg:mt-8 lg:pb-2 lg:ml-1 lg:mr-8 '>
         <div
         ref={sliderRef}
-        className='w-full h-full overflow-x-auto whitespace-nowrap scroll scroll-smooth scrollbar-hide'
+        className='h-full overflow-x-auto lg:w-full whitespace-nowrap scroll scroll-smooth scrollbar-hide'
         >
           {sliderData.map((item, index) => (
             <Link to={`/resource/${item._id}`} key={item._id}>
@@ -53,6 +52,8 @@ export default function Slider(){
              </Link>
           ))}
         </div>
+  
+        <i className="hidden lg:inline-block border-2 rounded-md border-[#E32B31] text-3xl mx-2 text-[#E32B31] pointer-events-auto pi pi-angle-right" onClick={slideRight}></i>
       </div>
       </div>
    
