@@ -1,7 +1,7 @@
 import React from "react";
-import Slider from "../component/slider/slider";
-import Carousel from "../component/carousel/carousel";
-import SpotlightEvent from "../component/spotlightEvent/spotlightEvent";
+import Slider from "../component/slider/Slider";
+import Carousel from "../component/carousel/Carousel";
+import SpotlightEvent from "../component/spotlightEvent/SpotlightEvent";
 
 
 export default function HomeContent(){

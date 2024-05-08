@@ -1,18 +1,18 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import HomePage from "./pages/home";
-import HomeContent from "./pages/homeContent";
-import ExplorePage from "./pages/explore";
-import ResourceDetailPage from "./pages/resourceDetail";
-import Auth0ProviderWithHistory from "./component/auth0/auth0Provider";
-import AccountDetailsProvider from "./context/accountDetailsProvider";
-import AccountPage from "./pages/account";
-import NotFoundPage from "./pages/notFound";
-import RoomFilter from "./pages/service/room";
-import RoomDetails from "./pages/service/roomDetails";
-import AccountReservation from "./component/account/accountReservation";
-import AccountRoomBooking from "./component/account/accountRoomBooking";
+import HomePage from "./pages/Home";
+import HomeContent from "./pages/HomeContent";
+import ExplorePage from "./pages/Explore";
+import ResourceDetailPage from "./pages/ResourceDetail";
+import Auth0ProviderWithHistory from "./component/auth0/Auth0Provider";
+import AccountDetailsProvider from "./context/AccountDetailsProvider";
+import AccountPage from "./pages/Account";
+import NotFoundPage from "./pages/NotFound";
+import RoomFilter from "./pages/service/Room";
+import RoomDetails from "./pages/service/RoomDetails";
+import AccountReservation from "./component/account/AccountReservation";
+import AccountRoomBooking from "./component/account/AccountRoomBooking";
 
 
 export default function Index() {

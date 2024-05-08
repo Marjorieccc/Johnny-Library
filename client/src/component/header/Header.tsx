@@ -1,9 +1,9 @@
 import React from "react";
-import Title from "./title";
-import NavBar from "../navbar/navBar";
-import SearchBar from "../searchBar/searchBar";
-import LogoutBtn from "../account/logoutBtn";
-import LoginBtn from "../account/loginBtn";
+import Title from "./Title";
+import NavBar from "../navbar/NavBar";
+import SearchBar from "../searchBar/SearchBar";
+import LogoutBtn from "../account/LogoutBtn";
+import LoginBtn from "../account/LoginBtn";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Header() {

@@ -1,5 +1,5 @@
 import React from "react";
-import ResourceCard from "./resourceCard";
+import ResourceCard from "./ResourceCard";
 import { Resource } from "../../types/resourceType";
 
 export default function ResourceList({resourceList}: {resourceList: Resource[]}) {

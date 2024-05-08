@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Medium } from "../../../types/resourceType";
 import { makeReservationAPI } from "../../../api/fetchResource/fetchResource";
-import Auth0LoginRedirectBtn from "../../auth0/auth0LoginRedirectBtn";
-import { useAccountDetails } from "../../../context/accountDetailsProvider";
+import Auth0LoginRedirectBtn from "../../auth0/Auth0LoginRedirectBtn";
+import { useAccountDetails } from "../../../context/AccountDetailsProvider";
 
 const reserveBtnStyle =
   "disabled:opacity-50 border border-red-800 rounded-md text-red-800 text-base font-bold py-2 px-4  hover:bg-[#E32B31] hover:text-white focus:outline-none  active:bg-white";

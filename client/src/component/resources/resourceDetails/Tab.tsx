@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import TabContent from "./tabContent";
+import TabContent from "./TabContent";
 import { Resource, Medium } from "../../../types/resourceType";
 
 const tabStyle = `py-2 px-4  hover:text-gray-700 `;
