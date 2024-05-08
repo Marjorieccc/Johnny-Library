@@ -4,10 +4,10 @@ import { useLocation } from "react-router-dom";
 
 import { FilterList, SearchResult } from "../types/resourceType";
 import { fetchResources } from "../api/fetchResource/fetchResource";
-import Modal from "../component/modal/modal";
-import ResourceList from "../component/resources/resourceList";
-import ResourceFilter from "../component/resources/resourceFilter";
-import PageNavigate from "../component/resources/pageNavigator";
+import ResourceList from "../component/resources/ResourceList";
+import ResourceFilter from "../component/resources/ResourceFilter";
+import PageNavigate from "../component/resources/PageNavigator";
+import Modal from "../component/modal/Modal";
 
 export default function ExplorePage() {
   // filter options

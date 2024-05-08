@@ -2,7 +2,7 @@ import React from "react";
 import "primeicons/primeicons.css";
 import { useNavigate } from "react-router-dom";
 import { Resource } from "../../../types/resourceType";
-import Tab from "./tab";
+import Tab from "./Tab";
 
 export default function ResourceDetails({ resource }: { resource: Resource }) {
 

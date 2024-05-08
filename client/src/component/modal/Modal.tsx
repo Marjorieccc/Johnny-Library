@@ -38,8 +38,7 @@ export default function Modal({
           onClick={() => {
             setModalShow(false);
           }}
-          className="fixed inset-0 z-50 flex items-center justify-start
-          bg-black bg-opacity-50 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-start bg-black bg-opacity-50 backdrop-blur-sm"
         >
           <div
             id="modal-content"
@@ -55,12 +54,7 @@ export default function Modal({
               {header}
               {/* Close Button */}
               <button
-                className="absolute right-0 top-0 mr-5 mt-5 
-                  box-content rounded-none border-none text-neutral-500
-                  hover:cursor-pointer hover:text-neutral-800 hover:no-underline 
-                focus:text-neutral-800 focus:opacity-100 focus:shadow-none focus:outline-none
-                dark:text-neutral-400 dark:hover:text-neutral-300
-                dark:focus:text-neutral-300"
+                className="box-content absolute top-0 right-0 mt-5 mr-5 border-none rounded-none text-neutral-500 hover:cursor-pointer hover:text-neutral-800 hover:no-underline focus:text-neutral-800 focus:opacity-100 focus:shadow-none focus:outline-none dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300"
                 onClick={() => setModalShow(false)}
               >
                 <span className="[&>svg]:h-6 [&>svg]:w-6">

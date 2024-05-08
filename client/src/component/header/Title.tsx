@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Modal from '../modal/modal';
-import SideNavBar from '../navbar/sideNavBar';
+import Modal from '../modal/Modal';
+import SideNavBar from '../navbar/SideNavBar';
 
 export default function Title() {
   return (

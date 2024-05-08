@@ -1,8 +1,8 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { useAccountDetails } from "../../context/accountDetailsProvider";
-import Auth0LoginRedirectBtn from "../auth0/auth0LoginRedirectBtn";
+import { useAccountDetails } from "../../context/AccountDetailsProvider";
+import Auth0LoginRedirectBtn from "../auth0/Auth0LoginRedirectBtn";
 
 export default function AccountRoomBooking() {
   const { roomBookingRecords } = useAccountDetails();

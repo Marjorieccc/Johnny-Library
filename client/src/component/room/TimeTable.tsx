@@ -7,7 +7,7 @@ import {
   TimeSlot,
 } from "../../types/roomType";
 import "primeicons/primeicons.css";
-import RoomModal from "./roomModal";
+import RoomModal from "./RoomModal";
 
 const NO_OF_DAYS_SHOWN = 7;
 
