@@ -16,8 +16,8 @@ export const sliderData = [
     },
     {
       id: 4,
-      _id: '65f3f2eb7de96c07ac081efc',
-      img: 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/alag.jpg',
+      _id: '65f3f2eb7de96c07ac081f43',
+      img: 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/goyal5.jpg',
     },
     {
       id: 5,
@@ -46,7 +46,7 @@ export const sliderData = [
     },
     {
       id: 10,
-      _id: '65f3f2eb7de96c07ac081f0c',
-      img: 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/bauer-cn.jpg',
+      _id: '65f3f2eb7de96c07ac081f1c',
+      img: 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/burnett.jpg',
     }
   ];

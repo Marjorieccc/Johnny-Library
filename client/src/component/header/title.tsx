@@ -5,13 +5,13 @@ import SideNavBar from '../navbar/sideNavBar';
 
 export default function Title() {
   return (
-    <header className="flex">
+    <header className="flex ">
       <Modal
         modalContent={
           <div className="h-full my-10 overflow-x-hidden overflow-y-auto font-roboto-condensed">
           <SideNavBar/>
           </div>}
-        header={<p className="text-3xl font-bold font-roboto-condensed">Navigation</p>}
+        header={<p className="text-3xl font-bold">Navigation</p>}
         buttonContent={<span className="pi pi-bars"></span>}
         buttonCss="mx-2 text-xl lg:hidden"
       />
