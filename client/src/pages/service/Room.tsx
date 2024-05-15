@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import RoomCapacity from "../../component/room/RoomCapacity";
+import RoomCapacity from "../../component/room/RoomCapacity"; 
 import RoomEquipment from "../../component/room/RoomEquipment";
 import TimeTable from "../../component/room/TimeTable";
 import { useQuery } from "@tanstack/react-query";
