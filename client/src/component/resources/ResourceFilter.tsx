@@ -7,8 +7,8 @@ import {
   fetchFormat,
   fetchLanguages,
 } from "../../api/fetchResource/fetchResource";
-import DropDownItems from "../dropDownList/dropDownItems";
-import DropDownList from "../dropDownList/dropDownList";
+import DropDownItems from "../dropDownList/DropDownItems";
+import DropDownList from "../dropDownList/DropDownList";
 
 export default function ResourceFilter({
   selectFilter,
@@ -170,7 +170,7 @@ export default function ResourceFilter({
       </DropDownList>
 
       {/* Reset Filter Button */}
-      <div className="my-4 flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center my-4">
         <button
           className="rounded-full border-2 border-[#E32B31]  px-6 py-2 text-[#E32B31]"
           onClick={handleResetFilters}

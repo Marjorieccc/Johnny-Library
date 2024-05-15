@@ -15,7 +15,8 @@ export default function Title() {
         buttonContent={<span className="pi pi-bars"></span>}
         buttonCss="mx-2 text-xl lg:hidden"
       />
-      <h1 className="pt-1 text-base text-gray-900 no-underline lg:text-xl lg:ml-3 font-fjalla lg:mb-1 lg:text-md ">
+            <img src="/logo.webp" alt="Logo" className="w-10 mr-1 lg:mr-0 lg:w-12"/>
+      <h1 className="pt-1 mt-2 text-base text-gray-900 no-underline lg:text-xl lg:ml-3 font-fjalla lg:mb-1 lg:text-md ">
         <Link to='/'>Johnny Library</Link>
       </h1>
     </header>
