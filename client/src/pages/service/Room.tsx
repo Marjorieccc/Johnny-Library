@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import RoomCapacity from "../../component/room/roomCapacity";
-import RoomEquipment from "../../component/room/roomEquipment";
-import TimeTable from "../../component/room/timeTable";
+import RoomCapacity from "../../component/room/RoomCapacity"; 
+import RoomEquipment from "../../component/room/RoomEquipment";
+import TimeTable from "../../component/room/TimeTable";
 import { useQuery } from "@tanstack/react-query";
 import { Filter } from "../../types/roomType";
 import { fetchRoomInfo } from "../../api/fetchRoom/fetchRoom";
