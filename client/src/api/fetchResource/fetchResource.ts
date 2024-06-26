@@ -5,18 +5,20 @@ import {
   SearchResult,
   ResourceRev,
 } from "../../types/resourceType";
-
-const baseURL = "http://localhost:8080";
+import { BACKEND_URL } from "../route";
 
 // fetch categories of resources
 export async function fetchCategories(): Promise<ResourceFilter[]> {
+  console.log("fetching Categories");
+
   let categories: ResourceFilter[] = [];
   try {
-    const response = await fetch(`${baseURL}/resources/categories`);
+    const response = await fetch(`${BACKEND_URL}/resources/categories`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
     categories = await response.json();
+    console.log(JSON.stringify(categories));
   } catch (error) {
     console.error("Error fetching categories:", error);
   }
@@ -29,7 +31,7 @@ export async function fetchFormat(): Promise<ResourceFilter[]> {
   let formats: ResourceFilter[] = [];
 
   try {
-    const response = await fetch(`${baseURL}/resources/formats`);
+    const response = await fetch(`${BACKEND_URL}/resources/formats`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -46,7 +48,7 @@ export async function fetchLanguages(): Promise<ResourceFilter[]> {
   let languages: ResourceFilter[] = [];
 
   try {
-    const response = await fetch(`${baseURL}/resources/languages`);
+    const response = await fetch(`${BACKEND_URL}/resources/languages`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -93,7 +95,7 @@ export async function fetchResources(
   };
 
   try {
-    const searchlink = `${baseURL}/resources/search?${searchQueries.toString()}&page=${pageNum}`;
+    const searchlink = `${BACKEND_URL}/resources/search?${searchQueries.toString()}&page=${pageNum}`;
     console.log(searchlink);
     const response = await fetch(searchlink);
     if (!response.ok) {
@@ -119,7 +121,7 @@ export async function makeReservationAPI(
   let reserveredSuccess = true;
   try {
     console.log(`Making reservation: ${userID}`);
-    const response = await fetch(`${baseURL}/resources/reservation`, {
+    const response = await fetch(`${BACKEND_URL}/resources/reservation`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -148,7 +150,7 @@ export async function fetchByID(resource_id: string): Promise<Resource> {
   console.log("Fetching resource with ID:", resource_id);
   let resource = {} as Resource;
   try {
-    const response = await fetch(`${baseURL}/resources/${resource_id}`);
+    const response = await fetch(`${BACKEND_URL}/resources/${resource_id}`);
     if (!response.ok) {
       throw new Error("Fail");
     }
@@ -168,7 +170,7 @@ export async function fetchReservationByUserID(
   let reservation = [] as ResourceRev[];
   try {
     const response = await fetch(
-      `${baseURL}/resources/reservation/user/${user_id}`,
+      `${BACKEND_URL}/resources/reservation/user/${user_id}`,
       {
         method: "Get",
         headers: {

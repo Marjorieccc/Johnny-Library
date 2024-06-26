@@ -1,10 +1,11 @@
 import { RoomBookingInfo } from "../../types/roomType";
+import { BACKEND_URL } from "../route";
 
 export async function fetchRoomBookingByUserId(
   id: string,
   accessToken: string,
 ) {
-  const response = await fetch(`http://localhost:8080/rooms/user/${id}`, {
+  const response = await fetch(`${BACKEND_URL}/rooms/user/${id}`, {
     method: "Get",
     headers: {
       "Content-Type": "application/json",
