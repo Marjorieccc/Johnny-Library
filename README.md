@@ -33,7 +33,9 @@
 
 ## About The Project
 
-TBC: screenshots
+![landing page 1](screenshots/001.gif "landing page 1")
+
+![landing page - mobile](screenshots/002.gif "landing page - mobile")
 
 Welcome to our full-stack library management application. This project is designed to showcase our capabilities in handling both front-end and back-end development. It features basic functionalities including resource reservation for library resources, and the ability to book study rooms based on date and available equipment. 
 
@@ -181,16 +183,20 @@ Visit [Johnny Library](https://johnny-library.web.app/) to explore the online li
 
 **Features and Navigation**
 * Resource Browsing: Users can search for resources using the search bar or browse through categories.
-  * TBC: screen shots
+  ![search resource](screenshots/003.jpeg "search resource")
+  ![search resource - mobile](screenshots/004.jpeg "search resource - mobile")
     
 * Reservations: To reserve resource, click on the item you are interested in and select the 'Reserve' option. You will need to be logged in to complete this action.
-  * TBC: screen shots
+  ![reserve resource](screenshots/005.jpeg "reserve resource")
 
 * Room Booking: Access the room booking feature from the main menu. Here, you can view available rooms, check their equipment, select a date, and book a slot.
-  * TBC: screen shots
+  ![search room](screenshots/006.jpeg "search room")
+  ![browse room](screenshots/007.gif "browse room")
+  ![room detail](screenshots/008.jpeg "room detail")
+  ![browse room - mobile](screenshots/009.gif "browse room - mobile")
 
 * Account Page: The account page serves as a central hub for users to manage their personal information, view detailed records of reserved items, and review their room booking history.
-  * TBC: screen shots
+  ![account detail](screenshots/010.jpeg "account detail")
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
