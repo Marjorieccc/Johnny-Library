@@ -4,12 +4,13 @@ import {
   convertDateList,
   convertTimeSlotList,
 } from "../../utils/timeTableUtils";
+import { BACKEND_URL } from "../route";
 
 export async function fetchRoomInfo() {
-  const response = await fetch(`http://localhost:8080/rooms`);
+  const response = await fetch(`${BACKEND_URL}/rooms`);
 
   if (!response.ok) {
-    const err = await response.json()
+    const err = await response.json();
     throw new Error(err.error);
   }
 

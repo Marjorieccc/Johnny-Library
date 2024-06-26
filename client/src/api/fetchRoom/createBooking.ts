@@ -1,10 +1,11 @@
 import { RoomBookingInfo, SubmitBookingDetails } from "../../types/roomType";
+import { BACKEND_URL } from "../route";
 
 export async function createBooking(
   data: SubmitBookingDetails,
   auth0Token: string,
 ) {
-  const response = await fetch("http://localhost:8080/rooms/roombooking/", {
+  const response = await fetch(`${BACKEND_URL}/rooms/roombooking/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
