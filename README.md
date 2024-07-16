@@ -230,7 +230,7 @@ Distributed under the MIT License. See [here][license-url] for more information.
 <!-- CONTACT -->
 ## Contact
 
-* Dan WONG - [Email](mailto:wdwong13@gmail.com)  |  [Github](https://github.com/Dan-Wong56004)  |  [Linkedin](https://www.linkedin.com/in/danwongwt/)
+* Dan WONG - [Email](mailto:wtwong.dan@gmail.com)  |  [Github](https://github.com/danwongwt)  |  [Linkedin](https://www.linkedin.com/in/danwongwt/)
 * Johny CHUNG - [Email](mailto:johnny.chung2046@gmail.com)  |  [Github](https://github.com/johnny-chung)  |  [Linkedin](https://www.linkedin.com/in/johnny-wychung/)
 * Ken NG - [Email](mailto:kenclng1337@gmail.com)  |  [Github](https://github.com/clng2022)  |  [Linkedin](https://www.linkedin.com/in/ken-clng/)
 * Marjorie CHEUNG  - [Email](mailto:marjorie.cc.cheung@gmail.com)  |  [Github](https://github.com/Marjorieccc)  |  [Linkedin](https://www.linkedin.com/in/marjoriecheung/)
