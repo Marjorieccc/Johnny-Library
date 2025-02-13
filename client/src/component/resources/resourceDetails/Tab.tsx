@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import  { useState} from "react";
 import TabContent from "./TabContent";
 import { Resource, Medium } from "../../../types/resourceType";
 

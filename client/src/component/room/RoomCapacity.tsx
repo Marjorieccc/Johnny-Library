@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import  { useRef } from "react";
 import { RoomCapacityProps } from "../../types/roomType";
 
 export default function RoomCapacity({

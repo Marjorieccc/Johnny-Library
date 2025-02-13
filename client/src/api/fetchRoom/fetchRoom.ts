@@ -23,7 +23,7 @@ export async function fetchRoomInfo() {
   }
   if (rawData.availabilityList) {
     rawData.availabilityList = convertAvailabilityList(
-      rawData.availabilityList,
+      rawData.availabilityList
     );
   }
 

@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import 'primeicons/primeicons.css';
+
 
 export default function Carousel(){
     const [curr, setCurr] = useState(0);
     const [applyTransition, setApplyTransition] = useState(true); 
+
     const slides = [
-      "./carousel_1.webp",
-      "./carousel_2.webp",
-      "./carousel_3.webp",
-      "./carousel_4.webp",
-      "./carousel_1.webp",
+      "/carousel_1.webp",
+      "/carousel_2.webp",
+      "/carousel_3.webp",
+      "/carousel_4.webp",
     ]
 
 

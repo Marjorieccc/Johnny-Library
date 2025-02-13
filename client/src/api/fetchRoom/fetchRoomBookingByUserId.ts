@@ -3,7 +3,7 @@ import { BACKEND_URL } from "../route";
 
 export async function fetchRoomBookingByUserId(
   id: string,
-  accessToken: string,
+  accessToken: string
 ) {
   const response = await fetch(`${BACKEND_URL}/rooms/user/${id}`, {
     method: "Get",

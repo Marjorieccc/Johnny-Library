@@ -9,8 +9,6 @@ import { BACKEND_URL } from "../route";
 
 // fetch categories of resources
 export async function fetchCategories(): Promise<ResourceFilter[]> {
-  console.log("fetching Categories");
-
   let categories: ResourceFilter[] = [];
   try {
     const response = await fetch(`${BACKEND_URL}/resources/categories`);
@@ -18,7 +16,6 @@ export async function fetchCategories(): Promise<ResourceFilter[]> {
       throw new Error("Network response was not ok");
     }
     categories = await response.json();
-    console.log(JSON.stringify(categories));
   } catch (error) {
     console.error("Error fetching categories:", error);
   }
@@ -64,7 +61,7 @@ export async function fetchLanguages(): Promise<ResourceFilter[]> {
 export async function fetchResources(
   pageNum: number,
   filterOptions?: FilterList,
-  searchTerm?: string,
+  searchTerm?: string
 ): Promise<SearchResult> {
   const searchQueries = new URLSearchParams();
 
@@ -116,7 +113,7 @@ export async function makeReservationAPI(
   resourceTitle: string,
   mediumID: string,
   format: string,
-  auth0Token: string,
+  auth0Token: string
 ) {
   let reserveredSuccess = true;
   try {
@@ -164,7 +161,7 @@ export async function fetchByID(resource_id: string): Promise<Resource> {
 
 export async function fetchReservationByUserID(
   user_id: string,
-  accessToken: string,
+  accessToken: string
 ): Promise<ResourceRev[]> {
   console.log("Fetching resource with User ID:", user_id);
   let reservation = [] as ResourceRev[];
@@ -177,7 +174,7 @@ export async function fetchReservationByUserID(
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
         },
-      },
+      }
     );
     if (!response.ok) {
       throw new Error("Fail");

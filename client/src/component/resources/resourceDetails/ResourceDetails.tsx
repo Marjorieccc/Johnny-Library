@@ -1,4 +1,3 @@
-import React from "react";
 import "primeicons/primeicons.css";
 import { useNavigate } from "react-router-dom";
 import { Resource } from "../../../types/resourceType";
