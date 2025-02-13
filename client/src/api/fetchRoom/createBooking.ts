@@ -3,7 +3,7 @@ import { BACKEND_URL } from "../route";
 
 export async function createBooking(
   data: SubmitBookingDetails,
-  auth0Token: string,
+  auth0Token: string
 ) {
   const response = await fetch(`${BACKEND_URL}/rooms/roombooking/`, {
     method: "POST",
