@@ -11,4 +11,5 @@ module.exports = {
     },
   },
   plugins: [require("tailwind-scrollbar-hide")],
+  tailwindConfig: './styles/tailwind.config.js',
 };
