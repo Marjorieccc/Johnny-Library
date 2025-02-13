@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 
 type ModalProps = {
   modalContent: ReactNode;
@@ -8,6 +8,9 @@ type ModalProps = {
   modalCss?: string;
 };
 
+// Create a context to a function that closes the modal
+export const ModalCloseContext = createContext<(() => void) | null>(null);
+
 export default function Modal({
   modalContent,
   buttonContent,
@@ -16,6 +19,11 @@ export default function Modal({
   modalCss,
 }: ModalProps) {
   const [isModalShow, setModalShow] = useState(false);
+
+  const closeModal = () => {
+    console.log("close Modal");
+    setModalShow(false);
+  };
 
   return (
     <>
@@ -75,7 +83,9 @@ export default function Modal({
               </button>
             </div>
             {/* Content */}
-            {modalContent}
+            <ModalCloseContext.Provider value={closeModal}>
+              {modalContent}
+            </ModalCloseContext.Provider>
           </div>
         </div>
       )}
