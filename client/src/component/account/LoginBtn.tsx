@@ -12,20 +12,28 @@ export default function LoginBtn() {
   if (isAuthenticated) {
     return (
       <div>
-        <Link to="/account" className="no-underline">
-          <span className="pi pi-user"></span>
+        <Link
+          to="/account"
+          className="no-underline focus:outline-none focus:ring focus:ring-primary-red rounded p-1"
+          aria-label="View your account"
+        >
+          <span
+            className="pi pi-user text-primary-red"
+            aria-hidden="true"
+          ></span>
         </Link>
       </div>
     );
   }
 
   return (
-    <div
-      className="no-underline"
+    <button
+      className="no-underline focus:outline-none focus:ring focus:ring-primary-red rounded p-1"
       onClick={handleAccountLogin}
       style={{ cursor: "pointer" }}
+      aria-label="Log in"
     >
-      <span className="pi pi-user"></span>
-    </div>
+      <span className="pi pi-user text-primary-red" aria-hidden="true"></span>
+    </button>
   );
 }
