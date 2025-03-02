@@ -2,13 +2,88 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" type="image/png" />
+    <!-- Ensure proper rendering and touch zooming -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-    <title>Welcome to Johnny Library</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Title and Description for SEO -->
+    <title>Johnny Library - Reserve Books & Book Study Rooms Online</title>
+    <meta
+      name="description"
+      content="Johnny Library is an online platform to reserve books and book study rooms. Explore our vast collection of resources and enjoy seamless library management."
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://johnny-library.web.app/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta
+      property="og:title"
+      content="Johnny Library - Reserve Books & Book Study Rooms Online"
+    />
+    <meta
+      property="og:description"
+      content="Reserve books and book study rooms online with Johnny Library. Discover our extensive collection and experience seamless library management."
+    />
+    <meta
+      property="og:image"
+      content="https://johnny-library.web.app/path/to/og-image.jpg"
+    />
+    <meta property="og:url" content="https://johnny-library.web.app/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Johnny Library - Reserve Books & Book Study Rooms Online"
+    />
+    <meta
+      name="twitter:description"
+      content="Discover and reserve your favorite books or book study rooms online with Johnny Library."
+    />
+    <meta
+      name="twitter:image"
+      content="https://johnny-library.web.app/path/to/twitter-image.jpg"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/png" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Johnny Library",
+        "url": "https://johnny-library.web.app/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://johnny-library.web.app/search?query={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
   </head>
   <body>
+    <!-- Skip link for keyboard navigation -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:outline-none focus:ring focus:ring-primary-red"
+    >
+      Skip to main content
+    </a>
     <div id="root"></div>
     <script type="module" src="/src/Main.tsx"></script>
   </body>

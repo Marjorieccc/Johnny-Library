@@ -13,7 +13,10 @@ export default function LogoutBtn() {
   };
 
   return (
-    <button className="pi pi-sign-out" onClick={handleLogout}>
-    </button>
+    <button
+      className="pi pi-sign-out text-primary-red focus:outline-none focus:ring focus:ring-primary-red rounded p-1"
+      onClick={handleLogout}
+      aria-label="Log out"
+    ></button>
   );
 }
