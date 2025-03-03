@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import Dropdown from "./Dropdown";
 
 export default function Navbar() {
-  // track which dropdown is active (if any)
+  // Track which dropdown is active (if any)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const exploreButtonRef = useRef<HTMLButtonElement>(null);
   const serviceButtonRef = useRef<HTMLButtonElement>(null);
@@ -96,10 +96,9 @@ export default function Navbar() {
               aria-expanded={activeDropdown === "explore"}
               aria-haspopup="menu"
               aria-controls="explore-dropdown"
-              className="relative inline-block px-0 m-2 text-sm text-gray-600 dropdown font-fjalla hover:text-gray-900 focus:outline-none focus:ring focus:ring-primary-red focus:text-gray-900 rounded p-1 group"
+              className="relative inline-block px-0 m-2 text-sm text-gray-600 font-fjalla hover:text-primary-red focus:outline-none focus:ring focus:ring-primary-red focus:text-gray-900 rounded p-1 group transition-colors duration-200"
               onKeyDown={handleExploreKeyDown}
               onClick={() => {
-                // Toggle this dropdown, close others
                 setActiveDropdown(
                   activeDropdown === "explore" ? null : "explore"
                 );
@@ -110,22 +109,25 @@ export default function Navbar() {
             >
               Explore!
               <span
-                className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gray-900 
-                           group-hover:w-full group-hover:transition-all transform -translate-x-1/2"
+                className={`absolute -bottom-1 left-0 h-0.5 bg-primary-red transition-all duration-300 ease-in-out ${
+                  activeDropdown === "explore" ? "w-full" : "w-0"
+                }`}
               ></span>
             </button>
 
             {activeDropdown === "explore" && (
               <div
                 ref={exploreDropdownRef}
-                className="absolute z-50"
+                className="absolute z-50 min-w-[300px] mt-1 transform origin-top-left transition-all duration-200 ease-out"
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <Dropdown
-                  navString="explore"
-                  id="explore-dropdown"
-                  onClose={() => setActiveDropdown(null)}
-                />
+                <div className="bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden animate-fadeIn">
+                  <Dropdown
+                    navString="explore"
+                    id="explore-dropdown"
+                    onClose={() => setActiveDropdown(null)}
+                  />
+                </div>
               </div>
             )}
           </div>
@@ -141,10 +143,9 @@ export default function Navbar() {
               aria-expanded={activeDropdown === "service"}
               aria-haspopup="menu"
               aria-controls="service-dropdown"
-              className="relative inline-block px-4 m-2 text-sm text-gray-600 dropdown font-fjalla hover:text-gray-900 focus:outline-none focus:ring focus:ring-primary-red focus:text-gray-900 rounded p-1 group"
+              className="relative inline-block px-4 m-2 text-sm text-gray-600 font-fjalla hover:text-primary-red focus:outline-none focus:ring focus:ring-primary-red focus:text-gray-900 rounded p-1 group transition-colors duration-200"
               onKeyDown={handleServiceKeyDown}
               onClick={() => {
-                // Toggle this dropdown, close others
                 setActiveDropdown(
                   activeDropdown === "service" ? null : "service"
                 );
@@ -154,20 +155,26 @@ export default function Navbar() {
               }}
             >
               Service
-              <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gray-900 group-hover:w-full group-hover:transition-all transform -translate-x-1/2"></span>
+              <span
+                className={`absolute -bottom-1 left-0 h-0.5 bg-primary-red transition-all duration-300 ease-in-out ${
+                  activeDropdown === "service" ? "w-full" : "w-0"
+                }`}
+              ></span>
             </button>
 
             {activeDropdown === "service" && (
               <div
                 ref={serviceDropdownRef}
-                className="absolute z-50"
+                className="absolute z-50 min-w-[250px] mt-1 transform origin-top-left transition-all duration-200 ease-out"
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <Dropdown
-                  navString="service"
-                  id="service-dropdown"
-                  onClose={() => setActiveDropdown(null)}
-                />
+                <div className="bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden animate-fadeIn">
+                  <Dropdown
+                    navString="service"
+                    id="service-dropdown"
+                    onClose={() => setActiveDropdown(null)}
+                  />
+                </div>
               </div>
             )}
           </div>
