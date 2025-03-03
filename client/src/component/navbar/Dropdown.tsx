@@ -44,96 +44,102 @@ export default function Dropdown({ navString, id, onClose }: DropdownProps) {
   return (
     <ul
       id={id}
+      ref={dropdownRef}
       role="menu"
       tabIndex={0}
-      className="dropdown-content z-[1] menu p-2 bg-white absolute left-0 right-0 top-full mt-1 font-roboto-condensed w-screen"
+      className="py-3 text-base text-gray-700"
       aria-label={`${navString} navigation menu`}
     >
       {/* Explore Tab */}
       {navString === "explore" && (
-        <div className="flex">
-          <div className="mr-4 ">
-            <ul className="list-none" role="group" aria-label="By Category">
-              <li
-                className="block px-4 py-2 font-extrabold"
-                role="presentation"
+        <div className="p-4">
+          <div className="grid grid-cols-2 gap-6">
+            <div>
+              <h3 className="text-sm font-medium uppercase tracking-wide text-gray-600 border-b border-gray-200 pb-1 mb-3">
+                By Category
+              </h3>
+              <ul
+                className="space-y-3 mt-3"
+                role="group"
+                aria-label="By Category"
               >
-                BY CATEGORY
-              </li>
-              <li role="menuitem">
-                <Link
-                  to="/explore"
-                  className="block px-4 py-2 hover:bg-gray-200 focus:outline-none focus:ring focus:ring-primary-red rounded"
-                >
-                  Fiction
-                </Link>
-              </li>
-              <li role="menuitem">
-                <Link
-                  to="/explore"
-                  className="block px-4 py-2 hover:bg-gray-200 focus:outline-none focus:ring focus:ring-primary-red rounded"
-                >
-                  Non-Fiction
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="px-5 mr-4">
-            <ul className="list-none" role="group" aria-label="By Format">
-              <li
-                className="block px-4 py-2 font-extrabold"
-                role="presentation"
+                <li role="menuitem">
+                  <Link
+                    to="/explore"
+                    className="flex items-center px-3 py-2 text-base rounded-md text-gray-700 hover:bg-gray-100 hover:text-primary-red transition-colors duration-150 focus:outline-none focus:ring focus:ring-primary-red"
+                  >
+                    <span className="ml-2">Fiction</span>
+                  </Link>
+                </li>
+                <li role="menuitem">
+                  <Link
+                    to="/explore"
+                    className="flex items-center px-3 py-2 text-base rounded-md text-gray-700 hover:bg-gray-100 hover:text-primary-red transition-colors duration-150 focus:outline-none focus:ring focus:ring-primary-red"
+                  >
+                    <span className="ml-2">Non-Fiction</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-medium uppercase tracking-wide text-gray-600 border-b border-gray-200 pb-1 mb-3">
+                By Format
+              </h3>
+              <ul
+                className="space-y-3 mt-3"
+                role="group"
+                aria-label="By Format"
               >
-                BY FORMAT
-              </li>
-              <li role="menuitem">
-                <Link
-                  to="/explore"
-                  className="block px-4 py-2 hover:bg-gray-200 focus:outline-none focus:ring focus:ring-primary-red rounded"
-                >
-                  Books
-                </Link>
-              </li>
-              <li role="menuitem">
-                <Link
-                  to="/explore"
-                  className="block px-4 py-2 hover:bg-gray-200 focus:outline-none focus:ring focus:ring-primary-red rounded"
-                >
-                  Movies & TV
-                </Link>
-              </li>
-            </ul>
+                <li role="menuitem">
+                  <Link
+                    to="/explore"
+                    className="flex items-center px-3 py-2 text-base rounded-md text-gray-700 hover:bg-gray-100 hover:text-primary-red transition-colors duration-150 focus:outline-none focus:ring focus:ring-primary-red"
+                  >
+                    <span className="ml-2">Books</span>
+                  </Link>
+                </li>
+                <li role="menuitem">
+                  <Link
+                    to="/explore"
+                    className="flex items-center px-3 py-2 text-base rounded-md text-gray-700 hover:bg-gray-100 hover:text-primary-red transition-colors duration-150 focus:outline-none focus:ring focus:ring-primary-red"
+                  >
+                    <span className="ml-2">Movies & TV</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       )}
 
       {/* Service Tab */}
       {navString === "service" && (
-        <div className="flex">
-          <div className="px-10 mr-4">
-            <ul
-              className="list-none"
-              role="group"
-              aria-label="Library Services"
-            >
-              <li role="menuitem">
-                <Link
-                  to="/services/rooms"
-                  className="block px-4 py-2 hover:bg-gray-200 focus:outline-none focus:ring focus:ring-primary-red rounded"
-                >
-                  Book Study Room
-                </Link>
-              </li>
-              <li role="menuitem">
-                <Link
-                  to="/services"
-                  className="block px-4 py-2 hover:bg-gray-200 focus:outline-none focus:ring focus:ring-primary-red rounded"
-                >
-                  Book a Computer
-                </Link>
-              </li>
-            </ul>
-          </div>
+        <div className="p-4">
+          <h3 className="text-sm font-medium uppercase tracking-wide text-gray-600 border-b border-gray-200 pb-1 mb-3">
+            Library Services
+          </h3>
+          <ul
+            className="space-y-3 mt-3"
+            role="group"
+            aria-label="Library Services"
+          >
+            <li role="menuitem">
+              <Link
+                to="/services/rooms"
+                className="flex items-center px-3 py-2 text-base rounded-md text-gray-700 hover:bg-gray-100 hover:text-primary-red transition-colors duration-150 focus:outline-none focus:ring focus:ring-primary-red"
+              >
+                <span className="ml-2">Book Study Room</span>
+              </Link>
+            </li>
+            <li role="menuitem">
+              <Link
+                to="/services"
+                className="flex items-center px-3 py-2 text-base rounded-md text-gray-700 hover:bg-gray-100 hover:text-primary-red transition-colors duration-150 focus:outline-none focus:ring focus:ring-primary-red"
+              >
+                <span className="ml-2">Book a Computer</span>
+              </Link>
+            </li>
+          </ul>
         </div>
       )}
     </ul>
